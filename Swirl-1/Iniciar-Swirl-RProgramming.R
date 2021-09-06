@@ -20,8 +20,7 @@ install_from_swirl("R Programming")
 
 swirl()
 
-# Para esta primera parte seguir las siguientes lecciones 
-# (mirar otros archivos de la carpeta)
+# Para esta primera parte seguir las siguientes lecciones
 
 # Basic Building Blocks
 # Workspace and Files
@@ -30,3 +29,6 @@ swirl()
 # Missing Values
 # Subsetting Vectors
 # Matrices and Data Frames
+
+# Al completar pide si se quiere puntuar en coursera, se ha de facilitar el mail 
+# con el que se está registrado y el token de identificación.
