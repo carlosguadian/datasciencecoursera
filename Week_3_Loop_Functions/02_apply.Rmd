@@ -1,0 +1,69 @@
+---
+title: "apply"
+author: Carlos Guadián
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## apply
+Utilizaremos apply cuando queramos aplicar una función a un array como una matriz.
+
+Por ejemplo para la siguiente matriz de 20x10 con una distribución aleatoria de números, vamos a calcular la *media de cada columna*.
+
+```{r}
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 2, mean)
+```
+
+Si lo que queremos es la *media de cada fila*.
+
+```{r}
+apply(x, 1, mean)
+```
+
+Por lo tanto los *argumentos* que utilizaremos en apply son:
+
+```{r}
+str(apply)
+```
+
+- Una array, por ejemplo la matriz sobre la que queremos ejecutar la función
+- El margen, que como hemos visto en el caso de la matriz indica si la función se ejecuta sobre las columnas (2), o sobre las filas (1).
+- La función a ejecutar.
+- ... Argumentos a utilizar en la función
+
+## Sumas y medias de columnas y filas
+Para los casos específicos de sumas y medias de filas y columnas existen los siguientes shortcuts mucho más optimizados, y por lo tanto, mucho más rápidos:
+
+- rowSums = apply(x, 1, sum)
+- rowMeans = apply(x, 1, mean)
+- colSums = apply(x, 2, sum)
+- colMeans = apply(x, 2, mean)
+
+## Otros usos de apply
+Puede hacer más que tomar sumas y medias con la función apply(). 
+
+Por ejemplo, puede calcular los cuantiles de las filas de una matriz utilizando la función quantile().
+
+```{r}
+x <- matrix(rnorm(200), 20, 10)
+## Obtener los cuantiles de las filas
+apply(x, 1, quantile, probs = c(0.25, 0.75)) 
+```
+
+O realizar cálculos con estructuras más complicadas. Por ejemplo, con una array que son 10 matrices de 2x2 como la siguiente:
+
+```{r}
+a <- array(rnorm(2 * 2 * 10), c(2, 2, 10))
+```
+
+Podemos calcular la media de las matrices llamando en el margen a filas y columnas.
+
+```{r}
+apply(a, c(1, 2), mean)
+# Vendría a ser lo mismo si utilizamos
+rowMeans(a, dims = 2) 
+```
