@@ -26,3 +26,27 @@ if (!file.exists("data")) {
 }
 ```
 
+## download.file()
+
+- Esta función permite descargar archivos de internet
+- Aunque se pueda hacer "manualmente" es mejor hacerlo así pra reproducir el proceso.
+- Parámetros importantes: url (la dirección del archivo), destfile (nombre del archivo que creamos con la descarga) y method
+- Útil para descargar tsv, csv y otros archivos.
+```{r}
+fileUrl <- "https://github.com/carlosguadian/datasciencecoursera/raw/master/02_Getting_Cleaning_Data/Week_1/housing_2006.csv"
+download.file(fileUrl, destfile = "./data/housing_2006.csv", method = "curl") # El método es "curl" porque la URL es https, si no, no funcionaría.
+list.files("./data")
+```
+
+Con objeto de detallar al máximo los datos con los que trabajamos, es importante dejar constancia "cuando" se han obtenido. Para ello podemos guardar en una variable la fecha de descarga.
+```{r}
+dateDownloaded <- date()
+dateDownloaded
+```
+
+- Si la URL empieza por http no hay problema
+- Si empieza por https
+  - En Windows no hay problema
+  - En Mac hace falta utilizar method = "curl"
+- Si el archivo es grande, puede tardar un poco en descargar.
+- Asegurarse de grabar cuando se descargó.
