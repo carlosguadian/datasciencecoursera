@@ -1,0 +1,28 @@
+Reading Data
+================
+Carlos Guadián
+
+## Working Directory
+
+Es importante definir el directorio de trabajo. En él es dónde vamos a
+leer, y guardar por defecto los archivos que generemos o importemos.
+
+Se utilizan habitualmente getwd() y setwd() para hacerlo y se puede
+definir de manera absoluta o relativa.
+
+-   Relativa: setwd(“./data”), setwd("../)
+-   Absoluta: setwd(“/Users/usuario/data/”)
+
+## Comprobar y crear directorios
+
+Podemos comprobar si esxite un directorio con
+file.exists(“nombreDirectorio”), y crearlo con
+dir.create(“nombreDirectorio”).
+
+Con el siguiente código podemos comprobar si existe, y si no, crearlo.
+
+``` r
+if (!file.exists("data")) {
+  dir.create("data")
+}
+```

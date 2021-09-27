@@ -1,0 +1,91 @@
+---
+title: "lapply & sapply"
+author: Carlos Guadián
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sustitutos de for, while, loops en línea de comandos
+- lapply(): Loop over a list and evaluate a function on each element
+- sapply(): Same as lapply but try to simplify the result
+- apply(): Apply a function over the margins of an array
+- tapply(): Apply a function over subsets of a vector
+- mapply(): Multivariate version of lapply”
+
+## lapply
+Esta función toma tres argumentos:
+
+- una lista X; 
+- una función (o el nombre de una función) FUN; 
+- otros argumentos a través de su argumento .... 
+
+Si X no es una lista, se convertirá en una lista utilizando as.list().
+
+El cuerpo de la función lapply() puede verse aquí
+
+```{r}
+lapply
+```
+
+Una aplicación sencilla sería la siguiente. Calcular la media de todos los elementos de una lista.
+
+```{r}
+x <- list(a = 1:5, b = rnorm(10))
+lapply(x, mean)
+```
+
+Otro ejemplo un poco más complicado también calculando la media de cada elemento.
+
+```{r}
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+lapply(x, mean) 
+```
+
+Por lo tanto, se puede pasar a cada elemento de la lista una función. En el siguiente ejemplo cada elemento de "x" es un argumento para runif para generar un número aleatorio. Con 1, genera 1 ,con 2, dos...
+
+```{r}
+x <- 1:4
+lapply(x, runif) 
+```
+
+También se puede definir una función fantasma, es decir, que no tiene nombre dentro de lapply.
+
+En el siguiente caso de una lista de dos matrices, extraemos el primer elemento de cada una.
+
+```{r}
+x <- list(a = matrix(1:4, 2, 2), b = matrix(1:6, 3, 2))
+lapply(x, function(elt) { elt[,1] }) 
+```
+
+Aunque si la función es complicada siempre se puede definir fuera y llamarla en lapply.
+
+```{r}
+f <- function(elt) {
+       elt[, 1]
+}
+lapply(x, f)
+```
+
+## sapply
+- Si el resultado es una lista donde cada elemento es de longitud 1, se devuelve un vector
+- Si el resultado es una lista donde cada elemento es un vector de la misma longitud (> 1), se devuelve una matriz.
+- Si no se puede resolver, se devuelve una lista
+
+Veamos la diferencia de aplicar lapply y sapply.
+
+Si aplicamos lapply a la siguiente lista, obtendremos una lista.
+
+```{r}
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+lapply(x, mean)
+```
+
+Pero si aplicamos sapply obtenemos un vector.
+
+```{r}
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+sapply(x, mean)
+```

@@ -1,0 +1,51 @@
+---
+title: "str()"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## La función str()
+La función str() nos muestra la estructura de un objeto en R, puede ser una buena alternativa para obtener un sumario del mismo.
+
+Por ejemplo si se lo aplicamos a si mismo:
+```{r}
+str(str)
+```
+
+O a otras funciones como lm() obtenemos la lista de argumentos para poder utilizarla:
+```{r}
+str(lm)
+```
+
+También la podemos aplicar a un conjunto de datos obteniendo la tipología de los datos, el número de elementos que tiene y una pequeña preview.
+```{r}
+x <- rnorm(100, 2, 4)
+str(x)
+```
+
+Por supuesto que también la podemos aplicar a una variable.
+```{r}
+f <- gl(40, 10)
+str(f)
+```
+
+Y como no, a un dataset.
+```{r}
+library(datasets)
+str(airquality)
+```
+
+O de una matriz.
+```{r}
+m <- matrix(rnorm(100), 10, 10)
+str(m)
+```
+
+Por último, no dejemos de lado las listas. Nos dará un pequeño sumario de cada elemento de la lista.
+```{r}
+s <- split(airquality, airquality$Month)
+str(s)
+```
