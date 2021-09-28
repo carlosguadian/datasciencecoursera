@@ -33,7 +33,7 @@ if (!file.exists("data")) {
 - Parámetros importantes: url (la dirección del archivo), destfile (nombre del archivo que creamos con la descarga) y method
 - Útil para descargar tsv, csv y otros archivos.
 ```{r}
-fileUrl <- "https://github.com/carlosguadian/datasciencecoursera/raw/master/02_Getting_Cleaning_Data/Week_1/housing_2006.csv"
+fileUrl <- "https://raw.githubusercontent.com/carlosguadian/datasciencecoursera/master/02_Getting_Cleaning_Data/Week_1/housing_2006.csv"
 download.file(fileUrl, destfile = "./data/housing_2006.csv", method = "curl") # El método es "curl" porque la URL es https, si no, no funcionaría.
 list.files("./data")
 ```
@@ -50,3 +50,37 @@ dateDownloaded
   - En Mac hace falta utilizar method = "curl"
 - Si el archivo es grande, puede tardar un poco en descargar.
 - Asegurarse de grabar cuando se descargó.
+
+## read.table() y read.csv() - Leer archivos en local
+**La función más habitual es read.table()**
+
+- Es flexible y robusta pero requiere más parámetros
+- Carga los datos en la RAM, archivos grandes pueden causar problemas
+- Parámetros a tener en cuenta: file, header, sep, row.names, nrows
+- Relacionadas: read.csv() y read.csv2()
+
+Por ejemplo si intentamos leer un csv con read.table sin ningún parámetro nos va a dar un error porque el delimitador que tiene read.table() por defecto es el espacio de tabulador y no la coma. Si miramos su estructura con str() vemos que hay 14932 observaciones, pero solo una variable.
+```{r}
+housing_2006 <- read.table("./data/idaho_2006.csv")
+str(housing_2006)
+```
+
+Para utilizarla correctamente debemos utilizar algunos parámetros extra. Vamos a indicar que el separador sea una "coma" ya que es un csv, y le vamos a decir que si que tiene cabecera, es decir que la primera línea son los nombres de las variables.
+```{r}
+housing_2006 <- read.table("./data/idaho_2006.csv", sep = ",", header = TRUE)
+head(housing_2006)
+```
+
+Con read.csv() ya no tenemos que incorporar estos parámetros ya que por defecto el separador es la "," y las cabeceras están en TRUE.
+```{r}
+housing_2006_2 <- read.csv("./data/idaho_2006.csv")
+head(housing_2006_2)
+```
+
+**Otros parámetros para tener en cuenta:**
+
+- quote: indicamos qué valores entrecomillados no significa, entrecomillados.
+- na.strings: se define el valor de valores no disponibles.
+- nrows: cuantas filas deben leerse.
+- skip: cuantas líneas debe saltarse antes de empezar a cargar datos.
+
