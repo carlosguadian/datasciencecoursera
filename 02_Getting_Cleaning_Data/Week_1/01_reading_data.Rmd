@@ -68,13 +68,14 @@ str(housing_2006)
 Para utilizarla correctamente debemos utilizar algunos parámetros extra. Vamos a indicar que el separador sea una "coma" ya que es un csv, y le vamos a decir que si que tiene cabecera, es decir que la primera línea son los nombres de las variables.
 ```{r}
 housing_2006 <- read.table("./data/idaho_2006.csv", sep = ",", header = TRUE)
-head(housing_2006)
+library(tibble)
+as_tibble(housing_2006)
 ```
 
 Con read.csv() ya no tenemos que incorporar estos parámetros ya que por defecto el separador es la "," y las cabeceras están en TRUE.
 ```{r}
 housing_2006_2 <- read.csv("./data/idaho_2006.csv")
-head(housing_2006_2)
+as_tibble(housing_2006_2)
 ```
 
 **Otros parámetros para tener en cuenta:**
