@@ -43,7 +43,8 @@ list.files("./data")
 ```
 
     ## [1] "data_gov.xlsx"                "getdata_data_restaurants.xml"
-    ## [3] "housing_2006.csv"             "idaho_2006.csv"
+    ## [3] "housing_2006.csv"             "idaho_2006.csv"              
+    ## [5] "restaurants.xml"
 
 Con objeto de detallar al máximo los datos con los que trabajamos, es
 importante dejar constancia “cuando” se han obtenido. Para ello podemos
@@ -54,7 +55,7 @@ dateDownloaded <- date()
 dateDownloaded
 ```
 
-    ## [1] "Tue Sep 28 09:17:41 2021"
+    ## [1] "Tue Sep 28 12:56:12 2021"
 
 -   Si la URL empieza por http no hay problema
 -   Si empieza por https
@@ -154,3 +155,182 @@ as_tibble(housing_2006_2)
 -   na.strings: se define el valor de valores no disponibles.
 -   nrows: cuantas filas deben leerse.
 -   skip: cuantas líneas debe saltarse antes de empezar a cargar datos.
+
+## read.xlsx(), read.xlsx2() - Leer Archivos Excel
+
+El proceso para descargar un archivo excel es exactamente igual que el
+descrito anteriormente.
+
+Para leer los archivos tipo excel utilizaremos el paquete “xlsx”, si no
+lo tenéis instalado, proceder a ello primero y cargarlo.
+
+En los parámetros indicaremos la hoja que queremos cargar con
+“sheetIndex” y si hay cabeceras. En el siguiente ejemplo al visualizar
+lo que hemos cargado nos damos cuenta que en la hoja cargada hay varias
+tablas, por lo que para trabajar con un conjunto de datos determinado
+deberemos hacer un subset de los mismos.
+
+``` r
+require(xlsx)
+```
+
+    ## Loading required package: xlsx
+
+``` r
+data_gov <- read.xlsx("./data/Data_gov.xlsx", sheetIndex = 1, header = TRUE)
+view(data_gov)
+```
+
+Para ello, primero procederemos a hacer el subset de las líneas con las
+que queramos trabajar, recordar que son varias tablas unas encima de
+otras. Vamos a seleccionar los datos pertenecientes a la tabla
+“contractor” que se encuentran entre las filas 17:22
+
+``` r
+contractor <- data_gov[17:22, ] # seleccionamos las filas deseadas
+names(contractor) <- contractor[1, ] # copiamos la primera fila como nombres de varible
+contractor <- contractor[-1, ] # borramos la primera fila
+contractor <- contractor[, 1:15] # seleccionamos sólo las columnas deseadas
+row.names(contractor) <- c(1:5) # renombramos las filas
+as_tibble(contractor) # comprobamos
+```
+
+    ## # A tibble: 5 × 15
+    ##   StateAbbrev CName   Address1 Address2 Address3 City  Zip   CuCurrent PaCurrent
+    ##   <chr>       <chr>   <chr>    <chr>    <chr>    <chr> <chr> <chr>     <chr>    
+    ## 1 OK          Tiger … 1422 E … <NA>     <NA>     Tulsa 74136 0         1        
+    ## 2 GA          PS Ene… 2987 Cl… Suite 5… <NA>     Atla… 30329 1         0        
+    ## 3 OK          Geary … 7712 S … Suite 2… <NA>     Tulsa 74136 1         0        
+    ## 4 CO          Utilit… 1700 Li… Suite 2… <NA>     Denv… 80203 0         1        
+    ## 5 CO          Select… 8122 So… Suite 2… <NA>     Litt… 80120 1         0        
+    ## # … with 6 more variables: PoCurrent <chr>, Contact <chr>, Ext <chr>,
+    ## #   Fax <chr>, email <chr>, Status <chr>
+
+## Leer archivos XML
+
+Se han de tener en cuenta las etiquetas que definen los bloques del
+contenido. Por ejemplo las que definen una sección \*\*
+<section>
+</section>
+
+\*\*
+
+Tenemos que utilizar la librería “Rcurl” para poder acceder a una
+dirección https con getURL(). Con rootNode accedemos al nombre de la
+unidad de información del documento.
+
+``` r
+library(XML)
+library(RCurl)
+fileUrl <- "https://www.w3schools.com/xml/simple.xml"
+fileUrl <- getURL(fileUrl)
+doc <- xmlTreeParse(fileUrl, useInternalNodes = TRUE)
+rootNode <- xmlRoot(doc)
+xmlName(rootNode)
+```
+
+    ## [1] "breakfast_menu"
+
+También podemos acceder a los diferentes elementos que están dentro del
+rootNode para saber lo que contiene.
+
+``` r
+names(rootNode)
+```
+
+    ##   food   food   food   food   food 
+    ## "food" "food" "food" "food" "food"
+
+Se puede acceder directamente a partes del XML como si se tratara de una
+lista. Por ejemplo al primer elemento sería.
+
+``` r
+rootNode[[1]]
+```
+
+    ## <food>
+    ##   <name>Belgian Waffles</name>
+    ##   <price>$5.95</price>
+    ##   <description>Two of our famous Belgian Waffles with plenty of real maple syrup</description>
+    ##   <calories>650</calories>
+    ## </food>
+
+Y si queremos acceder al primer elemento, del primer elemento. Es decir,
+en este caso al nombre de la primera comida.
+
+``` r
+rootNode[[1]][[1]]
+```
+
+    ## <name>Belgian Waffles</name>
+
+Si queremos extraer partes del archivo utilizaremos xmlSApply()
+
+``` r
+xmlSApply(rootNode, xmlValue)
+```
+
+    ##                                                                                                                     food 
+    ##                               "Belgian Waffles$5.95Two of our famous Belgian Waffles with plenty of real maple syrup650" 
+    ##                                                                                                                     food 
+    ##                    "Strawberry Belgian Waffles$7.95Light Belgian waffles covered with strawberries and whipped cream900" 
+    ##                                                                                                                     food 
+    ## "Berry-Berry Belgian Waffles$8.95Light Belgian waffles covered with an assortment of fresh berries and whipped cream900" 
+    ##                                                                                                                     food 
+    ##                                                "French Toast$4.50Thick slices made from our homemade sourdough bread600" 
+    ##                                                                                                                     food 
+    ##                         "Homestyle Breakfast$6.95Two eggs, bacon or sausage, toast, and our ever-popular hash browns950"
+
+Para hacer una extracción correcta es conveniente conocer xPath y sus
+elementos:
+
+-   /node Top level nodo
+-   //node Un nodo a cualquier nivel
+-   node\[@attr-name\] Nodo con un nombre de atributo
+-   node\[@attr-name='bob'\] Nodo con bob de atributo
+
+Más info en el siguiente
+[PDF](https://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/XML.pdf)
+
+Sabiendo esto podemos obtener, del fichero de menús, cada uno de los
+ítems
+
+``` r
+xpathSApply(rootNode, "//name", xmlValue)
+```
+
+    ## [1] "Belgian Waffles"             "Strawberry Belgian Waffles" 
+    ## [3] "Berry-Berry Belgian Waffles" "French Toast"               
+    ## [5] "Homestyle Breakfast"
+
+O cada uno de los precios
+
+``` r
+xpathSApply(rootNode, "//price", xmlValue)
+```
+
+    ## [1] "$5.95" "$7.95" "$8.95" "$4.50" "$6.95"
+
+Otro ejemplo con descarga de XML para obtener el número de restaurantes
+de un determinado código postal. En este caso descargamos archivo y
+utilizamos el paquete xml2 ya que con xml tenemos problemas al leer los
+nodos y nos permite acceder de manera más fácil a la información.
+
+``` r
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml", destfile = "./data/restaurants.xml", method = "curl")
+library(xml2)
+doc <- read_xml("./data/restaurants.xml")
+# conseguir los zipcodes
+zipcodes <- xml_find_all(doc, "//zipcode") 
+# extraer y limpiar columnas
+vals <- trimws(xml_text(zipcodes))
+# convertimos el vector en numérico
+vals <- as.numeric(vals)
+# sacamos la tabla y la guardamos en una variable
+a <- table(vals)
+# Si queremos el número de restaurantes para el código postal 21231
+a[names(a)==21231]
+```
+
+    ## 21231 
+    ##   127
