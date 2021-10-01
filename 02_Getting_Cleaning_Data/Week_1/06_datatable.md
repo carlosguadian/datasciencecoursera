@@ -12,10 +12,10 @@ DF <- data.frame(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
 head(DF,3)
 ```
 
-    ##            x y          z
-    ## 1 0.09562346 a -0.6024490
-    ## 2 0.35792970 a -1.5549512
-    ## 3 0.45989554 a -0.6225723
+    ##             x y          z
+    ## 1  0.07265521 a 1.17383775
+    ## 2 -1.52623245 a 0.03605568
+    ## 3 -0.49296184 a 0.07516594
 
 De la misma manera que hemos creado un dataframe con data.frame, lo
 podemos hacer con data.table
@@ -25,10 +25,10 @@ DT <- data.table(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
 head(DF,3)
 ```
 
-    ##            x y          z
-    ## 1 0.09562346 a -0.6024490
-    ## 2 0.35792970 a -1.5549512
-    ## 3 0.45989554 a -0.6225723
+    ##             x y          z
+    ## 1  0.07265521 a 1.17383775
+    ## 2 -1.52623245 a 0.03605568
+    ## 3 -0.49296184 a 0.07516594
 
 Con tables() podemos listar los data.frame que tenemos y obtener
 información relativo a ellas
@@ -47,25 +47,25 @@ Evidentemente se puede hacer subsetting mediante índices
 DT[2,] # segunda fila
 ```
 
-    ##           x y       z
-    ## 1: 1.673872 a 1.42381
+    ##             x y        z
+    ## 1: -0.6518689 a 1.380345
 
 ``` r
 DT[DT$y == "a",] # filas en las que la variable "y" sea "a"
 ```
 
-    ##             x y          z
-    ## 1: -0.9852441 a 1.87586440
-    ## 2:  1.6738724 a 1.42381005
-    ## 3: -1.8536623 a 0.08256366
+    ##             x y         z
+    ## 1: -2.3270525 a 1.1605203
+    ## 2: -0.6518689 a 1.3803450
+    ## 3: -0.3496990 a 0.2218312
 
 ``` r
 DT[c(2,3),] #segunda y tercera fila
 ```
 
-    ##            x y          z
-    ## 1:  1.673872 a 1.42381005
-    ## 2: -1.853662 a 0.08256366
+    ##             x y         z
+    ## 1: -0.6518689 a 1.3803450
+    ## 2: -0.3496990 a 0.2218312
 
 Pero el subset para las columnas no funciona igual
 
@@ -75,30 +75,30 @@ DT[, 3] # podemos seleccionar una columna
 ```
 
     ##              z
-    ## 1:  1.87586440
-    ## 2:  1.42381005
-    ## 3:  0.08256366
-    ## 4:  0.52376567
-    ## 5:  0.67716236
-    ## 6:  0.28912612
-    ## 7:  1.20360840
-    ## 8: -1.45602889
-    ## 9:  1.01416690
+    ## 1:  1.16052030
+    ## 2:  1.38034496
+    ## 3:  0.22183122
+    ## 4: -1.06400036
+    ## 5: -0.05929057
+    ## 6: -1.03757227
+    ## 7: -1.28665461
+    ## 8: -1.29877189
+    ## 9:  1.32218698
 
 ``` r
 DT[, c(2,3)]
 ```
 
     ##    y           z
-    ## 1: a  1.87586440
-    ## 2: a  1.42381005
-    ## 3: a  0.08256366
-    ## 4: b  0.52376567
-    ## 5: b  0.67716236
-    ## 6: b  0.28912612
-    ## 7: c  1.20360840
-    ## 8: c -1.45602889
-    ## 9: c  1.01416690
+    ## 1: a  1.16052030
+    ## 2: a  1.38034496
+    ## 3: a  0.22183122
+    ## 4: b -1.06400036
+    ## 5: b -0.05929057
+    ## 6: b -1.03757227
+    ## 7: c -1.28665461
+    ## 8: c -1.29877189
+    ## 9: c  1.32218698
 
 El argumento que se pasa después de la coma se considera una expresión.
 Por lo tanto se pueden hacer cosas como pasar una lista de funciones o
@@ -109,8 +109,8 @@ cuando se pasen después de la coma.
 DT[, list(mean(x), sum(z))]
 ```
 
-    ##            V1       V2
-    ## 1: -0.2755701 5.634039
+    ##            V1         V2
+    ## 1: -0.3008148 -0.6614062
 
 ``` r
 DT[,table(y)]
@@ -125,13 +125,13 @@ DT[, w := z ^ 2]
 head(DT)
 ```
 
-    ##              x y          z           w
-    ## 1: -0.98524415 a 1.87586440 3.518867252
-    ## 2:  1.67387237 a 1.42381005 2.027235050
-    ## 3: -1.85366234 a 0.08256366 0.006816757
-    ## 4:  0.05811979 b 0.52376567 0.274330480
-    ## 5:  0.93948819 b 0.67716236 0.458548857
-    ## 6:  0.49826425 b 0.28912612 0.083593912
+    ##             x y           z           w
+    ## 1: -2.3270525 a  1.16052030 1.346807359
+    ## 2: -0.6518689 a  1.38034496 1.905352205
+    ## 3: -0.3496990 a  0.22183122 0.049209092
+    ## 4: -0.1763705 b -1.06400036 1.132096767
+    ## 5: -0.4315093 b -0.05929057 0.003515371
+    ## 6:  0.1051358 b -1.03757227 1.076556214
 
 El proceso es muy rápido pero lo carga todo en memoria, por lo que con
 conjuntos de datos muy grandes puede causar problemas. El caso es que si
@@ -174,12 +174,12 @@ head(DT['a'])
 ```
 
     ##    x           y
-    ## 1: a -0.58559887
-    ## 2: a -1.01521652
-    ## 3: a  0.56280582
-    ## 4: a -0.02212941
-    ## 5: a -0.28282361
-    ## 6: a  0.24274447
+    ## 1: a  0.49260394
+    ## 2: a  0.05265016
+    ## 3: a  0.52823592
+    ## 4: a -0.91626748
+    ## 5: a  0.07208600
+    ## 6: a  1.53897885
 
 Estos índices o claves también se pueden utilizar para faciliar las
 uniones entre tablas.
@@ -199,17 +199,26 @@ merge(DT1, DT2)
 
 Por último, como ya se ha comentado, una de las grandes ventajas de
 data.table es su rapidez. Vamos a hacer unas comprobaciones con
-system.time()
+system.time(). Primero creamos un data.frame() y lo leemos con fread y
+comprovamos los tiempos de ejecución.
 
 ``` r
-DT1 <- data.table(x = c("a","a","b","dt1"), y = 1:4)
-DT2 <- data.table(x = c("a", "b","dt2"), z = 5:7)
-setkey(DT1, x)
-setkey(DT2, x)
-merge(DT1, DT2)
+big_df <- data.frame(x = rnorm(1E6), y = rnorm(1E6))
+file <- tempfile()
+write.table(big_df, file = file, row.names = FALSE, col.names = TRUE, sep = "\t", quote = FALSE)
+system.time(fread(file))
 ```
 
-    ##    x y z
-    ## 1: a 1 5
-    ## 2: a 2 5
-    ## 3: b 3 6
+    ##    user  system elapsed 
+    ##   0.091   0.017   0.107
+
+Ahora miramos lo que tarda en leer el mismo archivo con read.table.
+Tarda casi 5 veces más. fread() actúa como si leyera data.table() por
+eso la rapidez en su ejecución.
+
+``` r
+system.time(read.table(file, header = TRUE, sep = "\t"))
+```
+
+    ##    user  system elapsed 
+    ##   5.525   0.141   5.729
