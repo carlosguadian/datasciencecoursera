@@ -1,0 +1,32 @@
+---
+title: "Archivos JSON"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Leer JSON
+Para leer archivos JSON utilizaremos el paquete jsonlite.
+
+Podemos leer directamente de un archivo que esté en Internet, por ejemplo, el que contiene la información de Github de los repositorios que tengo y participo.
+```{r}
+library(jsonlite)
+jsondata <- fromJSON("https://api.github.com/users/carlosguadian/repos")
+names(jsondata) # acceso a los diferentes elementos que conformarían el dataframe
+names(jsondata$owner) # se puede acceder a uno específico
+jsondata$owner$login # incluso bajar un nivel más
+```
+
+Con este paquete también se puede convertir un dataframe en json. Probemos con Iris data.
+```{r}
+myjson <- toJSON(iris, pretty = TRUE)
+# cat(myjson)
+```
+
+Y lo podemos volver a dataframe con fromJSON
+```{r}
+iris2 <- fromJSON(myjson)
+head(iris2)
+```

@@ -1,0 +1,98 @@
+---
+title: "data.table()"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## data.table package
+
+- Acepta todas las funciones de data.frame
+- Es mucho más rápido, está escrito en C
+
+```{r}
+library(data.table)
+DF <- data.frame(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
+head(DF,3)
+```
+
+De la misma manera que hemos creado un dataframe con data.frame, lo podemos hacer con data.table
+```{r}
+DT <- data.table(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
+head(DF,3)
+```
+
+Con tables() podemos listar los data.frame que tenemos y obtener información relativo a ellas
+```{r}
+tables()
+```
+
+Evidentemente se puede hacer subsetting mediante índices
+```{r}
+DT[2,] # segunda fila
+DT[DT$y == "a",] # filas en las que la variable "y" sea "a"
+DT[c(2,3),] #segunda y tercera fila
+```
+
+Pero el subset para las columnas no funciona igual
+```{r}
+library(data.table)
+DT[, 3] # podemos seleccionar una columna
+DT[, c(2,3)]
+```
+
+El argumento que se pasa después de la coma se considera una expresión. Por lo tanto se pueden hacer cosas como pasar una lista de funciones o incluso añadir una nueva columna como resultado de cálculos siempre y cuando se pasen después de la coma.
+```{r}
+DT[, list(mean(x), sum(z))]
+DT[,table(y)]
+DT[, w := z ^ 2]
+head(DT)
+```
+
+El proceso es muy rápido pero lo carga todo en memoria, por lo que con conjuntos de datos muy grandes puede causar problemas. El caso es que si asignamos DT a una nueva variable, DT2, cuando hagamos un cambio en DT, también cambiará DT2.
+```{r}
+DT2 <- DT
+DT[, y := 2]
+```
+
+Se pueden pasar incluso la definición de una función como argumento al crear una nueva columna.
+```{r}
+DT[, m := {tmp <- (x+z); log2(tmp + 5)}]
+```
+
+O calcular una columna lógica
+```{r}
+DT[, a := x > 0]
+```
+
+O agrupar por los resultados de la columna lógica
+```{r}
+DT[, b := mean(x + w), by = a]
+```
+
+Se puede definir un índice con setkey para realizar diferentes operaciones, por ejemplo en el siguiente data.table definimos la variable "x" como índice y nos permite de una manera fácil hacer un subset para todos los registros en los que "x" sea igual a "a".
+```{r}
+DT <- data.table(x = rep(c("a","b","c"), each = 100), y = rnorm(100))
+setkey(DT, x)
+head(DT['a'])
+```
+
+Estos índices o claves también se pueden utilizar para faciliar las uniones entre tablas.
+```{r}
+DT1 <- data.table(x = c("a","a","b","dt1"), y = 1:4)
+DT2 <- data.table(x = c("a", "b","dt2"), z = 5:7)
+setkey(DT1, x)
+setkey(DT2, x)
+merge(DT1, DT2)
+```
+
+Por último, como ya se ha comentado, una de las grandes ventajas de data.table es su rapidez. Vamos a hacer unas comprobaciones con system.time()
+```{r}
+DT1 <- data.table(x = c("a","a","b","dt1"), y = 1:4)
+DT2 <- data.table(x = c("a", "b","dt2"), z = 5:7)
+setkey(DT1, x)
+setkey(DT2, x)
+merge(DT1, DT2)
+```
