@@ -1,0 +1,131 @@
+---
+title: "Tidying data con tidyr"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tidy data
+Tidy data facilita la exploración de los datos. Para que así sea debe satisfacer tres condiciones:
+
+- Cada variable conforma una columna
+- Cada observación forma una fila
+- Cada tipo de unidad observacional forma una tabla
+
+Para facilitar "arreglar" los datos vamos a trabajar con tidyr()
+```{r}
+library(tidyr)
+```
+
+Supongamos que tenemos el siguiente dataset
+```{r}
+students <- read.csv("./data/students.csv")
+students
+```
+
+## gather()
+Como se puede ver en students tenemos tres columnas, grade, male y female. Pero no debería ser así. Deberíamos tener grade, sex y count para estar estructurado de una manera correcta.
+
+Para ordenarlo vamos a utilizar gather() para unificar male y female, bajo sex y cada una de sus observaciones bajo, count. El -grade indica que es la columna que no queremos tocar.
+```{r}
+gather(students, sex, count, -grade)
+```
+
+## separate()
+Vamos a ver otro dataset que está desordenado. Students2
+```{r}
+students2 <- read.csv("./data/students2.csv")
+students2
+```
+
+Como se puede ver hay 5 columnas. Está "grade" que es correcta, pero tenemos dos males y dos females. Cada uno pertenece a una clase diferente. Para ordenar este dataset lo haremos en dos pasos.
+
+El primero con gather para unificar columnas. Lo guardamos en una nueva variable
+```{r}
+res <- gather(students2, sex_class, count, -grade)
+res
+```
+
+El segundo con separate() para separar sex_class en sex y class.
+```{r}
+separate(res, sex_class, into = c("sex", "class"))
+```
+
+Con pipes se podría hacer en un paso
+```{r}
+students2 %>%
+  gather( sex_class, count, -grade) %>%
+  separate( sex_class, c("sex", "class")) %>%
+  print
+```
+
+Vamos a trabajar ahora con otro escenario, con students3
+```{r}
+students3 <- read.csv("./data/students3.csv")
+students3
+```
+
+Vamos a llamar a gather() para reunir las columnas class1 hasta class5 en una nueva variable llamada class. La 'clave' debe ser class, y el 'valor' debe ser grado.  
+
+tidyr facilita la referencia a múltiples columnas adyacentes columnas adyacentes con class1:class5, al igual que con las secuencias de números.  
+
+Dado que cada estudiante sólo está inscrito en dos de las cinco clases posibles, hay muchos valores que faltan valores perdidos (es decir, NAs). Utilizamos el argumento na.rm = TRUE para omitir estos valores del resultado final.
+```{r}
+students3 %>%
+  gather( class, grade, class1:class5, -name , na.rm = TRUE) %>%
+  print
+```
+
+Este script se basa en el anterior añadiendo una llamada a spread(), que nos permitirá convertir los valores de la columna de prueba, intermedia y final, en cabeceras de columna (es decir, variables).
+
+Sólo necesitamos especificar dos argumentos a spread().
+```{r}
+students3 %>%
+  gather(class, grade, class1:class5, na.rm = TRUE) %>%
+  spread( test, grade) %>%
+  print
+```
+
+Queremos que los valores de las columnas de clase sean 1, 2, ..., 5 y no class1, class2, ..., class5.
+
+Usamos la función mutate() de dplyr junto con parse_number().
+
+Cargamos primero dplyr() para utilizar mutate(), y readr() para parse_number()
+```{r}
+library(dplyr)
+library(readr)
+```
+
+Ahora ejecutamos para extraer los números de la columna class.
+```{r}
+students3 %>%
+  gather(class, grade, class1:class5, na.rm = TRUE) %>%
+  spread(test, grade) %>%
+  mutate(class = parse_number(class)) %>%
+  print
+```
+
+Vamos a trabajar con otro escenario de messy data en el que tenemos diferentes unidades observacionales en la misma tabla.
+```{r}
+students4 <- read.csv("./data/students4.csv")
+students4
+```
+
+Como se puede ver en students4 hay observaciones de los mismos estudiantes para diferentes clases, vamos a separar la información de los estudiantes por un lado y las notas por otro.
+
+Primero la información de los estudiantes, vamos a utilizar unique() para evitar duplicidades.
+```{r}
+student_info <- students4 %>%
+  select(id, name, sex) %>%
+  unique %>%
+  print
+```
+
+Por otro lado vamos a generar el libro de notas y listo, ya lo tenemos separado.
+```{r}
+gradebook <- students4 %>%
+  select(id, class, midterm, final) %>%
+  print
+```

@@ -1,0 +1,110 @@
+---
+title: "Manipular datos con dplyr()"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Los 5 verbos
+dplyr() facilita la manipulación de datos con 5 funciones, 5 verbos:
+
+- select()
+- filter()
+- arrange()
+- mutate()
+- summarize()
+
+Cargamos dplyr()
+```{r}
+library(dplyr)
+```
+
+Leemos el archivo cran para practicar con él
+```{r}
+cran <- read.csv("./data/cran.csv")
+```
+
+Lo convertimos tibble, es más operativo, sobre todo en las impresiones de resultados.
+```{r}
+cran <- tbl_df(cran)
+cran
+```
+
+## select()
+select() facilita hacer un subset de las variables que queremos para trabajar sólo con ellas. Por ejemplo si queremos solo las columnas ip_id, package y country del dataset cran
+```{r}
+select(cran, ip_id, package, country)
+```
+
+La selección que hacemos se genera en el mismo orden en el que incluímos las variables. Ahora ponemos ip_id al final
+```{r}
+select(cran, package, country, ip_id)
+```
+
+Podemos también utilizar rangos para seleccionar las variables que queremos, por ejemplo para seleccionar las variables de r_arch hasta country
+```{r}
+select(cran, r_arch:country)
+```
+
+Podemos también decidir que no queremos una o varias variables con el signo -
+```{r}
+select(cran, -time) #sn la variable time
+select(cran, -(X:size)) # quitar desde X hasta size
+```
+
+## filter()
+filter() lo vamos a utilizar para seleccionar las observaciones que coincidan con alguna condición. Por ejemplo, aquellas en las que package sea igual a "swirl".
+```{r}
+filter(cran, package == "swirl")
+```
+
+Se puede incorporar más de una condición
+```{r}
+filter(cran, r_version == "3.1.1", country == "US")
+filter(cran, country == "US" | country == "IN")
+filter(cran, size > 100500, r_os == "linux-gnu")
+```
+
+Con is.na() podemos dejar fuera de la selección los NA
+```{r}
+filter(cran, !is.na(r_version))
+```
+
+## arrange()
+arrange() nos va a servir para ordenar el dataset de acuerdo a los valores de una variable particular.
+
+Por ejemplo, vamos a ordenar por ip_id en orden ascendente.
+```{r}
+arrange(cran, ip_id)
+```
+
+Si lo queremos en orden descendente, aplicamos desc()
+```{r}
+arrange(cran, desc(ip_id))
+```
+
+También podemos ordenar por más de una variable. Por ejemplo, si queremos que se ordene primero por "country", después en orden descendente por "r_version" y por último por ip_id
+```{r}
+arrange(cran, country, desc(r_version), ip_id)
+```
+
+## mutate()
+Si necesitamos crear una nueva variable basada en una o más variables, podemos hacerlo con mutate().
+
+En este caso si queremos calcular el tamaño en MB vamos a utilizar la variable size que está en bytes.
+```{r}
+mutate(cran, size_mb = size / 2^20)
+```
+
+Con mutate se puede utilizar una variable calculada para calcular una tercera.
+```{r}
+mutate(cran, size_mb = size / 2^20, size_gb = size_mb / 2 ^10)
+```
+
+## summarize()
+summarize() reduce el dataset a una fila, por ejemplo, si estamos interesados en conocer la media del tamaño de las descargas en cran
+```{r}
+summarize(cran, avg_bytes = mean(size))
+```

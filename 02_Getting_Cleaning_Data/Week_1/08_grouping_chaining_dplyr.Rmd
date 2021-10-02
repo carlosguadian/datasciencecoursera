@@ -1,0 +1,90 @@
+---
+title: "Agrupar y encadenar con dplyr()"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Agrupar
+Una de las cosas que nos puede interesar a la hora de manipular datos es agruparlos en base a alguna de sus variables. dplyr() proporciona la función group_by()
+
+Cargamos dplyr
+```{r}
+library(dplyr)
+```
+
+- abrir archivo
+- convertir a tibble tbl_df()
+```{r}
+cran <- read.csv("./data/cran.csv", header = TRUE)
+cran <- tbl_df(cran)
+```
+
+- agrupar por una variable group_by(package)
+- print tibble
+- calcular media por grupos summarize(data, mean(variable))
+```{r}
+by_package <- group_by(cran, package)
+by_package
+summarize(by_package, mean(size))
+```
+
+Se pueden calcular varias operaciones simultáneamente
+```{r}
+pack_sum <- summarize(by_package,
+                      count = n(),
+                      unique = n_distinct(ip_id),
+                      countries = n_distinct(country),
+                      avg_bytes = mean(size))
+```
+
+Si no queremos repetir una orden tras otra, podemos insertar las funciones unas dentro de otras
+```{r}
+result2 <-
+  arrange(
+    filter(
+      summarize(
+        group_by(cran,
+                 package
+        ),
+        count = n(),
+        unique = n_distinct(ip_id),
+        countries = n_distinct(country),
+        avg_bytes = mean(size)
+      ),
+      countries > 60
+    ),
+    desc(countries),
+    avg_bytes
+  )
+
+print(result2)
+```
+
+Utilizando pipes %>% lo podemos hacer de una manera mucho más sencilla
+```{r}
+result3 <-
+  cran %>%
+  group_by(package) %>%
+  summarize(count = n(),
+            unique = n_distinct(ip_id),
+            countries = n_distinct(country),
+            avg_bytes = mean(size)
+  ) %>%
+  filter(countries > 60) %>%
+  arrange(desc(countries), avg_bytes)
+
+# Print result to console
+print(result3)
+```
+
+Utilizando pipes sólo hay que ir añadiendo una acción tras otra. Primero señalar la fuente de datos y en este caso seleccionar las variables que queremos, la nueva que calculamos, el subset que queremos (qué selección de filas) y como lo queremos ordenado.
+```{r}
+cran %>%
+  select(ip_id, country, package, size) %>%
+  mutate(size_mb = size / 2^20) %>%
+  filter(size_mb <= 0.5) %>%
+  arrange(desc(size_mb))
+```

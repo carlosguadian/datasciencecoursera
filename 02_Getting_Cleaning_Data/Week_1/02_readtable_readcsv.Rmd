@@ -34,6 +34,12 @@ housing_2006_2 <- read.csv("./data/idaho_2006.csv")
 as_tibble(housing_2006_2)
 ```
 
+Con read.csv() no solo podemos abrir un archivo en local, también podemos leerlo directamente de Internet.
+```{r}
+path2csv <- "https://raw.githubusercontent.com/carlosguadian/datasciencecoursera/master/02_Getting_Cleaning_Data/Week_1/housing_2006.csv"
+cran <- read.csv(path2csv, stringsAsFactors = FALSE)
+```
+
 **Otros parámetros para tener en cuenta:**
 
 - quote: indicamos qué valores entrecomillados no significa, entrecomillados.
