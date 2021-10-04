@@ -1,0 +1,81 @@
+---
+title: "Leer de mySQL"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## mySQL
+
+- Software de BBDD ampliamente utilizado, open source y gratuito
+- Se utiliza en muchas aplicaciones de Internet
+- Los datos se estructuran en:
+  - BBDD
+  - Tablas dentro de las BBDD
+  - Campos dentro de las tablas
+- Cada fila es un registro.
+
+## RMySQL()
+Si no se tiene instalado el paquete RMySQL descomentar la línea. Si ya lo tienes procede a cargar directamente la librería.
+```{r}
+# install.packages("RMySQL")
+library(RMySQL)
+```
+
+## Conectar y listar BBDD
+El paquete RMySQL nos permite conectar a BBDD, podemos definir un handle con el usuario y el host para hacer cualquier tipo de consulta.
+
+Es importante desconectarse una vez acabada la consulta/trabajo.
+
+En este caso nos vamos a conectar para consultar las BBDD disponibles en UCSC.
+```{r}
+ucscDB <- dbConnect(MySQL(), user = "genome", host = "genome-mysql.cse.ucsc.edu")
+result <- dbGetQuery(ucscDB, "show databases;")
+head(result)
+dbDisconnect(ucscDB) # Cuando se acaba de hacer la consulta se ha de desconectar
+```
+
+Para conectarnos a una específica, en este caso hay que incorporar el nombre de la BBDD, vamos a hacerlo a hg19
+```{r}
+hg19 <- dbConnect(MySQL(), user = "genome", db = "hg19", host = "genome-mysql.cse.ucsc.edu")
+allTables <- dbListTables(hg19)
+length(allTables)
+allTables[1:5]
+```
+
+Si queremos trabajar con una tabla específica, debemos conocer su nombre para poder acceder a ella. De esta manera podemos hacer todo tipo de operaciones. Desde la consulta de los campos que tiene, a realizar consultas SQL como calcular el número de registros que tiene.
+```{r}
+dbListFields(hg19, "affyU133Plus2") # Consultamos los campos que tiene la tabla
+dbGetQuery(hg19, "select count(*) from affyU133Plus2") # Calcular el número de registros
+```
+
+Se puede obtener la información de una tabla a modo de dataframe para trabajar con ella.
+```{r warning=FALSE}
+library(tidyverse)
+affyData <- dbReadTable(hg19, "affyU133Plus2")
+affyData <- tbl_df(affyData)
+affyData
+```
+
+Teniendo en cuenta que una BBDD puede contener mucha cantidad de información, una tabla puede ser tan grande que sea difícil leerla en R (recordemos que trabjamos en local y que dependemos de la capacidad de nuestro ordenador).
+
+Por lo tanto sería conveniente, en lugar de trabajar con la tabla entera, hacer un subset y trabajar sólo con los datos que nos interesen. En este caso seleccionamos de la BBDD hg19, y de la tabla affyU133Plus2 solo los registros que tengan un valor entre 1 y 3 en la variable misMatches. Reducimos el número de registros de 58463 a 500. Una vez guardado el subset en un nuevo dataframe, ya podemos realizar el análisis que queramos.
+```{r warning=FALSE}
+query <- dbSendQuery(hg19, "select * from affyU133Plus2 where misMatches between 1 and 3")
+affyMis <- fetch(query)
+quantile(affyMis$misMatches)
+```
+
+También podemos traer una pequeña cantidad de la tabla en cuestión para ver si es lo que buscamos. Vamos a pedir las primeras 10 líneas. Hay que limpiar de la cache de la BBDD la query para que sea efectiva.
+```{r warning=FALSE}
+affyMisSmall <- fetch(query, n = 10)
+dbClearResult(query)
+dim(affyMisSmall)
+```
+
+No hay que olvidar desconectar la conexión
+```{r warning=FALSE}
+dbDisconnect(hg19)
+```
