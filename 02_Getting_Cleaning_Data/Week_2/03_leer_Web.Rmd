@@ -1,0 +1,82 @@
+---
+title: "Leer de la Web"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## WebScraping
+Hay muchas maneras, pero una de las más efectivas es mediante scraping.
+
+- Obtener datos directamente del código html de las webs
+- Puede ser una buena manera de obtener datos, si no hay otra manera.
+- Se puede obtener de manera programática (automáticamente con software)
+- Hay que tener en cuenta que puede ir en contra de los términos de uso de la web, por ejemplo obtener datos de un grupo de Facebook, canal privado de Telegram, etc.
+- Intentar leer datos demasiado rápido puede llevar a que tu IP sea bloqueada.
+
+## readlines()
+Vamos a leer el código de mi perfil en Google Scholar y leemos los primeros caracteres para comprobar que tenemos el código html.
+
+Abrimos una conexión con el perfil, almacenamos el html y cerramos conexión.
+```{r}
+con <- url("https://scholar.google.com/citations?user=XiUjgtgAAAAJ&hl=es")
+htmlCode <- readLines(con, encoding = "UTF-8")
+close(con)
+htmlCode[1]
+```
+
+## XML()
+Con XML podemos extraer la información de una manera mucho más estructurada. Por ejemplo extraer el título de la página.
+```{r}
+library(XML)
+library(RCurl)
+url <- "https://scholar.google.com/citations?user=XiUjgtgAAAAJ&hl=es"
+fileURL <- getURL(url, .encoding = 'UTF-8')
+html <- htmlTreeParse(fileURL, encoding = 'UTF-8', useInternalNodes = TRUE)
+
+xpathSApply(html, "//title", xmlValue)
+rootNode <- xmlRoot(html)
+```
+
+O extraer los títulos de las publicaciones referenciadas en la página.
+```{r}
+xpathSApply(html, "//td[@class= 'gsc_a_t']", xmlValue)
+```
+
+## httr()
+Con httr() también tenemos una manera fácil y accesible de obtener el contenido de una web. Para el título:
+```{r}
+library(httr)
+html2 <- GET(url)
+content2 <- content(html2, as = "text")
+parsedHtml <- htmlParse(content2, encoding = 'UTF-8', asText = TRUE)
+xpathSApply(parsedHtml, "//title", xmlValue)
+```
+
+Una de las ventajas de httr es que permite mediante GET poder autenticarse en una web para acceder a ella. Si accedemos a la siguiente página con un navegador vemos que nos pide usuario y contraseña, de hay que el status sea 401
+```{r}
+pg1 <- GET("http://httpbin.org/basic-auth/user/passwd")
+pg1
+```
+
+Para resolverlo y acceder al contenido podemos incorporar a GET el usuario y la contraseña. Entonces ya obtenemos una respuesta de 200 y la verificación de autentificación.
+```{r}
+pg2 <- GET("http://httpbin.org/basic-auth/user/passwd", authenticate("user", "passwd"))
+pg2
+```
+
+Ahora si pedimos los names(pg2) obtenemos todos los diferentes componentes de la página a la que hemos accedido y de esta manera acceder a la información que hay en ellos.
+```{r}
+names(pg2)
+pg2["url"] # a la URL
+pg2["headers"] # a los headers
+```
+
+Otra cosa que se puede hacer es que si se autentifica con handle después se puede utilizar sin problemas para acceder sin necesidad de volver a autentificarse.
+```{r}
+google <- handle("http://google.com")
+pg3 <- GET(handle = google, path = "/")
+pg4 <- GET(handle = google, path = "search")
+```
