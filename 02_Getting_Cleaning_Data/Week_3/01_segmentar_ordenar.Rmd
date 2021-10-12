@@ -1,0 +1,121 @@
+---
+title: "Segmentar y ordenar"
+author: "Carlos Guadián"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Segmentar
+Para empezar vamos a generar un dataframe con tres variables y algunos valores perdidos.
+```{r}
+set.seed(13435)
+X <- data.frame("var1" = sample(1:5), "var2" = sample(6:10), "var3" = sample(11:15))
+X <- X[sample(1:5), ]
+X$var2[c(1,3)] = NA
+X
+```
+
+Vamos a segmentar columnas, ya sea por el índice o por el nombre de la variable
+```{r}
+X[, 1]
+X[, "var1"]
+```
+
+Podemos también segmentar una variable / columna especificando los registros que queremos indicando un intervalo.
+```{r}
+X[1:2, "var2"]
+```
+
+También se puede segmentar utilizando **operadores lógicos**.
+
+Por ejemplo podemos seleccionar aquellos valores del dataframe que sean menores o iguales a 3 en var1 y mayores a 11.
+```{r}
+X[(X$var1 <= 3 & X$var3 > 11), ]
+```
+
+En este caso no utilizamos un "Y" se usa un "O", por lo que obtendremos todos los registros que cumplan una u otra condición.
+```{r}
+X[(X$var1 <= 3 | X$var3 > 11), ]
+```
+
+Podemos utilizar el operador "which" para evitar los NA. Por ejemplo le podemos pedir los mayores de 5 en var2, pero no nos devolverá los NA.
+```{r}
+X[which(X$var2 > 5), ]
+```
+
+## Ordenar
+Podemos ordenar por una variable
+```{r}
+sort(X$var1)
+```
+
+Hacerlo en orden inverso.
+```{r}
+sort(X$var1, decreasing = TRUE)
+```
+
+O incluso indicando que queremos los NA al final.
+```{r}
+sort(X$var2, na.last = TRUE)
+```
+
+También se puede ordenar el dataframe en base a una variable.
+```{r}
+X[order(X$var1), ]
+```
+
+Por supuesto se puede ordenar por más de una variable.
+```{r}
+X[order(X$var1, X$var3), ]
+```
+
+Para este tipo de operaciones se puede utilizar el paquete plyr()
+```{r}
+library(plyr)
+arrange(X, var1)
+```
+
+Es bastante intuitivo, por ejemplo para ordenar en sentido descendente.
+```{r}
+arrange(X, desc(var1))
+```
+
+## Añadir filas y columnas
+Si nos hiciera falta añadir una nueva columna (variable) podemos añadirla definiendola a su valor. Por ejemplo, para añadir var4 a X lo hacemos de la siguiente manera.
+```{r}
+X$var4 <- rnorm(5)
+X
+```
+
+Otra manera de hacerlo es con cbind(), en este caso definimos var5 y con cbind() lo añade a la derecha de X, ya que lo hemos puesto en ese orden.
+```{r}
+var5 <- rnorm(5)
+X <- cbind(X, var5)
+X
+```
+
+Si quisieramos añadir una nueva variable a la izquierda del dataframe solo tenemos que invertir el orden.
+```{r}
+var6 <- rnorm(5)
+X <- cbind(var6, X)
+X
+```
+
+Para añdir filas utilizamos rbind() de la misma manera. Si queremos añadir una fila al principio.
+```{r}
+r6 <- rnorm(6)
+X <- rbind(r6, X)
+X
+```
+
+Y si la queremos añadir al final
+```{r}
+r7 <- rnorm(6)
+X <- rbind(X, r7)
+X
+```
+
+Más info en https://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%202.pdf
