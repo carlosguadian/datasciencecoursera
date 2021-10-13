@@ -1,0 +1,147 @@
+---
+title: "Resumiendo datos"
+author: "Carlos Guadián"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Cargar los datos
+Una vez cargados los datos en R necesitamos dar un primer vistazo para averiguar si hay algo que no esté bien. Valores perdidos, inconsistencia en los valores, que no sean del tipo adecuado...
+
+Vamos a descargar el archivo CSV de restaurantes de la ciudad de Baltimore de la siguiente URL https://data.baltimorecity.gov/datasets/restaurants/ . No se puede hacer descarga directa, pero descargamos y lo llevamos al directorio data.
+
+Primero comprovamos si existe, si no se crea. Recordar ejecutarlo desde el "working directory" correcto. Y entonces una vez cargado el CSV en el directorio cargamos los datos.
+```{r}
+if(!file.exists("./data")){dir.create("./data")}
+restData <- read.csv("./data/Restaurants.csv")
+```
+
+Lo pasamos a tibble para visualizar mejor resultados
+```{r}
+library(tibble)
+restData <- as_tibble(restData)
+```
+
+## Un primer vistazo
+Una vez cargados vamos a dar un primer vistazo.
+```{r}
+head(restData, n = 3)
+tail(restData, n = 3)
+```
+
+Para tener una primera idea general también podemos utilizar summary()
+```{r}
+summary(restData)
+```
+
+Con summary vemos un primer resumen y si algunas de las variables tienen la clase correcta. Por ejemplo restData$name se ha considerado como "character", por lo que el sumario no es el adecuado ya que debería ser considerado como factor, de esa manera obtendriamos el resumen correcto, una tabla con el conteo de los resturantes.
+```{r}
+restData$name <- as.factor(restData$name)
+head(summary(restData$name))
+```
+
+Más allá de summary(), con str() tenemos una información mucho más detallada del dataset
+```{r}
+str(restData)
+```
+
+Y como con la variable "name" podemos ver que hay que cambiar algunas clases para poder trabajar correctamente con ellas. Por ejemplo zipcode es characer y debería ser factor, como nghbrhd que es character y debería ser factor, etc.
+```{r}
+restData$nghbrhd <- as.factor(restData$nghbrhd)
+head(summary(restData$nghbrhd))
+restData$zipcode <- as.factor(restData$zipcode)
+head(summary(restData$zipcode))
+```
+
+## Quartiles de variables cuantitativas
+Podemos utilizar quantiles para ver la variabilidad de las variables cuantitativas.
+```{r}
+quantile(restData$cncldst, na.rm = TRUE)
+quantile(restData$cncldst, probs = c(0.5, 0.75, 0.9))
+```
+
+## Tablas como resumen
+Un buen resumen de una variable, sobre todo si es un factor son las tablas. Si usamos useNA nos devolverá una columna extra si hay algún valor perdido como es el caso.
+```{r}
+table(restData$zipcode, useNA = "ifany")
+```
+
+También se pueden hacer tablas de dos dimensiones, es decir, de dos variables. En este caso cruzamos council district y zipcode.
+```{r}
+head(table(restData$cncldst, restData$zipcode))
+```
+
+## Comprobar valors perdidos
+Utilizamos is.na() para comprobar el número de valores perdidos (NA) que hay en una determinada variable.
+
+En este caso lo utilizamos combinado con sum() y si el resultado es 0, es que no hay.
+```{r}
+sum(is.na(restData$cncldst))
+```
+
+También lo podemos utilizar combinado con any(). Si nos devuelve FALSE es que no hay ningún NA.
+```{r}
+any(is.na(restData$cncldst))
+```
+
+Otra aproximación es sumar las columnas buscando los NA. Podemos ver que hay variables del dataset que están vacías como srcid_t o url ya que suman tantos NA como registros tiene el dataframe.
+```{r}
+colSums(is.na(restData))
+```
+
+Podemos pedir una comprobación de todo el dataset con all(), y si nos devuelve como es este caso FALSE es que hay NA.
+```{r warning=FALSE}
+all(colSums(is.na(restData) == 0))
+```
+
+## Encontrar valores con carateríticas especiales
+Imaginar que queremos encontrar cuantos códigos postales pertenecen al 21212. Lo podemos hacer con %in%. Se puede combinar con más de una condición, equivale a utilizar un OR. Nos devolverá los que sean iguales al 21212 o al 21213.
+```{r warning=FALSE}
+table(restData$zipcode %in% c("21212"))
+table(restData$zipcode %in% c("21212", "21213"))
+```
+
+Ahora bien, si lo que queremos son los valores y no la suma de cuantos son, podemos hacer un subsetting utilizando %in%
+```{r warning=FALSE}
+restData[restData$zipcode %in% c("21212", "21213"), ]
+```
+
+## Tabulaciones cruzadas
+La tabulación cruzada es una de las herramientas analíticas más útiles y un pilar del sector de la investigación de mercados. El análisis de tabulación cruzada, también conocido como análisis de tablas de contingencia, se utiliza con mayor frecuencia para analizar datos categóricos (escala de medición nominal).
+
+Vamos a cargar UCBAdmissions, lo pasamos a dataframe y pedimos el sumario. Podemos ver que hay 4 categorías: Admit, Gender, Dept y Freq
+```{r warning=FALSE}
+data("UCBAdmissions")
+DF <- as.data.frame(UCBAdmissions)
+summary(DF)
+```
+
+Podemos ir más allá con tabulaciones cruzadas para ver donde hay relaciones entre las variables. Vamos a pedir el número de admitidos y rechazados por género.
+```{r warning=FALSE}
+xt <- xtabs(Freq ~ Gender + Admit, data = DF)
+xt
+```
+
+Pero si queremos cruzar muchas variables es mejor utilizar Flat Tables. Para el ejemplo utilizaremos el dataset warpbreaks, añdimos una variable extra y volvemos a pedir xtabs() para cruzar en este caso todas las variables. Pero puede ser complicado verlo ya que genera por cada cruce una tabla de dos dimensiones.
+```{r warning=FALSE}
+data("warpbreaks")
+warpbreaks$replicate <- rep(1:9, len = 54)
+ft <- xtabs(breaks ~., data = warpbreaks)
+ft
+```
+
+Pero podemos aplicar a ft ftable() para tener una única tabla con los cruces
+```{r warning=FALSE}
+ftable(ft)
+```
+
+## Tamaño del dataset
+Dependiendo del tamaño del dataset es probable que podamos tener problemas de procesamiento, por eso poder calcular su tamaño puede ayudarnos.
+```{r warning=FALSE}
+fakeData <- rnorm(1e5)
+object.size(fakeData)
+print(object.size(fakeData), units = "Mb")
+```
