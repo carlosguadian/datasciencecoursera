@@ -1,0 +1,20 @@
+---
+title: "Remodelando datos"
+author: "Carlos Guadián"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tidy Data
+
+- Cada variable en una columna
+- Cada observación en una fila
+- Cada tabla / archivo almacena información de un tipo de observación.
+
+```{r}
+
+```
+
