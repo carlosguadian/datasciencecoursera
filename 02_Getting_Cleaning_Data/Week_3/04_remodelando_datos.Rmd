@@ -14,7 +14,73 @@ knitr::opts_chunk$set(echo = TRUE)
 - Cada observación en una fila
 - Cada tabla / archivo almacena información de un tipo de observación.
 
-```{r}
-
+## Melting (fusión) dataframes
+Vamos a empezar trabajando con el dataset mtcars, en el cual podemos ver que hay muchos coches diferentes en sus filas y unas cuantas variables para cada una de ellas.
+```{r warning=FALSE}
+library(reshape2)
+head(mtcars)
 ```
 
+La fusión en la programación de R se realiza para organizar los datos. Se realiza mediante la función melt() que toma los valores del conjunto de datos y de las columnas que deben mantenerse constantes. Usando melt(), el marco de datos se convierte en formato largo y estira el marco de datos.
+```{r warning=FALSE}
+mtcars$carname <- rownames(mtcars)
+carMelt <- melt(mtcars, id = c("carname", "gear", "cyl"), measure.vars = c("mpg", "hp"))
+head(carMelt, n = 3)
+tail(carMelt, n = 3)
+```
+
+## Casting dataframes
+El casting en la programación de R se utiliza para remodelar los datos fundidos utilizando la función cast() que toma la función agregada y la fórmula para agregar los datos en consecuencia. 
+
+Esta función se utiliza para convertir los datos de formato largo de nuevo en alguna forma agregada de datos basada en la fórmula de la función cast().
+
+**Es como hacer una pivot table**
+
+En este caso si aplicamos la función dcast() al dataframe que hemos "fundido" antes (carMelt) le podemos pedir que nos diga para cada valor de cyl, el conteo que hay para variable, es decir, para mpg y hp.
+```{r warning=FALSE}
+cylData <- dcast(carMelt, cyl ~ variable)
+cylData
+```
+
+O bien podemos indicarle que nos muestre algún valor como la media.
+```{r warning=FALSE}
+cylData <- dcast(carMelt, cyl ~ variable, mean)
+cylData
+```
+
+## Valores promedios
+Con tapply() podemos realizar cálculos a un dataset entero para cada uno de los factores de una variable.
+```{r warning=FALSE}
+head(InsectSprays)
+tapply(InsectSprays$count, InsectSprays$spray, sum)
+```
+
+Otra manera es mediante split(). De esta manera obtenemos una lista de valores para cada nivel del factor.
+```{r warning=FALSE}
+spIns <- split(InsectSprays$count, InsectSprays$spray)
+spIns
+```
+
+Entonces podemos aplicar apply() para tener la suma de cada lista de valores.
+```{r warning=FALSE}
+sprCount <- lapply(spIns, sum)
+unlist(sprCount)
+```
+
+O con sapply() ya obtenemos directamente el resultado simplificado sin necesidad de pasar por unlist()
+```{r warning=FALSE}
+sapply(spIns, sum)
+```
+
+Con el paquete plyr() también tenemos una manera directa de hacerlo.
+```{r warning=FALSE}
+library(plyr)
+ddply(InsectSprays, .(spray), summarize, sum = sum(count))
+```
+
+Esta forma puede ser interesante para calcular los valores de cada nivel de un factor y aplicarlos a una variable.
+```{r warning=FALSE}
+spraySums <- ddply(InsectSprays, .(spray), summarize, sum = ave(count, FUN = sum))
+dim(spraySums)
+head(spraySums)
+```
