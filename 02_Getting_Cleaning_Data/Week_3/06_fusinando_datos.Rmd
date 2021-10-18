@@ -1,0 +1,93 @@
+---
+title: "Merging Data"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Fusionando datos
+
+## Revisión por pares de los datos del experimento
+
+[http://www.plosone.org/article/info:doi/10.1371/journal.pone.0026895](http://www.plosone.org/article/info:doi/10.1371/journal.pone.0026895)
+
+---
+
+## Datos de la revisión por pares
+
+```{r reviewDownload, cache=TRUE}
+if(!file.exists("./data")){dir.create("./data")}
+fileUrl1 = "https://raw.githubusercontent.com/DataScienceSpecialization/courses/master/03_GettingData/03_05_mergingData/data/reviews.csv"
+fileUrl2 = "https://raw.githubusercontent.com/DataScienceSpecialization/courses/master/03_GettingData/03_05_mergingData/data/solutions.csv"
+download.file(fileUrl1,destfile="./data/reviews.csv",method="curl")
+download.file(fileUrl2,destfile="./data/solutions.csv",method="curl")
+reviews = read.csv("./data/reviews.csv"); solutions <- read.csv("./data/solutions.csv")
+head(reviews,2)
+head(solutions,2)
+```
+
+
+---
+
+## Fusión de datos - merge()
+
+* Fusiona marcos de datos
+* Parámetros importantes: _x_,_y_,_by_,_by.x_,_by.y_,_all_
+```{r, dependson="reviewDownload"}
+names(reviews)
+names(solutions)
+```
+
+---
+
+## Fusión de datos - merge()
+
+```{r, dependson="reviewDownload"}
+mergedData = merge(reviews,solutions,by.x="solution_id",by.y="id",all=TRUE)
+head(mergedData)
+```
+
+---
+
+## Por defecto: fusionar todos los nombres de columnas comunes
+
+```{r, dependson="reviewDownload"}
+intersect(names(solutions),names(reviews))
+mergedData2 = merge(reviews,solutions,all=TRUE)
+head(mergedData2)
+```
+
+---
+
+## Usando join en el paquete plyr 
+
+_Más rápido, pero menos completo - por defecto se usa la unión izquierda, vea el archivo de ayuda para más_.
+```{r }
+library(plyr)
+df1 = data.frame(id=sample(1:10),x=rnorm(10))
+df2 = data.frame(id=sample(1:10),y=rnorm(10))
+arrange(join(df1,df2),id)
+```
+
+
+---
+
+## Si tienes múltiples dataframes
+
+```{r}
+df1 = data.frame(id=sample(1:10),x=rnorm(10))
+df2 = data.frame(id=sample(1:10),y=rnorm(10))
+df3 = data.frame(id=sample(1:10),z=rnorm(10))
+dfList = list(df1,df2,df3)
+join_all(dfList)
+```
+
+---
+
+## Más sobre la fusión de datos
+
+* La página rápida de fusión de datos en R - [http://www.statmethods.net/management/merging.html](http://www.statmethods.net/management/merging.html)
+* Información sobre plyr - [http://plyr.had.co.nz/](http://plyr.had.co.nz/)
+* Tipos de uniones - [http://en.wikipedia.org/wiki/Join_(SQL)](http://en.wikipedia.org/wiki/Join_(SQL))
