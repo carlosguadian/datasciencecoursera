@@ -1,0 +1,164 @@
+---
+title: "Gestionar dataframes con dplyr()"
+author: "Carlos Guadián"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Características de un dataframe
+
+- Hay una observación por fila
+- Cada columna representa una variable, medida o característica.
+- La implementación básica es la que hay por defecto en R
+- Otras implementaciones pueden ser sistemas de BBDD relacionales
+
+## dplyr() package
+Está diseñado específicamente para trabajar con dataframes. Tiene 6 verbos básicos:
+
+- arrange: reordena las filas del dataframe.
+- filter: extrae un subconjunto de filas del dataframe en base a condiciones lógicas.
+- select: devuelve un subconjunto de columnas del dataframe.
+- mutate: añade nuevas variables / columnas o transforma las existentes.
+- rename: renombra variables del dataframe.
+- summarise / summarize: genera sumarios estadísticos de diferentes variables del dataframe.
+
+## Propiedades dplyr() 
+
+- El primer argumento es el dataframe
+- Los siguientes argumentos describen lo que hacer con él y se pueden llamar las columnas directamente sin el $.
+- El resultado es un nuevo dataframe
+
+## select()
+Vamos a trabajar con un dataset de datos de la calidad del aire de Chicago, en el que vemos que hay 6940 registros y 8 variables.
+```{r}
+library(dplyr)
+chicago <- readRDS("chicago.rds")
+dim(chicago)
+str(chicago)
+head(select(chicago, 1:5))
+```
+
+En primer lugar vamos a pedir los nombres de las variables ya que con dplyr() una de las cosas que podemos hacer es acceder a las variables por su nombre y no sólo por su índice. Por ejmemplo, vamos a pedir todas las variables que hay entre city y dptp.
+```{r}
+names(chicago)
+head(select(chicago, city:dptp))
+```
+
+También podemos excluir variables utilizando el signo -
+```{r}
+names(chicago)
+head(select(chicago, -(city:dptp)))
+```
+
+Lo que en código base de R sería lo siguiente
+```{r,eval=FALSE}
+i <- match("city", names(chicago))
+j <- match("dptp", names(chicago))
+head(chicago[, -(i:j)])
+```
+
+## filter()
+Con filter() podemos segmentar el dataset basándonos en condiciones, por ejemplo pedir todos aquellos registros en los que pm25tmean2 sea superior a 30.
+```{r}
+chic.f <- filter(chicago, pm25tmean2 > 30)
+head(chic.f, 10)
+```
+
+Se pueden utilizar más de una condición. Añadimos a la condición anterior que la temperatura sea superior a 80.
+```{r}
+chic.f <- filter(chicago, pm25tmean2 > 30 & tmpd > 80)
+# head(chic.f)
+```
+
+## arrange()
+Reordenar las filas de un dataframe (conservando el orden correspondiente de otras columnas) es complicado en R.
+
+arrange() viene a dar una respuesta fácil a este problema.
+
+Por ejemplo podemor ordenar por date
+```{r}
+chicago <- arrange(chicago, date)
+head(select(chicago, date, pm25tmean2), 3)
+tail(select(chicago, date, pm25tmean2), 3)
+```
+
+Hacerlo en orden invertido.
+```{r}
+chicago <- arrange(chicago, desc(date))
+head(select(chicago, date, pm25tmean2), 3)
+tail(select(chicago, date, pm25tmean2), 3)
+```
+
+
+## rename()
+Renombrar una variable también puede ser complicado, pero con rename() se simplifica el proceso. 
+```{r,tidy=FALSE}
+head(chicago[, 1:5], 3)
+chicago <- rename(chicago, dewpoint = dptp, 
+                  pm25 = pm25tmean2)
+head(chicago[, 1:5], 3)
+```
+
+
+## mutate()
+mutate() nos va a ayudar a cambiar una variable en base a un cálculo.
+```{r, tidy=FALSE}
+chicago <- mutate(chicago, 
+                  pm25detrend=pm25-mean(pm25, na.rm=TRUE))
+head(select(chicago, pm25, pm25detrend))
+```
+
+## group_by()
+Genera sumarios de una variable agrupados por nivel. Esto nos permite dividir el dataset.
+
+Vamos a añadir una nueva categoría con diferentes niveles para generar una estructura de datos.
+```{r, tidy=FALSE}
+chicago <- mutate(chicago, 
+                  tempcat = factor(1 * (tmpd > 80), 
+                                   labels = c("cold", "hot")))
+hotcold <- group_by(chicago, tempcat)
+hotcold
+summarize(hotcold, pm25 = mean(pm25, na.rm = TRUE), 
+          o3 = max(o3tmean2), 
+          no2 = median(no2tmean2))
+```
+
+
+```{r, tidy=FALSE}
+chicago <- mutate(chicago, year = as.POSIXlt(date)$year + 1900)
+years <- group_by(chicago, year)
+summarize(years, pm25 = mean(pm25, na.rm = TRUE), 
+          o3 = max(o3tmean2, na.rm = TRUE), 
+          no2 = median(no2tmean2, na.rm = TRUE))
+```
+
+```{r,echo=FALSE}
+chicago$year <- NULL  ## Can't use mutate to create an existing variable
+```
+
+
+## %>%
+
+```{r,tidy=FALSE,eval=FALSE}
+chicago %>% mutate(month = as.POSIXlt(date)$mon + 1) %>% group_by(month) %>% summarize(pm25 = mean(pm25, na.rm = TRUE), o3 = max(o3tmean2, na.rm = TRUE), no2 = median(no2tmean2, na.rm = TRUE))
+```
+
+```{r,echo=FALSE}
+chicago %>% mutate(month = as.POSIXlt(date)$mon + 1) %>% group_by(month) %>% 
+summarize(pm25 = mean(pm25, na.rm = TRUE), o3 = max(o3tmean2, na.rm = TRUE), no2 = median(no2tmean2, na.rm = TRUE))
+```
+
+
+## dplyr
+
+Una vez que se aprende la "gramática" de dplyr hay algunos beneficios adicionales
+
+* dplyr puede trabajar con otros "backends" de marcos de datos
+
+* `data.table` para tablas grandes y rápidas
+
+* Interfaz SQL para bases de datos relacionales a través del paquete DBI
+
