@@ -1,7 +1,5 @@
-Untitled
+Getting and Cleaning Data Quiz 3 (JHU) Coursera
 ================
-
-# Getting and Cleaning Data Quiz 3 (JHU) Coursera
 
 ## \#\# Question 1
 
@@ -90,36 +88,53 @@ Original data sources:
 ``` r
 # install.packages("data.table)
 library("data.table")
+library(dplyr)
+```
 
+    ## 
+    ## Attaching package: 'dplyr'
 
+    ## The following objects are masked from 'package:data.table':
+    ## 
+    ##     between, first, last
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 # Download data and read FGDP data into data.table
 FGDP <- data.table::fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv'
-                          , skip=4
+                          , skip=5
                           , nrows = 190
                           , select = c(1, 2, 4, 5)
                           , col.names=c("CountryCode", "Rank", "Economy", "Total")
                           )
 
 # Download data and read FGDP data into data.table
-FEDSTATS_Country <- data.table::fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv'
-                                      )
-                                      
+FEDSTATS_Country <- data.table::fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv')
+     
 mergedDT <- merge(FGDP, FEDSTATS_Country, by = 'CountryCode')
 
 # How many of the IDs match?
 nrow(mergedDT)
 ```
 
-    ## [1] 188
+    ## [1] 189
 
 ``` r
 # Sort the data frame in descending order by GDP rank (so United States is last). 
 # What is the 13th country in the resulting data frame?
-mergedDT[order(-Rank)][13,.(Economy)]
+country13 <- (arrange(mergedDT, desc(Rank)))
+country13[13, 3]
 ```
 
-    ##    Economy
-    ## 1: Vanuatu
+    ##                Economy
+    ## 1: St. Kitts and Nevis
 
 ## \#\# Question 4
 
@@ -157,32 +172,15 @@ Income.Group. How many countries are Lower middle income but among the
 ``` r
 # install.packages('dplyr')
 library('dplyr')
-```
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:data.table':
-    ## 
-    ##     between, first, last
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 breaks <- quantile(mergedDT[, Rank], probs = seq(0, 1, 0.2), na.rm = TRUE)
 mergedDT$quantileGDP <- cut(mergedDT[, Rank], breaks = breaks)
 mergedDT[`Income Group` == "Lower middle income", .N, by = c("Income Group", "quantileGDP")]
 ```
 
     ##           Income Group quantileGDP  N
-    ## 1: Lower middle income (38.4,75.8] 13
-    ## 2: Lower middle income   (113,152]  9
-    ## 3: Lower middle income   (152,189] 15
-    ## 4: Lower middle income  (75.8,113] 11
-    ## 5: Lower middle income    (1,38.4]  5
+    ## 1: Lower middle income (38.6,76.2] 13
+    ## 2: Lower middle income   (114,152]  9
+    ## 3: Lower middle income   (152,190] 16
+    ## 4: Lower middle income  (76.2,114] 11
+    ## 5: Lower middle income    (1,38.6]  5
