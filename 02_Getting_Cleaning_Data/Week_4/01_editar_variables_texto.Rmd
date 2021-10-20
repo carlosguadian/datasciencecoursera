@@ -1,0 +1,150 @@
+---
+title: "Editando Variables de Texto"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Example - Baltimore camera data
+Los archivos originales utilizados en el vídeo de Coursera ya no están disponibles.
+
+Para utilizar los datos del vídeo se utilizan los archivos que Roger D. Peng tiene en https://github.com/DataScienceSpecialization/courses/tree/master/03_GettingData/04_01_editingTextVariables/data
+
+## tolower(), toupper()
+En ocasiones es conveniente que los nombres de variables tengan un formato consistente. Ayuda a escribirlos, utilizarlos...
+
+Una transformación interesante es tolower() que los convierte todos en minúsculas. Y evidentemente la versión contraria, pasarlos a mayúsculas es toupper()
+```{r getData}
+if(!file.exists("./data")){dir.create("./data")}
+fileUrl <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/master/03_GettingData/04_01_editingTextVariables/data/cameras.csv"
+download.file(fileUrl,destfile="./data/cameras.csv",method="curl")
+cameraData <- read.csv("./data/cameras.csv")
+names(cameraData)
+tolower(names(cameraData))
+toupper(names(cameraData))
+```
+
+## strsplit()
+
+* Bueno para dividir automáticamente los nombres de las variables
+* Parámetros importantes: _x_, _split_
+
+```{r splitNames,dependson="getData"}
+splitNames = strsplit(names(cameraData),"\\.")
+splitNames[[5]]
+splitNames[[6]]
+```
+
+## Quick aside - lists
+
+```{r}
+mylist <- list(letters = c("A", "b", "c"), numbers = 1:3, matrix(1:25, ncol = 5))
+head(mylist)
+```
+
+[http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf](http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf)
+
+```{r}
+mylist[1]
+mylist$letters
+mylist[[1]]
+```
+
+[http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf](http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf)
+
+## sapply()
+
+* Aplica una función a cada elemento de un vector o lista
+* Parámetros importantes: _X_,_FUN_
+
+```{r, dependson="splitNames"}
+splitNames[[6]][1]
+firstElement <- function(x){x[1]}
+sapply(splitNames,firstElement)
+```
+
+---
+
+## Peer review experiment data
+
+[http://www.plosone.org/article/info:doi/10.1371/journal.pone.0026895](http://www.plosone.org/article/info:doi/10.1371/journal.pone.0026895)
+
+## Peer review data
+
+```{r reviewDownload, cache=TRUE}
+fileUrl1 <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/master/03_GettingData/04_01_editingTextVariables/data/reviews.csv"
+fileUrl2 <- "https://raw.githubusercontent.com/DataScienceSpecialization/courses/master/03_GettingData/04_01_editingTextVariables/data/solutions.csv"
+download.file(fileUrl1,destfile="./data/reviews.csv",method="curl")
+download.file(fileUrl2,destfile="./data/solutions.csv",method="curl")
+reviews <- read.csv("./data/reviews.csv"); solutions <- read.csv("./data/solutions.csv")
+head(reviews,2)
+head(solutions,2)
+```
+
+## sub()
+
+* Parámetros importantes: _pattern_, _replacement_, _x_
+
+```{r, dependson="reviewDownload"}
+names(reviews)
+sub("_","",names(reviews),)
+```
+
+---
+
+## gsub()
+
+```{r, dependson="reviewDownload"}
+testName <- "this_is_a_test"
+sub("_","",testName)
+gsub("_","",testName)
+```
+
+## Encontrar valores - grep(),grepl()
+
+```{r,dependson="getData"}
+grep("Alameda",cameraData$intersection)
+table(grepl("Alameda",cameraData$intersection))
+cameraData2 <- cameraData[!grepl("Alameda",cameraData$intersection),]
+```
+
+## Más sobre grep()
+
+```{r,dependson="getData"}
+grep("Alameda",cameraData$intersection,value=TRUE)
+grep("JeffStreet",cameraData$intersection)
+length(grep("JeffStreet",cameraData$intersection))
+```
+
+[http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf](http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%203.pdf)
+
+
+---
+
+## Más funciones de cadena útiles
+
+```{r,dependson="getData"}
+library(stringr)
+nchar("Jeffrey Leek")
+substr("Jeffrey Leek",1,7)
+paste("Jeffrey","Leek")
+```
+
+
+```{r,dependson="getData"}
+paste0("Jeffrey","Leek")
+str_trim("Jeff      ")
+```
+
+## Puntos importantes sobre el texto en los conjuntos de datos
+
+* Los nombres de las variables deben ser 
+  * Todos en minúsculas cuando sea posible
+  * Descriptivos (Diagnóstico frente a Dx)
+  * No estar duplicados
+  * No tener guiones bajos ni puntos ni espacios en blanco
+* Variables con valores de carácter
+  * Generalmente deben convertirse en variables factoriales (depende de la aplicación)
+  * Deben ser descriptivas (utilizar TRUE/FALSE en lugar de 0/1 y Male/Female frente a 0/1 o M/F)
