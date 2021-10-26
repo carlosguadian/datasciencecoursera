@@ -121,27 +121,27 @@ Para resumir en una dimensión, hay varias opciones en R.
     comprobación rápida de la distribución de los datos (ver el
     `fivenum()`)
 
-**Boxplots**: Los boxplots son una representación visual del resumen de
-cinco números más un poco más de información. En particular, los
-boxplots suelen representar los valores atípicos que van más allá del
-grueso de los datos. Esto se implementa a través de la función
-`boxplot()`.
+-   **Boxplots**: Los boxplots son una representación visual del resumen
+    de cinco números más un poco más de información. En particular, los
+    boxplots suelen representar los valores atípicos que van más allá
+    del grueso de los datos. Esto se implementa a través de la función
+    `boxplot()`.
 
-**Barplot**: Los gráficos de barras son útiles para visualizar datos
-categóricos, con el número de entradas para cada categoría siendo
-proporcional a la altura de la barra. Piensa en un “gráfico de tarta”
-pero realmente útil. El gráfico de barras se puede hacer con la función
-`barplot()`.
+-   **Barplot**: Los gráficos de barras son útiles para visualizar datos
+    categóricos, con el número de entradas para cada categoría siendo
+    proporcional a la altura de la barra. Piensa en un “gráfico de
+    tarta” pero realmente útil. El gráfico de barras se puede hacer con
+    la función `barplot()`.
 
-**Histogramas**: Los histogramas muestran la distribución empírica
-completa de los datos, más allá de los cinco puntos de datos mostrados
-por los boxplots. Aquí puede comprobar fácilmente la asimetría de los
-datos, la simetría, la multimodalidad y otras características. La
-función `hist()` hace un histograma, y una función útil para acompañarlo
-a veces es la función `rug()`.
+-   **Histogramas**: Los histogramas muestran la distribución empírica
+    completa de los datos, más allá de los cinco puntos de datos
+    mostrados por los boxplots. Aquí puede comprobar fácilmente la
+    asimetría de los datos, la simetría, la multimodalidad y otras
+    características. La función `hist()` hace un histograma, y una
+    función útil para acompañarlo a veces es la función `rug()`.
 
-**Gráfico de densidad**: La función `density()` calcula una estimación
-no paramétrica de la distribución de una variable
+-   **Gráfico de densidad**: La función `density()` calcula una
+    estimación no paramétrica de la distribución de una variable
 
 ## Resumen de cinco números
 
@@ -538,10 +538,17 @@ que conoceremos con más detalle en capítulos posteriores..
 ## Lattice
 library(lattice)
 xyplot(pm25 ~ latitude | region, data = pollution)
+```
+
+![](02_graficos_exploratorios_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+``` r
 ## ggplot2
 library(ggplot2)
 qplot(latitude, pm25, data = pollution, facets = . ~ region)
 ```
+
+![](02_graficos_exploratorios_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
 
 ## Resumen
 
