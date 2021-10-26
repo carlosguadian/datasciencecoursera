@@ -1,7 +1,7 @@
 Gráficos exploratorios
 ================
 
-# Gráficos exploratorios
+# ¿Porqué utilizar gráficos en el análisis de datos?
 
 Vídeo de esta lección: [Part 1](https://youtu.be/ma6-0PSNLHo) [Part
 2](https://youtu.be/UyopqXQ8TTM)
@@ -22,8 +22,6 @@ posteriores de un análisis, los gráficos pueden utilizarse para
 “depurar” un análisis, si se produce un resultado inesperado (pero no
 necesariamente erróneo) o, en última instancia, para comunicar sus
 conclusiones a otras personas.
-
-**¿Porqué utilizar gráficos en el análisis de datos?**
 
 -   Para entender las propiedades de los datos
 -   Para encontrar patrones en los datos
@@ -372,26 +370,30 @@ en este conjunto de datos que en el oeste.
 
 ## Resúmenes simples: Dos dimensiones y más allá
 
+### Dos dimensiones
+
 Hasta ahora hemos cubierto algunas de las principales herramientas
 utilizadas para resumir datos unidimensionales. Para investigar los
 datos en dos dimensiones y más allá, existe una serie de herramientas
 adicionales. Algunos de los enfoques clave son
 
-**Participaciones múltiples o superpuestas en una dimensión**
-(Lattice/ggplot2): El uso de múltiples boxplots o múltiples histogramas
-puede ser útil para ver la relación entre dos variables, especialmente
-cuando una es naturalmente categórica.
+-   **Participaciones múltiples o superpuestas en una dimensión**
+    (Lattice/ggplot2): El uso de múltiples boxplots o múltiples
+    histogramas puede ser útil para ver la relación entre dos variables,
+    especialmente cuando una es naturalmente categórica.
 
-**Los gráficos de dispersión**: Los gráficos de dispersión son la
-herramienta natural para visualizar dos variables continuas. Las
-transformaciones de las variables (por ejemplo, la transformación
-logarítmica o la raíz cuadrada) pueden ser necesarias para una
-visualización eficaz.
+-   **Los gráficos de dispersión**: Los gráficos de dispersión son la
+    herramienta natural para visualizar dos variables continuas. Las
+    transformaciones de las variables (por ejemplo, la transformación
+    logarítmica o la raíz cuadrada) pueden ser necesarias para una
+    visualización eficaz.
 
-**Los gráficos de dispersión suaves**: El concepto es similar al de los
-gráficos de dispersión, pero se traza un histograma bidimensional de los
-datos. Puede ser útil para gráficos de dispersión que pueden contener
-muchos puntos de datos.
+-   **Los gráficos de dispersión suaves**: El concepto es similar al de
+    los gráficos de dispersión, pero se traza un histograma
+    bidimensional de los datos. Puede ser útil para gráficos de
+    dispersión que pueden contener muchos puntos de datos.
+
+### Más de dos dimensiones
 
 Para visualizar los datos en más de 2 dimensiones, sin recurrir a las
 animaciones 3D (¡o a las gafas!), a menudo podemos combinar las
@@ -413,17 +415,18 @@ herramientas que ya hemos aprendido:
     diferentes tamaños también puede lograr el mismo efecto cuando la
     tercera dimensión es continua.
 
-**Los gráficos giratorios/interactivos**: Los gráficos giratorios pueden
-utilizarse para simular gráficos tridimensionales permitiendo al usuario
-pasar rápidamente por diferentes proyecciones bidimensionales para que
-el gráfico parezca tridimensional. A veces son útiles para capturar una
-estructura inusual en los datos, pero rara vez los utilizo.
+-   **Los gráficos giratorios/interactivos**: Los gráficos giratorios
+    pueden utilizarse para simular gráficos tridimensionales permitiendo
+    al usuario pasar rápidamente por diferentes proyecciones
+    bidimensionales para que el gráfico parezca tridimensional. A veces
+    son útiles para capturar una estructura inusual en los datos, pero
+    rara vez los utilizo.
 
-**Participaciones reales en 3D (no son tan útiles)**: Los gráficos
-reales en 3D (por ejemplo, los que requieren gafas 3D) son relativamente
-escasos y poco prácticos para comunicarlos a una gran audiencia. Por
-supuesto, esto puede cambiar en el futuro con las mejoras en la
-tecnología….
+-   **Participaciones reales en 3D (no son tan útiles)**: Los gráficos
+    reales en 3D (por ejemplo, los que requieren gafas 3D) son
+    relativamente escasos y poco prácticos para comunicarlos a una gran
+    audiencia. Por supuesto, esto puede cambiar en el futuro con las
+    mejoras en la tecnología….
 
 ## Boxplots múltiples
 
@@ -566,10 +569,11 @@ qplot(latitude, pm25, data = pollution, facets = . ~ region)
 
 ## Resumen
 
-Los gráficos exploratorios son “rápidos y sucios” y su propósito es
-permitirle resumir los datos y destacar cualquier característica
-general. También son útiles para explorar preguntas básicas sobre los
-datos y para juzgar la evidencia a favor o en contra de ciertas
-hipótesis. En última instancia, pueden ser útiles para sugerir
-estrategias de modelización que pueden emplearse en el “siguiente paso”
-del proceso de análisis de datos.
+-   Los gráficos exploratorios son “rápidos y sucios” y su propósito es
+    permitirle resumir los datos y destacar cualquier característica
+    general.
+-   También son útiles para explorar preguntas básicas sobre los datos
+-   Para juzgar la evidencia a favor o en contra de ciertas hipótesis.
+-   En última instancia, pueden ser útiles para sugerir estrategias de
+    modelización que pueden emplearse en el “siguiente paso” del proceso
+    de análisis de datos.

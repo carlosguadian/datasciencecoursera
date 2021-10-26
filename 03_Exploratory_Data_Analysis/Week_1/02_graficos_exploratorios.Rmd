@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Gráficos exploratorios
+# ¿Porqué utilizar gráficos en el análisis de datos?
 
 Vídeo de esta lección: [Part 1](https://youtu.be/ma6-0PSNLHo) [Part 2](https://youtu.be/UyopqXQ8TTM)
 
@@ -15,14 +15,11 @@ Hay muchas razones para utilizar gráficos o diagramas en el análisis explorato
 
 La visualización de los datos a través de gráficos puede ser importante en las primeras etapas del análisis de datos para entender las propiedades básicas de los datos, para encontrar patrones simples en los datos y para sugerir posibles estrategias de modelado. En etapas posteriores de un análisis, los gráficos pueden utilizarse para "depurar" un análisis, si se produce un resultado inesperado (pero no necesariamente erróneo) o, en última instancia, para comunicar sus conclusiones a otras personas.
 
-**¿Porqué utilizar gráficos en el análisis de datos?**
-
 * Para entender las propiedades de los datos
 * Para encontrar patrones en los datos
 * Para sugerir estrategias de modelado
 * Para depurar los análisis
 * Para comunicar resultados
-
 
 ## Características de los gráficos exploratorios
 
@@ -41,7 +38,6 @@ El objetivo de hacer gráficos exploratorios suele ser desarrollar una comprensi
 En este capítulo, utilizaremos un sencillo estudio de caso para demostrar los tipos de gráficos simples que pueden ser útiles en los análisis exploratorios. Los datos que utilizaremos proceden de la Agencia de Protección del Medio Ambiente de Estados Unidos (EPA), que es la agencia gubernamental estadounidense que establece [las normas nacionales de calidad del aire para la contaminación del aire exterior](http://www.epa.gov/air/criteria.html). Una de las normas nacionales de calidad del aire ambiente en Estados Unidos se refiere al nivel medio a largo plazo de contaminación por partículas finas, también denominado PM2,5. En este caso, la norma dice que la "media anual, promediada durante 3 años" no puede superar los 12 microgramos por metro cúbico. Los datos sobre las PM2,5 diarias están disponibles en la página web de la EPA de EE.UU., o concretamente, en la página web del [Sistema de Calidad del Aire de la EPA](http://www.epa.gov/ttn/airs/airsaqs/detaildata/downloadaqsdata.htm).
 
 Una pregunta clave que nos interesa es: **Esta pregunta tiene consecuencias importantes porque los condados que incumplen las normas nacionales pueden sufrir graves consecuencias legales. En particular, los estados que tienen condados que infringen las normas están obligados a crear un Plan Estatal de Aplicación (SIP) que muestre cómo esos condados se ajustarán a las normas nacionales dentro de un período de tiempo determinado.
-
 
 ## Obtención de los datos
 
@@ -68,7 +64,6 @@ str(pollution)
 
 Pero volvamos a la pregunta. ¿Cómo podemos ver si algún condado supera la norma de 12 microgramos por metro cúbico?
 
-
 ## Resúmenes sencillos: Una dimensión
 
 Para resumir en una dimensión, hay varias opciones en R.
@@ -82,7 +77,6 @@ Para resumir en una dimensión, hay varias opciones en R.
 * **Histogramas**: Los histogramas muestran la distribución empírica completa de los datos, más allá de los cinco puntos de datos mostrados por los boxplots. Aquí puede comprobar fácilmente la asimetría de los datos, la simetría, la multimodalidad y otras características. La función `hist()` hace un histograma, y una función útil para acompañarlo a veces es la función `rug()`.
 
 * **Gráfico de densidad**: La función `density()` calcula una estimación no paramétrica de la distribución de una variable
-
 
 ## Resumen de cinco números
 
@@ -133,7 +127,6 @@ En este punto, puede decidir hacer un seguimiento de estos condados, o ignorarlo
 
 Tenga en cuenta que el gráfico/mapa de arriba no es muy bonito, pero se hizo rápidamente y nos dio una idea de dónde se encontraban estos condados periféricos y transmitió suficiente información para ayudar a decidir si debemos hacer un seguimiento o no. 
 
-
 ## Histograma
 
 Un histograma es útil para mirar cuando queremos ver más detalles sobre la distribución completa de los datos. El boxplot es rápido y práctico, pero fundamentalmente sólo nos da un poco de información.
@@ -161,8 +154,6 @@ rug(pollution$pm25)
 ```
 
 Ahora vemos que hay un pico bastante grande de 9 microgramos por metro cúbico. No está inmediatamente claro por qué, pero de nuevo, podría valer la pena el seguimiento.
-
-
 
 ## Superposición de características
 
@@ -197,28 +188,27 @@ table(pollution$region) %>% barplot(col = "wheat")
 
 Podemos ver claramente que hay muchos más condados en el este de EE.UU. en este conjunto de datos que en el oeste. 
 
-
 ## Resúmenes simples: Dos dimensiones y más allá
 
+### Dos dimensiones
 Hasta ahora hemos cubierto algunas de las principales herramientas utilizadas para resumir datos unidimensionales. Para investigar los datos en dos dimensiones y más allá, existe una serie de herramientas adicionales. Algunos de los enfoques clave son
 
-**Participaciones múltiples o superpuestas en una dimensión** (Lattice/ggplot2): El uso de múltiples boxplots o múltiples histogramas puede ser útil para ver la relación entre dos variables, especialmente cuando una es naturalmente categórica.
+* **Participaciones múltiples o superpuestas en una dimensión** (Lattice/ggplot2): El uso de múltiples boxplots o múltiples histogramas puede ser útil para ver la relación entre dos variables, especialmente cuando una es naturalmente categórica.
 
-**Los gráficos de dispersión**: Los gráficos de dispersión son la herramienta natural para visualizar dos variables continuas. Las transformaciones de las variables (por ejemplo, la transformación logarítmica o la raíz cuadrada) pueden ser necesarias para una visualización eficaz.
+* **Los gráficos de dispersión**: Los gráficos de dispersión son la herramienta natural para visualizar dos variables continuas. Las transformaciones de las variables (por ejemplo, la transformación logarítmica o la raíz cuadrada) pueden ser necesarias para una visualización eficaz.
 
-**Los gráficos de dispersión suaves**: El concepto es similar al de los gráficos de dispersión, pero se traza un histograma bidimensional de los datos. Puede ser útil para gráficos de dispersión que pueden contener muchos puntos de datos.
+* **Los gráficos de dispersión suaves**: El concepto es similar al de los gráficos de dispersión, pero se traza un histograma bidimensional de los datos. Puede ser útil para gráficos de dispersión que pueden contener muchos puntos de datos.
 
+### Más de dos dimensiones
 Para visualizar los datos en más de 2 dimensiones, sin recurrir a las animaciones 3D (¡o a las gafas!), a menudo podemos combinar las herramientas que ya hemos aprendido:
 
 * **Parcelas bidimensionales superpuestas o múltiples; parcelas condicionantes (coplots)**: Un gráfico condicionado, o coplot, muestra la relación entre dos variables a medida que cambia una tercera (o más) variable. Por ejemplo, podría querer ver cómo la relación entre los niveles de contaminación del aire y la mortalidad cambia con la estación del año. Aquí, la contaminación del aire y la mortalidad son las dos variables principales y la estación es la tercera variable que varía en el fondo.
 
 * **Usa el color, el tamaño y la forma para añadir dimensiones**: Trazar puntos con diferentes colores o formas es útil para indicar una tercera dimensión, donde diferentes colores pueden indicar diferentes categorías o rangos de algo. Trazar símbolos con diferentes tamaños también puede lograr el mismo efecto cuando la tercera dimensión es continua.
 
-**Los gráficos giratorios/interactivos**: Los gráficos giratorios pueden utilizarse para simular gráficos tridimensionales permitiendo al usuario pasar rápidamente por diferentes proyecciones bidimensionales para que el gráfico parezca tridimensional. A veces son útiles para capturar una estructura inusual en los datos, pero rara vez los utilizo.
+* **Los gráficos giratorios/interactivos**: Los gráficos giratorios pueden utilizarse para simular gráficos tridimensionales permitiendo al usuario pasar rápidamente por diferentes proyecciones bidimensionales para que el gráfico parezca tridimensional. A veces son útiles para capturar una estructura inusual en los datos, pero rara vez los utilizo.
 
-**Participaciones reales en 3D (no son tan útiles)**: Los gráficos reales en 3D (por ejemplo, los que requieren gafas 3D) son relativamente escasos y poco prácticos para comunicarlos a una gran audiencia. Por supuesto, esto puede cambiar en el futuro con las mejoras en la tecnología....
-
-
+* **Participaciones reales en 3D (no son tan útiles)**: Los gráficos reales en 3D (por ejemplo, los que requieren gafas 3D) son relativamente escasos y poco prácticos para comunicarlos a una gran audiencia. Por supuesto, esto puede cambiar en el futuro con las mejoras en la tecnología....
 
 ## Boxplots múltiples
 
@@ -274,7 +264,6 @@ levels(pollution$region)
 
 Aquí vemos que el primer nivel es "este" y el segundo nivel es "oeste". Así que el color para el "este" se asignará a 1 y el color para el "oeste" se asignará a 2. Para las funciones de trazado, `col = 1` es negro (el color por defecto) y `col = 2` es rojo.
 
-
 ## Múltiples gráficos de dispersión
 
 El uso de múltiples gráficos de dispersión puede ser necesario cuando la superposición de puntos con diferentes colores o formas es confusa (a veces debido al volumen de datos). Separar los gráficos a veces puede facilitar la visualización.  
@@ -284,7 +273,6 @@ par(mfrow = c(1, 2), mar = c(5, 4, 2, 1))
 with(subset(pollution, region == "west"), plot(latitude, pm25, main = "West"))
 with(subset(pollution, region == "east"), plot(latitude, pm25, main = "East"))
 ```
-
 
 Este tipo de gráficos, a veces llamados gráficos de panel, son generalmente más fáciles de hacer con el sistema `lattice` o `ggplot2`, que conoceremos con más detalle en capítulos posteriores..
 
@@ -297,7 +285,9 @@ library(ggplot2)
 qplot(latitude, pm25, data = pollution, facets = . ~ region)
 ```
 
-
 ## Resumen
 
-Los gráficos exploratorios son "rápidos y sucios" y su propósito es permitirle resumir los datos y destacar cualquier característica general. También son útiles para explorar preguntas básicas sobre los datos y para juzgar la evidencia a favor o en contra de ciertas hipótesis. En última instancia, pueden ser útiles para sugerir estrategias de modelización que pueden emplearse en el "siguiente paso" del proceso de análisis de datos.
+* Los gráficos exploratorios son "rápidos y sucios" y su propósito es permitirle resumir los datos y destacar cualquier característica general. 
+* También son útiles para explorar preguntas básicas sobre los datos
+* Para juzgar la evidencia a favor o en contra de ciertas hipótesis. 
+* En última instancia, pueden ser útiles para sugerir estrategias de modelización que pueden emplearse en el "siguiente paso" del proceso de análisis de datos.
