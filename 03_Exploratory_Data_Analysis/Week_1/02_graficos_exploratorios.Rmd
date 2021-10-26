@@ -15,6 +15,14 @@ Hay muchas razones para utilizar gráficos o diagramas en el análisis explorato
 
 La visualización de los datos a través de gráficos puede ser importante en las primeras etapas del análisis de datos para entender las propiedades básicas de los datos, para encontrar patrones simples en los datos y para sugerir posibles estrategias de modelado. En etapas posteriores de un análisis, los gráficos pueden utilizarse para "depurar" un análisis, si se produce un resultado inesperado (pero no necesariamente erróneo) o, en última instancia, para comunicar sus conclusiones a otras personas.
 
+**¿Porqué utilizar gráficos en el análisis de datos?**
+
+* Para entender las propiedades de los datos
+* Para encontrar patrones en los datos
+* Para sugerir estrategias de modelado
+* Para depurar los análisis
+* Para comunicar resultados
+
 
 ## Características de los gráficos exploratorios
 
@@ -22,6 +30,11 @@ A efectos de este capítulo (y del resto del libro), distinguiremos entre gráfi
 
 El objetivo de hacer gráficos exploratorios suele ser desarrollar una comprensión personal de los datos y priorizar las tareas de seguimiento. Los detalles como la orientación de los ejes o las leyendas, aunque están presentes, suelen limpiarse y embellecerse si el gráfico se va a utilizar posteriormente para la comunicación. A menudo se utilizan el color y el tamaño del símbolo del gráfico para transmitir varias dimensiones de la información.
 
+* Se hacen rápido
+* Se hacen muchos
+* El objetivo es para comprensión personal
+* Leyendas y ejes normalmente se limpian después
+* El color y el tamaño se usan principalmente para informar
 
 ## Contaminación del aire en Estados Unidos
 

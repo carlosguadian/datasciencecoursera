@@ -23,6 +23,14 @@ posteriores de un análisis, los gráficos pueden utilizarse para
 necesariamente erróneo) o, en última instancia, para comunicar sus
 conclusiones a otras personas.
 
+**¿Porqué utilizar gráficos en el análisis de datos?**
+
+-   Para entender las propiedades de los datos
+-   Para encontrar patrones en los datos
+-   Para sugerir estrategias de modelado
+-   Para depurar los análisis
+-   Para comunicar resultados
+
 ## Características de los gráficos exploratorios
 
 A efectos de este capítulo (y del resto del libro), distinguiremos entre
@@ -39,6 +47,12 @@ están presentes, suelen limpiarse y embellecerse si el gráfico se va a
 utilizar posteriormente para la comunicación. A menudo se utilizan el
 color y el tamaño del símbolo del gráfico para transmitir varias
 dimensiones de la información.
+
+-   Se hacen rápido
+-   Se hacen muchos
+-   El objetivo es para comprensión personal
+-   Leyendas y ejes normalmente se limpian después
+-   El color y el tamaño se usan principalmente para informar
 
 ## Contaminación del aire en Estados Unidos
 
