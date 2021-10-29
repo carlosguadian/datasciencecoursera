@@ -336,6 +336,27 @@ individual tiene un título, mientras que el conjunto de parcelas también
 tiene un título de resumen. La función `mtext()` es importante para
 añadir anotaciones de texto que no son específicas de un solo gráfico.
 
+## Reset
+
+Para crear un gráfico nuevo y restablecer los parámetros por defecto
+utilizamos `dev.off()` o `plot.new()`
+
+``` r
+> plot.new()
+```
+
+Comprobamos que hemos vuelto a los parámetros por defecto. Un gráfico
+por fila y columna y los márgenes normales
+
+``` r
+> par(c("mfrow", "mar"))
+$mfrow
+[1] 1 1
+
+$mar
+[1] 5.1 4.1 4.1 2.1
+```
+
 ## Resumen
 
 -   Los gráficos en el sistema básico de trazado se crean llamando a

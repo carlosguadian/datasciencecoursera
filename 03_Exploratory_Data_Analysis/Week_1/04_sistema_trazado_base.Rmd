@@ -209,6 +209,16 @@ with(airquality, {
 
 En el ejemplo anterior, la función `mtext()` se utilizó para crear un título general para el panel de gráficos. Por lo tanto, cada parcela individual tiene un título, mientras que el conjunto de parcelas también tiene un título de resumen. La función `mtext()` es importante para añadir anotaciones de texto que no son específicas de un solo gráfico.
 
+## Reset
+Para crear un gráfico nuevo y restablecer los parámetros por defecto utilizamos `dev.off()` o `plot.new()`
+```{r, eval=FALSE}
+plot.new()
+```
+
+Comprobamos que hemos vuelto a los parámetros por defecto. Un gráfico por fila y columna y los  márgenes normales
+```{r}
+par(c("mfrow", "mar"))
+```
 ## Resumen
 
 * Los gráficos en el sistema básico de trazado se crean llamando a sucesivas funciones de
