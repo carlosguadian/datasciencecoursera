@@ -23,7 +23,7 @@ d1 = date()
 d1
 ```
 
-    ## [1] "Thu Oct 21 09:41:24 2021"
+    ## [1] "Fri Oct 29 13:05:15 2021"
 
 ``` r
 class(d1)
@@ -41,7 +41,7 @@ d2 = Sys.Date()
 d2
 ```
 
-    ## [1] "2021-10-21"
+    ## [1] "2021-10-29"
 
 ``` r
 class(d2)
@@ -67,13 +67,13 @@ fecha como más nos convenga.
 format(d2,"%a %b %d")
 ```
 
-    ## [1] "jue oct 21"
+    ## [1] "vie oct 29"
 
 ``` r
 format(d2,"%d %b %Y") #una fecha menos anglosajona...
 ```
 
-    ## [1] "21 oct 2021"
+    ## [1] "29 oct 2021"
 
 ## Creando fechas
 
@@ -113,7 +113,7 @@ semana es, qué mes, e incluso el número de días que han pasado desde el
 weekdays(d2)
 ```
 
-    ## [1] "jueves"
+    ## [1] "viernes"
 
 ``` r
 months(d2)
@@ -125,7 +125,7 @@ months(d2)
 julian(d2)
 ```
 
-    ## [1] 18921
+    ## [1] 18929
     ## attr(,"origin")
     ## [1] "1970-01-01"
 
