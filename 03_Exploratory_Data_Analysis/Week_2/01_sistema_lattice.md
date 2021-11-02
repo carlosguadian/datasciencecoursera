@@ -201,7 +201,7 @@ xyplot(log2(airmus) ~ VisitNum | MxNum, data = env, strip = FALSE, pch = 20, xla
 
 ## Resumen
 
--   Los gráficos de celosía se construyen con una sola llamada a una
+-   Los gráficos lattice se construyen con una sola llamada a una
     función lattice (por ejemplo, `xyplot`)
 -   Aspectos como los márgenes y el espaciado se manejan automáticamente
     y los valores por defecto suelen ser suficientes
