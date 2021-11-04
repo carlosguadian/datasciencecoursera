@@ -1,0 +1,90 @@
+---
+title: "Agrupación Jerárquica"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Ver un vídeo de este capítulo**: 
+* [Parte 1](https://youtu.be/BKoChxguelA) 
+* [Parte 2](https://youtu.be/ZQYLGS7ptWM) 
+* [Parte 3](https://youtu.be/lmSMEZAjE-4)
+
+El clustering o análisis de conglomerados es una técnica muy utilizada para visualizar datos multidimensionales. Es muy sencilla de utilizar, las ideas son bastante intuitivas y puede servir como una forma realmente rápida de hacerse una idea de lo que ocurre en un conjunto de datos de muy alta dimensión.
+
+El análisis de conglomerados es una técnica muy importante y ampliamente utilizada. Si se escribe "análisis de conglomerados" en Google, aparecen millones de resultados. 
+
+![Google search results for "cluster analysis"](images/cluster_analysis_google.png)
+
+Y es un método ampliamente aplicado en muchas áreas diferentes de la ciencia, los negocios y otras aplicaciones. Por eso es útil saber cómo funcionan estas técnicas.
+
+El objetivo de la agrupación es organizar cosas u observaciones que están __cercanas__ entre sí y separarlas en grupos. Por supuesto, esta sencilla definición plantea algunas preguntas inmediatas:
+
+* ¿Cómo definimos lo que está cerca?
+* ¿Cómo agrupamos las cosas?
+* ¿Cómo visualizamos la agrupación? 
+* ¿Cómo interpretamos la agrupación? 
+
+Todas las técnicas de agrupación se enfrentan a una cuestión básica: ¿cómo definimos cuándo las cosas están cerca y cuándo están lejos? Básicamente, la gran variedad de técnicas de agrupación que existen y que se pueden aplicar a los datos difieren en la forma en que responden a estas preguntas.
+
+## Clustering jerárquico
+
+La agrupación jerárquica, como su nombre indica, implica la organización de los datos en una especie de jerarquía. El enfoque común es lo que se llama un enfoque aglomerativo. Se trata de una especie de enfoque ascendente, en el que se empieza a pensar en los datos como puntos de datos individuales. Luego se empiezan a agrupar en clusters poco a poco hasta que finalmente todo el conjunto de datos es un gran cluster.
+
+Imagina que hay todas estas pequeñas partículas flotando (tus puntos de datos), y empiezas a agruparlas en pequeñas bolas. Y luego las bolas se agrupan en bolas más grandes, y las bolas más grandes se agrupan en un gran clúster masivo. Ese es el enfoque aglomerativo.
+
+El algoritmo es recursivo y va como sigue:
+
+1. Encuentra los dos puntos más cercanos en tu conjunto de datos
+2. Júntalos y llámalos "punto"
+3. Usa tu nuevo "conjunto de datos" con este nuevo punto y repite
+
+Esta metodología requiere que tenga una forma de medir la *distancia* entre dos puntos y que tenga un enfoque para *unir* dos puntos para crear un nuevo "punto". Una ventaja de esta metodología de agrupación es que se puede producir un árbol que muestre lo cerca que están las cosas entre sí, que es simplemente un producto derivado de la ejecución del algoritmo.
+
+## ¿Cómo definimos la cercanía?
+
+Definir la cercanía es un aspecto clave a la hora de definir un método de clustering. En última instancia, se aplica la vieja regla de "basura que entra, basura que sale". Si no utiliza una métrica de distancia que tenga sentido para sus datos, no obtendrá ninguna información útil de la agrupación.
+
+Existen varias métricas de uso común para caracterizar la distancia o su inversa, la similitud:
+
+* **Distancia euclidiana**: Una métrica continua que puede considerarse en términos geométricos como la distancia "en línea recta" entre dos puntos.
+* **Similitud de correlación**: De naturaleza similar a la distancia euclidiana.
+* **Distancia "Manhattan"**: en una cuadrícula o entramado, ¿cuántas "manzanas" habría que recorrer para llegar del punto A al punto B?
+
+Lo importante es elegir siempre una métrica de distancia o similitud que tenga sentido para su problema. 
+
+## Ejemplo: Distancia euclidiana
+![Euclidean distance](images/distance.png)
+
+[source](resources/lecture5-clustering.pdf)
+
+Por ejemplo, toma dos ciudades, digamos Baltimore y Washington D.C., y ponlas en un mapa. Si imaginas que el centro de cada ciudad tiene una coordenada X y una coordenada Y (digamos, longitud y latitud), y quieres trazar la distancia entre los centros de las dos ciudades, entonces puedes dibujar una línea diagonal recta entre las dos ciudades. La distancia se puede calcular de la manera habitual, que va a ser una función de la diferencia de las coordenadas x y la diferencia de
+las coordenadas y. En el plano bidimensional, se toma la distancia en las coordenadas x, se eleva al cuadrado, se toma la diferencia en las coordenadas y, se eleva al cuadrado, y luego se suman los dos cuadrados y se saca la raíz cuadrada del conjunto. En otras palabras,
+
+\[
+Distance = [(X_1 - X_2)^2 + (Y_1 - Y_2)^2]^{1/2}
+\]
+
+Esa es la definición clásica de distancia euclidiana. Puedes imaginar que si un pájaro volara de Washington, D.C. a Baltimore, simplemente volaría en línea recta de una ciudad a otra. Esto es posible porque un pájaro no se ve impedido por cosas como carreteras o montañas, o lo que sea. Que eso tenga sentido para ti depende, entre otras cosas, de si eres un pájaro o no. Así que tienes que pensar en las propiedades de esta métrica de distancia en el contexto de tu problema.
+
+Una buena característica de la distancia euclidiana es que es fácilmente generalizable a dimensiones mayores. Si en lugar de dos dimensiones tienes 100 dimensiones, puedes tomar fácilmente las diferencias entre cada una de las 100 dimensiones, elevarlas al cuadrado, sumarlas y luego sacar la raíz cuadrada. Así que la métrica de la distancia euclidiana se extiende de forma muy natural a problemas de dimensiones muy elevadas.
+
+En general, la fórmula de la distancia euclidiana entre puntos
+
+\[
+A = (A_1, A_2, \dots, A_n)
+\]
+
+and 
+
+\[
+B = (B_1, B_2, \dots, B_n)
+\]
+
+es
+
+\[
+Distance = ((A_1-B_1)^2 + (A_2-B_2)^2 + \cdots + (A_n-B_n)^2)^{(1/2)}
+\]
