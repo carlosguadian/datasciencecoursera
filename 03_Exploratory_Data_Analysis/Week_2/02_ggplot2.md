@@ -1026,8 +1026,6 @@ g + geom_line() + coord_cartesian(ylim = c(-3, 3))
 ![Gráfico de series temporales con rango restringido en el eje
 Y](02_ggplot2_files/figure-gfm/unnamed-chunk-40-1.png)
 
-¡Y ahora ya lo sabes!
-
 ## Recursos
 
 -   El libro *ggplot2* de Hadley Wickham

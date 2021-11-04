@@ -470,7 +470,6 @@ g + geom_point(alpha = 1/3) +
   labs(title = "Cohorte MAACS")
 ```
 
-
 ## Un breve comentario sobre los límites de los ejes
 
 Una peculiaridad rápida sobre `ggplot2` que me sorprendió cuando empecé a usar el paquete puede mostrarse en el siguiente ejemplo. Hago muchos gráficos de series de tiempo y a menudo quiero restringir el rango del eje Y mientras se siguen trazando todos los datos. En el sistema de gráficos de base se puede hacer de la siguiente manera.
@@ -503,9 +502,6 @@ Para graficar los datos sin sub-conjuntarlos primero y aún así obtener el rang
 ```{r,fig.cap="Gráfico de series temporales con rango restringido en el eje Y"}
 g + geom_line() + coord_cartesian(ylim = c(-3, 3))
 ```
-
-¡Y ahora ya lo sabes!
-
 
 ## Recursos
 
