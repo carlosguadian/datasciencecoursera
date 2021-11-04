@@ -217,6 +217,9 @@ Del árbol/dendrograma se desprende que hay tres clusters con cuatro puntos cada
 
 ## Dendrogramas más bonitos
 
+![pretty dendrogram](https://i.stack.imgur.com/sRWFn.png)
+
+
 Es posible hacer dendrogramas ligeramente más bonitos con alguna modificación del método habitual de trazado para la salida de `hclust()`. Esta es una función que toma la salida de `hclust()` y codifica por colores cada uno de los miembros del cluster según su pertenencia al mismo.
 
 ```{r plclust,tidy=TRUE}

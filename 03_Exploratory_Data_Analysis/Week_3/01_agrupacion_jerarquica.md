@@ -321,6 +321,8 @@ puntos cada uno.
 
 ## Dendrogramas más bonitos
 
+![pretty dendrogram](https://i.stack.imgur.com/sRWFn.png)
+
 Es posible hacer dendrogramas ligeramente más bonitos con alguna
 modificación del método habitual de trazado para la salida de
 `hclust()`. Esta es una función que toma la salida de `hclust()` y
