@@ -124,7 +124,6 @@ El primer paso en el enfoque básico de clustering es calcular la distancia entr
 Aquí está un trozo de la matriz de distancia asociada a la figura anterior.
 
 ```{r}
-library(tibble)
 dataFrame <- data.frame(x=x, y=y)
 dist(dataFrame)
 ```
@@ -167,7 +166,7 @@ plot(cutDendro$lower[[11]],yaxt="n",main="Begin building tree")
 
 Ahora que hemos fusionado las dos primeras "hojas" de este árbol, podemos girar la manivela del algoritmo y seguir construyendo el árbol. Ahora, los dos puntos que identificamos en la iteración anterior se "fusionarán" en un solo punto, como se muestra a continuación.
 
-```{r,echo=FALSE,fig.cap="First set of merged points/cluster"}
+```{r,fig.cap="First set of merged points/cluster"}
 rdistxy <- dist(dataFrame) %>% as.matrix
 diag(rdistxy) <- diag(rdistxy) + 1e5
 # Find the index of the points with minimum distance

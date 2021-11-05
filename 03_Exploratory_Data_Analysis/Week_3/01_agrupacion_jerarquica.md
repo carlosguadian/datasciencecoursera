@@ -190,7 +190,6 @@ Aquí está un trozo de la matriz de distancia asociada a la figura
 anterior.
 
 ``` r
-library(tibble)
 dataFrame <- data.frame(x=x, y=y)
 dist(dataFrame)
 ```
@@ -280,6 +279,19 @@ Ahora que hemos fusionado las dos primeras “hojas” de este árbol,
 podemos girar la manivela del algoritmo y seguir construyendo el árbol.
 Ahora, los dos puntos que identificamos en la iteración anterior se
 “fusionarán” en un solo punto, como se muestra a continuación.
+
+``` r
+rdistxy <- dist(dataFrame) %>% as.matrix
+diag(rdistxy) <- diag(rdistxy) + 1e5
+# Find the index of the points with minimum distance
+ind <- which(rdistxy == min(rdistxy),arr.ind=TRUE)
+# Plot the points with the minimum overlayed
+plot(x,y,col=rgb(red = 0, green = 0, blue = 1, alpha = 0.5),pch=19,cex=2)
+text(x+0.05,y+0.05,labels=as.character(1:12))
+points(x[ind[1,]],y[ind[1,]],col=rgb(red = 1, green = 0, blue = 0, alpha = 0.5),pch=19,cex=2)
+points(mean(x[ind[1,]]),mean(y[ind[1,]]),col="black",cex=3,lwd=3,pch=3)
+points(mean(x[ind[1,]]),mean(y[ind[1,]]),col="orange",cex=5,lwd=3,pch=1)
+```
 
 ![First set of merged
 points/cluster](01_agrupacion_jerarquica_files/figure-gfm/unnamed-chunk-6-1.png)
