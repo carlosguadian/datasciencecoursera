@@ -17,11 +17,11 @@ Structure of a Data Analysis 1
 
 ## Steps in a data analysis
 
--   <redtext>Define the question</redtext>
--   <redtext>Define the ideal data set</redtext>
--   <redtext>Determine what data you can access</redtext>
--   <redtext>Obtain the data</redtext>
--   <redtext>Clean the data </redtext>
+-   *Define the question*
+-   *Define the ideal data set*
+-   *Determine what data you can access*
+-   *Obtain the data*
+-   *Clean the data*
 -   Exploratory data analysis
 -   Statistical prediction/modeling
 -   Interpret results
@@ -38,6 +38,7 @@ you had insufficient information and have to go find some?”
 
 ![Dan Myer, Mathematics
 Educator](https://github.com/DataScienceSpecialization/courses/raw/master/assets/img/meyer.jpg)
+
 [Dan Myer, Mathematics
 Educator](http://www.ted.com/talks/dan_meyer_math_curriculum_makeover.html)
 
@@ -76,6 +77,7 @@ SPAM/HAM?
 
 ![Google Data
 Centers](https://github.com/DataScienceSpecialization/courses/raw/master/assets/img/datacenter.png)
+
 <http://www.google.com/about/datacenters/inside/>
 
 ## Determine what data you can access
@@ -93,6 +95,7 @@ Security](https://github.com/DataScienceSpecialization/courses/raw/master/assets
 ## A possible solution
 
 ![SpamBase](https://github.com/DataScienceSpecialization/courses/raw/master/assets/img/uci.png)
+
 <http://archive.ics.uci.edu/ml/datasets/Spambase>
 
 ## Obtain the data
@@ -106,6 +109,7 @@ Security](https://github.com/DataScienceSpecialization/courses/raw/master/assets
 ## Our data set
 
 ![Dataset](https://github.com/DataScienceSpecialization/courses/raw/master/assets/img/spamR.png)
+
 <http://search.r-project.org/library/kernlab/html/spam.html>
 
 ## Clean the data
