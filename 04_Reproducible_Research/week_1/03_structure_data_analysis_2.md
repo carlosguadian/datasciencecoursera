@@ -11,20 +11,6 @@ Structure of a Data Analysis 2
 -   Determine what data you can access
 -   Obtain the data
 -   Clean the data
--   Exploratory data analysis
--   Statistical prediction/modeling
--   Interpret results
--   Challenge results
--   Synthesize/write up results
--   Create reproducible code
-
-## Steps in a data analysis
-
--   Define the question
--   Define the ideal data set
--   Determine what data you can access
--   Obtain the data
--   Clean the data
 -   **Exploratory data analysis**
 -   **Statistical prediction/modeling**
 -   **Interpret results**
@@ -276,7 +262,7 @@ table(predictedSpam,testSpam$type)
 
 ## Our example
 
--   The fraction of charcters that are dollar signs can be used to
+-   The fraction of characters that are dollar signs can be used to
     predict if an email is Spam
 -   Anything with more than 6.6% dollar signs is classified as Spam
 -   More dollar signs always means more Spam under our prediction
