@@ -97,3 +97,32 @@ Use markdown for the text, and for code chunks use \`\`\` like separator
 
 To process the document clic `knitr HTML` button. ![Process Knitr
 Document](./images/process-knitr-document.png)
+
+## More Complicated Way
+
+    library(knitr)
+    setwd(<working directory>)
+    knit2html(“document.Rmd”)
+    browseURL(“document.html”)
+
+## Output
+
+Can be in HTML or others like this document that get a github markdown
+document. ![Output](./images/output.png)
+
+![Markdown document](./images/markdown-document.png)
+
+## A Few Notes
+
+-   knitr will fill a new document with filler text; delete it  
+-   Code chunks begin with `{r}  and end with`
+-   All R code goes in between these markers
+-   Code chunks can have names, which is useful when we start making
+    graphics
+
+``` r
+## R code goes here
+```
+
+-   By default, code in a code chunk is echoed, as will the results of
+    the computation (if there are results to print)
