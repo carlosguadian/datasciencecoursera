@@ -5,60 +5,38 @@ MarkDown
 
 ### “Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).”
 
-<br></br> \#\#\# - [**John Gruber, creator of
-Markdown**](http://daringfireball.net/projects/markdown/)
-
-------------------------------------------------------------------------
+### - [**John Gruber, creator of Markdown**](http://daringfireball.net/projects/markdown/)
 
 ## Markdown Syntax
 
 ### Italics
 
-<br></br>
-
 ``` markdown
 *This text will appear italicized!*
 ```
 
-<br></br> *This text will appear italicized!*
-
-------------------------------------------------------------------------
-
-## Markdown Syntax
+*This text will appear italicized!*
 
 ### Bold
-
-<br></br>
 
 ``` markdown
 **This text will appear bold!**
 ```
 
-<br></br> **This text will appear bold!**
-
-------------------------------------------------------------------------
-
-## Markdown Syntax
+**This text will appear bold!**
 
 ### Headings
-
-<br></br>
 
 ``` markdown
 ## This is a secondary heading
 ### This is a tertiary heading
 ```
 
-<br></br> \#\# This is a secondary heading \#\#\# This is a tertiary
-heading
+## This is a secondary heading
 
-------------------------------------------------------------------------
-
-## Markdown Syntax
+### This is a tertiary heading
 
 ### Unordered Lists
-
-<br></br>
 
 ``` markdown
 - first item in list
@@ -66,16 +44,11 @@ heading
 - third item in list
 ```
 
-<br></br> - first item in list - second item in list - third item in
-list
-
-------------------------------------------------------------------------
-
-## Markdown Syntax
+-   first item in list
+-   second item in list
+-   third item in list
 
 ### Ordered Lists
-
-<br></br>
 
 ``` markdown
 1. first item in list
@@ -83,19 +56,11 @@ list
 3. third item in list
 ```
 
-<br></br>
-
 1.  first item in list
 2.  second item in list
 3.  third item in list
 
-------------------------------------------------------------------------
-
-## Markdown Syntax
-
 ### Links
-
-<br></br>
 
 ``` markdown
 [Johns Hopkins Bloomberg School of Public Health](http://www.jhsph.edu/)
@@ -103,20 +68,12 @@ list
 [RStudio](http://www.rstudio.com/)
 ```
 
-<br></br>
-
 [Johns Hopkins Bloomberg School of Public
 Health](http://www.jhsph.edu/)  
 [Download R](http://www.r-project.org/)  
 [RStudio](http://www.rstudio.com/)
 
-------------------------------------------------------------------------
-
-## Markdown Syntax
-
 ### Advanced Linking
-
-<br></br>
 
 ``` markdown
     I spend so much time reading [R bloggers][1] and [Simply Statistics][2]!  
@@ -124,15 +81,9 @@ Health](http://www.jhsph.edu/)
     [2]: http://simplystatistics.org/ "Simply Statistics"  
 ```
 
-<br></br>
-
 I spend so much time reading [R
 bloggers](http://www.r-bloggers.com/ "R bloggers") and [Simply
 Statistics](http://simplystatistics.org/ "Simply Statistics")!
-
-------------------------------------------------------------------------
-
-## Markdown Syntax
 
 ### Newlines
 
@@ -152,8 +103,6 @@ Second line
 
 First line  
 Second line
-
-------------------------------------------------------------------------
 
 ## Markdown Resources
 
