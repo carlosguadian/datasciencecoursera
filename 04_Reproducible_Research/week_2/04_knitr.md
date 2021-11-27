@@ -89,4 +89,11 @@ knitr
 
 ## My First knitr Document
 
+First create a new document, and then choose an R Markdown document
 ![First Knitr Document](./images/first-knitr-document.png)
+
+Use markdown for the text, and for code chunks use \`\`\` like separator
+![Code Chunk](./images/code-chunk.png)
+
+To process the document clic `knitr HTML` button. ![Process Knitr
+Document](./images/process-knitr-document.png)
