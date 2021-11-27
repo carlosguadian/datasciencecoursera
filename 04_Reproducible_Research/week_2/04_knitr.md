@@ -126,3 +126,20 @@ document. ![Output](./images/output.png)
 
 -   By default, code in a code chunk is echoed, as will the results of
     the computation (if there are results to print)
+
+## Processing of knitr Documents (what happens under the hood)
+
+-   You write the RMarkdown document (.Rmd)  
+-   knitr produces a Markdown document (.md)  
+-   knitr converts the Markdown document into HTML (by default)  
+-   .Rmd -&gt; .md -&gt; .html  
+-   You should NOT edit (or save) the .md or .html documents until you
+    are finished
+
+## Another Example
+
+For this code in knitr document ![Another
+Example](./images/another-example.png)
+
+We get this output. The code is not show, not echoed. ![Output
+example](./images/output-example.png)
