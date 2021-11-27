@@ -160,3 +160,13 @@ Don’t forget to make `echo = FALSE` if you don’t want to show your code.
 
 You get this ![Output Inline
 Computations](./images/output-inline-computtations.png)
+
+## Incorporating Graphics
+
+You can insert graphics, and define in chunk properties like height.
+![Insert Graphic](./images/insert-graphic.png) You get the graphic
+inline at document ![Output Insert
+Graphic](./images/output-insert-graphic.png)
+
+In behind the scenes, knitr produces this in HTML to insert image
+![Knitr in HTML](./images/knitr-in-html.png)
