@@ -134,3 +134,18 @@ For this code in knitr document
 We get this output. The code is not show, not echoed.
 ![Output example](./images/output-example.png)
 
+## Hiding	Results
+To hide results you have to indicate in chunk like this
+![Hide Results](./images/hide-results.png)
+
+Then you get this
+![Output Hide Results](./images/output-hide-results.png)
+
+## Inline	Text	Computations
+You can make computations in a chunk defining variables to use inline. Don't forget to make ```echo = FALSE``` if you don't want to show your code.
+![Inline Computations](./images/inline-computations.png)
+
+You get this
+![Output Inline Computations](./images/output-inline-computtations.png)
+
+
