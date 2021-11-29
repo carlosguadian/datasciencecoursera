@@ -170,3 +170,7 @@ Graphic](./images/output-insert-graphic.png)
 
 In behind the scenes, knitr produces this in HTML to insert image
 ![Knitr in HTML](./images/knitr-in-html.png)
+
+## Making Tables with xtable
+
+With `xtable` you can insert tables in document
