@@ -7,6 +7,8 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+> [Slides from this lesson](https://github.com/DataScienceSpecialization/courses/raw/master/05_ReproducibleResearch/knitr/knitr.pdf)
+
 ## Problems,	Problems
 
 - Authors	must	undertake	considerable	effort	to	put	data/results	on	the	web	
@@ -160,3 +162,54 @@ In behind the scenes, knitr produces this in HTML to insert image
 ## Making	Tables	with	xtable
 With ```xtable``` you can insert tables in document
 
+First some data
+```{r fitmodel}
+library(datasets)
+data("airquality")
+fit <- lm(Ozone ~ Wind + Temp + Solar.R, data = airquality)
+```
+
+Second make table and insert inline at document
+```{r showtable, results="asis"}
+library(xtable)
+xt <- xtable(summary(fit))
+print(xt, type = "html")
+```
+
+## Setting Global Options
+
+- Sometimes	we	want	to	set	options	for	every code	chunk	that	are	different	from	the	 defaults	
+- For	example,	we	may	want	to	suppress	all	code	echoing	and	results	output	
+- We	have	to	write	some	code	to	set	these	global	options	
+
+![Setting global options](./images/setting-global-options.png)
+
+Then the output is
+![Output Global Settings](./images/output-global-settings.png)
+
+## Some common options
+
+- Output	
+  – results:	“asis”,	“hide”	
+  – echo:	TRUE,	FALSE	
+- Figures	
+  – fig.height:	numeric	
+  – fig.width:	numeric	
+  
+## Caching computations
+
+- What	if	one	chunk	takes	a	long	time	to	run?	
+- All	chunks	have	to	be	re-computed	every	time you	re-knit	the	file	
+- The	cache=TRUE op)on	can	be	set	on	a	chunk-bychunk	basis	to	store	results	of	computation	
+- After	the	first	run,	results	are	loaded	from	cache	
+
+## Caching	Caveats
+
+- If	the	data	or	code	(or	anything	external)	changes,	you	need	to	re-run	the	cached	code	chunks	
+- Dependencies	are	not	checked	explicitly	
+- Chunks	with	significant	side	effects	may	not	be	cacheable	
+
+## Summary
+
+- Literate	statistical	programming	can	be	a	useful	way	to	put	text,	code,	data,	output	all	in	one	document	
+- knitr	is	a	powerful	tool	for	integrating	code	and	text	in	a	simple	document	format

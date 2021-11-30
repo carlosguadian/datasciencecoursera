@@ -1,6 +1,9 @@
 knitr
 ================
 
+> [Slides from this
+> lesson](https://github.com/DataScienceSpecialization/courses/raw/master/05_ReproducibleResearch/knitr/knitr.pdf)
+
 ## Problems, Problems
 
 -   Authors must undertake considerable effort to put data/results on
@@ -174,3 +177,151 @@ In behind the scenes, knitr produces this in HTML to insert image
 ## Making Tables with xtable
 
 With `xtable` you can insert tables in document
+
+First some data
+
+``` r
+library(datasets)
+data("airquality")
+fit <- lm(Ozone ~ Wind + Temp + Solar.R, data = airquality)
+```
+
+Second make table and insert inline at document
+
+``` r
+library(xtable)
+xt <- xtable(summary(fit))
+print(xt, type = "html")
+```
+
+<!-- html table generated in R 4.1.1 by xtable 1.8-4 package -->
+<!-- Mon Nov 29 18:36:25 2021 -->
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+t value
+</th>
+<th>
+Pr(&gt;\|t\|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-64.3421
+</td>
+<td align="right">
+23.0547
+</td>
+<td align="right">
+-2.79
+</td>
+<td align="right">
+0.0062
+</td>
+</tr>
+<tr>
+<td align="right">
+Wind
+</td>
+<td align="right">
+-3.3336
+</td>
+<td align="right">
+0.6544
+</td>
+<td align="right">
+-5.09
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+Temp
+</td>
+<td align="right">
+1.6521
+</td>
+<td align="right">
+0.2535
+</td>
+<td align="right">
+6.52
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+Solar.R
+</td>
+<td align="right">
+0.0598
+</td>
+<td align="right">
+0.0232
+</td>
+<td align="right">
+2.58
+</td>
+<td align="right">
+0.0112
+</td>
+</tr>
+</table>
+
+## Setting Global Options
+
+-   Sometimes we want to set options for every code chunk that are
+    different from the defaults  
+-   For example, we may want to suppress all code echoing and results
+    output  
+-   We have to write some code to set these global options
+
+![Setting global options](./images/setting-global-options.png)
+
+Then the output is ![Output Global
+Settings](./images/output-global-settings.png)
+
+## Some common options
+
+-   Output  
+    – results: “asis”, “hide”  
+    – echo: TRUE, FALSE  
+-   Figures  
+    – fig.height: numeric – fig.width: numeric
+
+## Caching computations
+
+-   What if one chunk takes a long time to run?  
+-   All chunks have to be re-computed every time you re-knit the file  
+-   The cache=TRUE op)on can be set on a chunk-bychunk basis to store
+    results of computation
+-   After the first run, results are loaded from cache
+
+## Caching Caveats
+
+-   If the data or code (or anything external) changes, you need to
+    re-run the cached code chunks  
+-   Dependencies are not checked explicitly  
+-   Chunks with significant side effects may not be cacheable
+
+## Summary
+
+-   Literate statistical programming can be a useful way to put text,
+    code, data, output all in one document  
+-   knitr is a powerful tool for integrating code and text in a simple
+    document format
