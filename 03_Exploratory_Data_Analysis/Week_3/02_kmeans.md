@@ -1,6 +1,14 @@
 K-means Clustering
 ================
 
+-   [Ilustración del algoritmo
+    K-means](#ilustración-del-algoritmo-k-means)
+-   [Detener el algoritmo](#detener-el-algoritmo)
+-   [Usando la función `kmeans()`.](#usando-la-función-kmeans)
+-   [Construir mapas de calor a partir de soluciones
+    K-means](#construir-mapas-de-calor-a-partir-de-soluciones-k-means)
+-   [Notas y recursos adicionales](#notas-y-recursos-adicionales)
+
 Vea un vídeo de esta lección:
 
 -   [Parte 1](https://youtu.be/QGDuvVRUURA)

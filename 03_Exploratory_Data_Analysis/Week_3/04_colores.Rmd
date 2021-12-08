@@ -1,6 +1,8 @@
 ---
 title: "Trazado y color en R"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

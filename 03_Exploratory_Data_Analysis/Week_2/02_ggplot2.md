@@ -1,6 +1,36 @@
 ggplot2()
 ================
 
+-   [Básicos: `qplot()`](#básicos-qplot)
+-   [Antes de empezar: Etiquetar los
+    datos](#antes-de-empezar-etiquetar-los-datos)
+-   [ggplot2 “¡Hola, mundo!”](#ggplot2-hola-mundo)
+-   [Modificar la estética](#modificar-la-estética)
+-   [Añadir un geom](#añadir-un-geom)
+-   [Histogramas](#histogramas)
+-   [Facets](#facets)
+-   [Estudio de caso: Cohorte MAACS](#estudio-de-caso-cohorte-maacs)
+-   [Resumen de qplot()](#resumen-de-qplot)
+-   [El sistema de ploteo ggplot2: Parte
+    2](#el-sistema-de-ploteo-ggplot2-parte-2)
+    -   [Componentes básicos de un gráfico
+        ggplot2](#componentes-básicos-de-un-gráfico-ggplot2)
+    -   [Ejemplo: IMC, PM2.5, Asma](#ejemplo-imc-pm25-asma)
+    -   [Construyendo en capas](#construyendo-en-capas)
+    -   [Primer gráfico con capa de
+        puntos](#primer-gráfico-con-capa-de-puntos)
+    -   [Añadir más capas: Smooth](#añadir-más-capas-smooth)
+    -   [Añadir más capas: facets](#añadir-más-capas-facets)
+    -   [Modificación de las propiedades de los
+        geom](#modificación-de-las-propiedades-de-los-geom)
+    -   [Modificación de etiquetas](#modificación-de-etiquetas)
+    -   [Personalización del Smooth](#personalización-del-smooth)
+    -   [Cambiar el tema](#cambiar-el-tema)
+    -   [Ejemplo más complejo](#ejemplo-más-complejo)
+    -   [Un breve comentario sobre los límites de los
+        ejes](#un-breve-comentario-sobre-los-límites-de-los-ejes)
+    -   [Recursos](#recursos)
+
 El paquete `ggplot2` en R es una implementación de *La Gramática de los
 Gráficos* tal y como la describe Leland Wilkinson en su libro. El
 paquete fue escrito originalmente por Hadley Wickham mientras era

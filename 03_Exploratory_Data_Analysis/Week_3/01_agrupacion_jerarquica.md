@@ -1,6 +1,18 @@
 Agrupación Jerárquica
 ================
 
+-   [Clustering jerárquico](#clustering-jerárquico)
+-   [¿Cómo definimos la cercanía?](#cómo-definimos-la-cercanía)
+-   [Ejemplo: Distancia euclidiana](#ejemplo-distancia-euclidiana)
+-   [Ejemplo: La distancia de
+    Manhattan](#ejemplo-la-distancia-de-manhattan)
+-   [Ejemplo: Clustering jerárquico](#ejemplo-clustering-jerárquico)
+-   [Dendrogramas más bonitos](#dendrogramas-más-bonitos)
+-   [Fusión de puntos: Completa](#fusión-de-puntos-completa)
+-   [Fusión de puntos: Promedio](#fusión-de-puntos-promedio)
+-   [Uso de la función `heatmap()`.](#uso-de-la-función-heatmap)
+-   [Notas y recursos adicionales](#notas-y-recursos-adicionales)
+
 **Ver un vídeo de esta lección**:
 
 -   [Parte 1](https://youtu.be/BKoChxguelA)

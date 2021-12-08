@@ -1,6 +1,8 @@
 ---
 title: "Reducción de la Dimensión"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

@@ -1,6 +1,8 @@
 ---
 title: "K-means Clustering"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

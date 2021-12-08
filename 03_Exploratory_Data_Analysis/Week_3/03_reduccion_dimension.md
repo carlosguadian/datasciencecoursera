@@ -1,6 +1,23 @@
 Reducción de la Dimensión
 ================
 
+-   [Datos matriciales](#datos-matriciales)
+-   [Patrones en filas y columnas](#patrones-en-filas-y-columnas)
+-   [Problema relacionado](#problema-relacionado)
+-   [SVD y PCA](#svd-y-pca)
+-   [Desempaquetando el SVD: *u* y *v*](#desempaquetando-el-svd-u-y-v)
+-   [SVD para la compresión de datos](#svd-para-la-compresión-de-datos)
+-   [Componentes de la SVD - Varianza
+    explicada](#componentes-de-la-svd---varianza-explicada)
+-   [Relación con los componentes
+    principales](#relación-con-los-componentes-principales)
+-   [¿Y si añadimos un segundo
+    patrón?](#y-si-añadimos-un-segundo-patrón)
+-   [Tratamiento de los valores
+    perdidos](#tratamiento-de-los-valores-perdidos)
+-   [Ejemplo: Datos de la cara](#ejemplo-datos-de-la-cara)
+-   [Notas y recursos adicionales](#notas-y-recursos-adicionales)
+
 Vídeos de esta lección:
 
 -   [Parte 1](https://youtu.be/ts6UQnE6E1U)

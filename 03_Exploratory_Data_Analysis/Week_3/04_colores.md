@@ -1,6 +1,19 @@
 Trazado y color en R
 ================
 
+-   [Colores 1, 2 y 3](#colores-1-2-y-3)
+-   [Conectar los colores con los
+    datos](#conectar-los-colores-con-los-datos)
+-   [Utilidades de color en R](#utilidades-de-color-en-r)
+-   [`colorRamp()`](#colorramp)
+-   [`colorRampPalette()`](#colorramppalette)
+-   [Paquete RColorBrewer](#paquete-rcolorbrewer)
+-   [Uso de las paletas de
+    RColorBrewer](#uso-de-las-paletas-de-rcolorbrewer)
+-   [La función `smoothScatter()`](#la-función-smoothscatter)
+-   [Añadir transparencia](#añadir-transparencia)
+-   [Resumen](#resumen)
+
 Vídeos de esta lección:
 
 -   [Parte 1](https://youtu.be/7QaR91TCc3k)

@@ -1,6 +1,17 @@
 El sistema Lattice
 ================
 
+-   [Funciones de Lattice](#funciones-de-lattice)
+-   [Funciones Lattice](#funciones-lattice)
+-   [Gráfico LATTICE simple](#gráfico-lattice-simple)
+-   [Comportamiento lattice](#comportamiento-lattice)
+-   [Funciones de panel lattice](#funciones-de-panel-lattice)
+-   [Funciones de panel Lattice: Línea de
+    regresión](#funciones-de-panel-lattice-línea-de-regresión)
+-   [Varios gráficos lattice: Ejemplo de
+    MAACS](#varios-gráficos-lattice-ejemplo-de-maacs)
+-   [Resumen](#resumen)
+
 El sistema `lattice` de trazado se implementa utilizando los siguientes
 paquetes:
 
