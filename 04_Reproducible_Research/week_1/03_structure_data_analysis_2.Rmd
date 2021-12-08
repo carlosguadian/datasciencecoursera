@@ -1,6 +1,8 @@
 ---
 title: "Structure of a Data Analysis 2"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

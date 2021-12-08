@@ -1,6 +1,8 @@
 ---
 title: "Structure of a Data Analysis 1"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ## Steps in a data analysis

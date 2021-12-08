@@ -1,6 +1,31 @@
 Structure of a Data Analysis 2
 ================
 
+-   [Steps in a data analysis](#steps-in-a-data-analysis)
+-   [An example](#an-example)
+-   [Our data set](#our-data-set)
+-   [Subsampling our data set](#subsampling-our-data-set)
+-   [Exploratory data analysis](#exploratory-data-analysis)
+-   [Names](#names)
+-   [Head](#head)
+-   [Summaries](#summaries)
+-   [Plots](#plots)
+-   [Plots](#plots-1)
+-   [Relationships between
+    predictors](#relationships-between-predictors)
+-   [Clustering](#clustering)
+-   [New clustering](#new-clustering)
+-   [Statistical prediction/modeling](#statistical-predictionmodeling)
+-   [Statistical prediction/modeling](#statistical-predictionmodeling-1)
+-   [Get a measure of uncertainty](#get-a-measure-of-uncertainty)
+-   [Get a measure of uncertainty](#get-a-measure-of-uncertainty-1)
+-   [Interpret results](#interpret-results)
+-   [Our example](#our-example)
+-   [Challenge results](#challenge-results)
+-   [Synthesize/write-up results](#synthesizewrite-up-results)
+-   [In our example](#in-our-example)
+-   [Create reproducible code](#create-reproducible-code)
+
 > Source:
 > <https://github.com/DataScienceSpecialization/courses/blob/master/05_ReproducibleResearch/structureOfADataAnalysis2/index.Rmd>
 

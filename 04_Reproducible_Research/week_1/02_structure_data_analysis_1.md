@@ -1,6 +1,23 @@
 Structure of a Data Analysis 1
 ================
 
+-   [Steps in a data analysis](#steps-in-a-data-analysis)
+-   [Steps in a data analysis](#steps-in-a-data-analysis-1)
+-   [The key challenge in data
+    analysis](#the-key-challenge-in-data-analysis)
+-   [Defining a question](#defining-a-question)
+-   [An example](#an-example)
+-   [Define the ideal data set](#define-the-ideal-data-set)
+-   [Our example](#our-example)
+-   [Determine what data you can
+    access](#determine-what-data-you-can-access)
+-   [Back to our example](#back-to-our-example)
+-   [A possible solution](#a-possible-solution)
+-   [Obtain the data](#obtain-the-data)
+-   [Our data set](#our-data-set)
+-   [Clean the data](#clean-the-data)
+-   [Our cleaned data set](#our-cleaned-data-set)
+
 ## Steps in a data analysis
 
 -   Define the question

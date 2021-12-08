@@ -1,6 +1,26 @@
 Reproducible Research. Concepts and ideas
 ================
 
+-   [Replication](#replication)
+-   [What’s Wrong with Replication?](#whats-wrong-with-replication)
+-   [How Can We Bridge the Gap?](#how-can-we-bridge-the-gap)
+-   [Why Do We Need Reproducible
+    Research?](#why-do-we-need-reproducible-research)
+-   [Example: Reproducible Air Pollution and Health
+    Research](#example-reproducible-air-pollution-and-health-research)
+-   [Research Pipeline](#research-pipeline)
+-   [The IOM Report](#the-iom-report)
+-   [What do We Need?](#what-do-we-need)
+-   [Who are the Players?](#who-are-the-players)
+-   [Challenges](#challenges)
+-   [In Reality…](#in-reality)
+-   [Literate (Statistical)
+    Programming](#literate-statistical-programming)
+-   [Sweave Limitations](#sweave-limitations)
+-   [Literate (Statistical)
+    Programming](#literate-statistical-programming-1)
+-   [Summary](#summary)
+
 ## Replication
 
 The ultimate standard for strengthening scientific evidence is

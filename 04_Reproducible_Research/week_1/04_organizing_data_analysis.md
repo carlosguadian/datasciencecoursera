@@ -1,6 +1,18 @@
 Organizing a Data Analysis
 ================
 
+-   [Data analysis files](#data-analysis-files)
+-   [Raw Data](#raw-data)
+-   [Processed data](#processed-data)
+-   [Exploratory figures](#exploratory-figures)
+-   [Final Figures](#final-figures)
+-   [Raw scripts](#raw-scripts)
+-   [Final scripts](#final-scripts)
+-   [R markdown files](#r-markdown-files)
+-   [Readme files](#readme-files)
+-   [Text of the document](#text-of-the-document)
+-   [Further resources](#further-resources)
+
 ## Data analysis files
 
 -   Data
