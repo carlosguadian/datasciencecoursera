@@ -1,6 +1,8 @@
 ---
 title: "Leer HDF5"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -45,7 +47,7 @@ h5ls("example.h5")
 ```
 
 Escribir un dataset
-```{r}
+```r
 df <- data.frame(1L:5L, seq(0,1, length.out = 5), c("ab", "cde", "fghi", "a", "s"), stringsAsFactors = FALSE)
 h5write(df, "example.h5", "df")
 h5ls("example.h5")

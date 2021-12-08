@@ -1,6 +1,9 @@
 Leer HDF5
 ================
 
+-   [HDF5](#hdf5)
+-   [El paquete HDF5](#el-paquete-hdf5)
+
 ## HDF5
 
 HDF5 es un modelo de datos, una biblioteca y un formato de archivo para
@@ -27,29 +30,57 @@ BiocManager::install("rhdf5")
     ## Warning: package(s) not installed when version(s) same as current; use `force = TRUE` to
     ##   re-install: 'rhdf5'
 
+    ## Old packages: 'arrow', 'backports', 'brio', 'cpp11', 'digest', 'dtplyr', 'fs',
+    ##   'glue', 'graphlayouts', 'hdf5r', 'igraph', 'irlba', 'memoise', 'pkgload',
+    ##   'RcppArmadillo', 'readr', 'remotes', 'RSQLite', 'sessioninfo', 'slam', 'sp',
+    ##   'stringi', 'testthat', 'tibble', 'udpipe', 'vitae', 'vroom', 'withr', 'xml2'
+
 Cargamos el paquete y creamos un archivo tipo h5
 
 ``` r
 library(rhdf5)
 created = h5createFile("example.h5")
+```
+
+    ## file '/Users/carlosguadian/datasciencecoursera/02_Getting_Cleaning_Data/Week_2/example.h5' already exists.
+
+``` r
 created
 ```
 
-    ## [1] TRUE
+    ## [1] FALSE
 
 Vamos a crear unos grupos
 
 ``` r
 created = h5createGroup("example.h5", "foo")
+```
+
+    ## Can not create group. Object with name 'foo' already exists.
+
+``` r
 created = h5createGroup("example.h5", "baa")
+```
+
+    ## Can not create group. Object with name 'baa' already exists.
+
+``` r
 created = h5createGroup("example.h5", "foo/foobaa")
+```
+
+    ## Can not create group. Object with name 'foo/foobaa' already exists.
+
+``` r
 h5ls("example.h5")
 ```
 
-    ##   group   name     otype dclass dim
-    ## 0     /    baa H5I_GROUP           
-    ## 1     /    foo H5I_GROUP           
-    ## 2  /foo foobaa H5I_GROUP
+    ##         group   name       otype   dclass       dim
+    ## 0           /    baa   H5I_GROUP                   
+    ## 1           /     df H5I_DATASET COMPOUND         5
+    ## 2           /    foo   H5I_GROUP                   
+    ## 3        /foo      A H5I_DATASET  INTEGER     5 x 2
+    ## 4        /foo foobaa   H5I_GROUP                   
+    ## 5 /foo/foobaa      B H5I_DATASET    FLOAT 5 x 2 x 2
 
 Escribiendo en los grupos
 
@@ -62,12 +93,13 @@ h5write(B, "example.h5", "foo/foobaa/B")
 h5ls("example.h5")
 ```
 
-    ##         group   name       otype  dclass       dim
-    ## 0           /    baa   H5I_GROUP                  
-    ## 1           /    foo   H5I_GROUP                  
-    ## 2        /foo      A H5I_DATASET INTEGER     5 x 2
-    ## 3        /foo foobaa   H5I_GROUP                  
-    ## 4 /foo/foobaa      B H5I_DATASET   FLOAT 5 x 2 x 2
+    ##         group   name       otype   dclass       dim
+    ## 0           /    baa   H5I_GROUP                   
+    ## 1           /     df H5I_DATASET COMPOUND         5
+    ## 2           /    foo   H5I_GROUP                   
+    ## 3        /foo      A H5I_DATASET  INTEGER     5 x 2
+    ## 4        /foo foobaa   H5I_GROUP                   
+    ## 5 /foo/foobaa      B H5I_DATASET    FLOAT 5 x 2 x 2
 
 Escribir un dataset
 
@@ -76,14 +108,6 @@ df <- data.frame(1L:5L, seq(0,1, length.out = 5), c("ab", "cde", "fghi", "a", "s
 h5write(df, "example.h5", "df")
 h5ls("example.h5")
 ```
-
-    ##         group   name       otype   dclass       dim
-    ## 0           /    baa   H5I_GROUP                   
-    ## 1           /     df H5I_DATASET COMPOUND         5
-    ## 2           /    foo   H5I_GROUP                   
-    ## 3        /foo      A H5I_DATASET  INTEGER     5 x 2
-    ## 4        /foo foobaa   H5I_GROUP                   
-    ## 5 /foo/foobaa      B H5I_DATASET    FLOAT 5 x 2 x 2
 
 Leer datos de hdf5
 
