@@ -1,6 +1,16 @@
 Demostración de trazado base
 ================
 
+-   [Gráfico por defecto](#gráfico-por-defecto)
+-   [Márgenes](#márgenes)
+-   [Símbolo de los datos](#símbolo-de-los-datos)
+-   [Texto](#texto)
+-   [Líneas](#líneas)
+-   [Parámetros en `plot()`](#parámetros-en-plot)
+-   [Más de un gráfico a la vez](#más-de-un-gráfico-a-la-vez)
+-   [Visualizar más de una categoría de
+    datos](#visualizar-más-de-una-categoría-de-datos)
+
 ## Gráfico por defecto
 
 Vamos a empezar por un histograma sencillo. Generamos un vector de datos

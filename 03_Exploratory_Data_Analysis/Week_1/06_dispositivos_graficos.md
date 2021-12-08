@@ -1,6 +1,15 @@
 Dispositivos gráficos
 ================
 
+-   [El proceso de hacer un gráfico](#el-proceso-de-hacer-un-gráfico)
+-   [¿Cómo se crea un gráfico?](#cómo-se-crea-un-gráfico)
+-   [Dispositivos de archivos
+    gráficos](#dispositivos-de-archivos-gráficos)
+-   [Múltiples dispositivos gráficos
+    abiertos](#múltiples-dispositivos-gráficos-abiertos)
+-   [Copiar gráficos](#copiar-gráficos)
+-   [Resumen](#resumen)
+
 Vídeo de esta lección: [Parte 1](https://youtu.be/ftc6_hqRYuY) [Parte
 2](https://youtu.be/ci6ogllxVxg)
 

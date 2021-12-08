@@ -1,6 +1,34 @@
 Gráficos exploratorios
 ================
 
+-   [¿Porqué utilizar gráficos en el análisis de
+    datos?](#porqué-utilizar-gráficos-en-el-análisis-de-datos)
+    -   [Características de los gráficos
+        exploratorios](#características-de-los-gráficos-exploratorios)
+    -   [Contaminación del aire en Estados
+        Unidos](#contaminación-del-aire-en-estados-unidos)
+    -   [Obtención de los datos](#obtención-de-los-datos)
+    -   [Resúmenes sencillos: Una
+        dimensión](#resúmenes-sencillos-una-dimensión)
+    -   [Resumen de cinco números](#resumen-de-cinco-números)
+    -   [Boxplot](#boxplot)
+    -   [Histograma](#histograma)
+    -   [Superposición de
+        características](#superposición-de-características)
+    -   [Diagrama de barras](#diagrama-de-barras)
+    -   [Resúmenes simples: Dos dimensiones y más
+        allá](#resúmenes-simples-dos-dimensiones-y-más-allá)
+        -   [Dos dimensiones](#dos-dimensiones)
+        -   [Más de dos dimensiones](#más-de-dos-dimensiones)
+    -   [Boxplots múltiples](#boxplots-múltiples)
+    -   [Histogramas múltiples](#histogramas-múltiples)
+    -   [Gráficos de dispersión](#gráficos-de-dispersión)
+    -   [Gráfico de dispersión - Uso del
+        color](#gráfico-de-dispersión---uso-del-color)
+    -   [Múltiples gráficos de
+        dispersión](#múltiples-gráficos-de-dispersión)
+    -   [Resumen](#resumen)
+
 # ¿Porqué utilizar gráficos en el análisis de datos?
 
 Vídeo de esta lección: [Part 1](https://youtu.be/ma6-0PSNLHo) [Part

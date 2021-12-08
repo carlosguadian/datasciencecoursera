@@ -1,6 +1,20 @@
 El sistema básico de trazado (ploteo)
 ================
 
+-   [Gráficos base](#gráficos-base)
+-   [Gráficos simples básicos](#gráficos-simples-básicos)
+    -   [Histograma](#histograma)
+    -   [Boxplot](#boxplot)
+    -   [Gráfico de dispersión](#gráfico-de-dispersión)
+-   [Algunos parámetros gráficos base
+    importantes](#algunos-parámetros-gráficos-base-importantes)
+-   [Funciones básicas de ploteo](#funciones-básicas-de-ploteo)
+-   [Gráfico base con línea de
+    regresión](#gráfico-base-con-línea-de-regresión)
+-   [Gráficos de Base Múltiple](#gráficos-de-base-múltiple)
+-   [Reset](#reset)
+-   [Resumen](#resumen)
+
 > Vídeos de esta lección: [Parte 1](https://youtu.be/AAXh0egb5WM) [Parte
 > 2](https://youtu.be/bhyb1gCeAVk)
 

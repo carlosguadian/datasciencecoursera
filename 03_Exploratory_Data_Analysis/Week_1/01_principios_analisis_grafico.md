@@ -1,6 +1,19 @@
 Principios del análisis gráfico
 ================
 
+-   [Principios del análisis gráfico](#principios-del-análisis-gráfico)
+    -   [Mostrar comparaciones](#mostrar-comparaciones)
+    -   [Muestre la causalidad, el mecanismo, la explicación, la
+        estructura
+        sistemática](#muestre-la-causalidad-el-mecanismo-la-explicación-la-estructura-sistemática)
+    -   [Mostrar datos varios
+        (multivariables)](#mostrar-datos-varios-multivariables)
+    -   [Integrar las pruebas](#integrar-las-pruebas)
+    -   [Describir y documentar las
+        pruebas](#describir-y-documentar-las-pruebas)
+    -   [Contenido, contenido,
+        contenido](#contenido-contenido-contenido)
+
 ## Principios del análisis gráfico
 
 ### Mostrar comparaciones

@@ -1,6 +1,11 @@
 Sistemas de trazado en R
 ================
 
+-   [El sistema de trazado base](#el-sistema-de-trazado-base)
+-   [El sistema `lattice`](#el-sistema-lattice)
+-   [El sistema `ggplot2`](#el-sistema-ggplot2)
+-   [Referencias](#referencias)
+
 [Ver el vídeo de esta lección](https://youtu.be/a4mvbyNGdBA).
 
 Hay tres diferentes sistemas de trazado en R y cada uno tiene diferentes
@@ -184,8 +189,10 @@ Un gráfico típico con el paquete `ggplot` tiene el siguiente aspecto.
 ![ggplot2 plot](images/plottingsystems-unnamed-chunk-8-1.png)
 
 La función `qplot` en `ggplot2` es la que se utiliza para “obtener
-rápidamente algunos datos en la pantalla”. Hay funciones adicionales en
-`ggplot2` que te permiten hacer gráficos arbitrariamente sofisticados.
+rápidamente algunos datos en la pantalla”.
+
+Hay funciones adicionales en `ggplot2` que te permiten hacer gráficos
+sofisticados.
 
 ## Referencias
 
