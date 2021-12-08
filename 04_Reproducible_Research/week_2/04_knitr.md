@@ -1,6 +1,35 @@
 knitr
 ================
 
+-   [Problems, Problems](#problems-problems)
+-   [Literate Statistical
+    Programming](#literate-statistical-programming)
+-   [How Do I Make My Work
+    Reproducible?](#how-do-i-make-my-work-reproducible)
+-   [Literate Programming: Pros](#literate-programming-pros)
+-   [Literate Programming: Cons](#literate-programming-cons)
+-   [What is knitr?](#what-is-knitr)
+-   [Requirements](#requirements)
+-   [What is Markdown?](#what-is-markdown)
+-   [What is knitr Good For?](#what-is-knitr-good-for)
+-   [What is knitr NOT Good For?](#what-is-knitr-not-good-for)
+-   [My First knitr Document](#my-first-knitr-document)
+-   [More Complicated Way](#more-complicated-way)
+-   [Output](#output)
+-   [A Few Notes](#a-few-notes)
+-   [Processing of knitr Documents (what happens under the
+    hood)](#processing-of-knitr-documents-what-happens-under-the-hood)
+-   [Another Example](#another-example)
+-   [Hiding Results](#hiding-results)
+-   [Inline Text Computations](#inline-text-computations)
+-   [Incorporating Graphics](#incorporating-graphics)
+-   [Making Tables with xtable](#making-tables-with-xtable)
+-   [Setting Global Options](#setting-global-options)
+-   [Some common options](#some-common-options)
+-   [Caching computations](#caching-computations)
+-   [Caching Caveats](#caching-caveats)
+-   [Summary](#summary)
+
 > [Slides from this
 > lesson](https://github.com/DataScienceSpecialization/courses/raw/master/05_ReproducibleResearch/knitr/knitr.pdf)
 
@@ -195,7 +224,7 @@ print(xt, type = "html")
 ```
 
 <!-- html table generated in R 4.1.1 by xtable 1.8-4 package -->
-<!-- Mon Nov 29 18:36:25 2021 -->
+<!-- Wed Dec  8 12:22:44 2021 -->
 <table border="1">
 <tr>
 <th>

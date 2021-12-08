@@ -1,6 +1,9 @@
 Coding Standards in R
 ================
 
+-   [Coding Standards for R](#coding-standards-for-r)
+-   [Indenting](#indenting)
+
 ## Coding Standards for R
 
 1.  Always use text files / text editor
