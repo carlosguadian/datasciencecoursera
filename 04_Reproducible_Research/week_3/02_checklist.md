@@ -44,7 +44,7 @@ it sounds)
     need to do it once)
 -   In order to give your computer instructions, you need to write down
     exactly what you mean to do and how it should be done
--   Teaching a computer almost guarantees reproducibilty
+-   Teaching a computer almost guarantees reproducibility
 
 For example, by hand, you can
 
@@ -56,20 +56,11 @@ For example, by hand, you can
     link to the zip file of dataset, and choosing “Save Linked File As…”
     and then saving it to a folder on your computer
 
-## DO: Teach a Computer
-
 Or You can teach your computer to do the same thing using R:
 
 ``` r
-download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00275/
-               Bike-Sharing-Dataset.zip", "ProjectData/Bike-Sharing-Dataset.zip")
+download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00275/Bike-Sharing-Dataset.zip", "./ProjectData/Bike-Sharing-Dataset.zip")
 ```
-
-    ## Warning in download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00275/\n               Bike-Sharing-Dataset.zip", : URL http://archive.ics.uci.edu/ml/machine-learning-databases/00275/
-    ##                Bike-Sharing-Dataset.zip: cannot open destfile 'ProjectData/Bike-Sharing-Dataset.zip', reason 'No such file or directory'
-
-    ## Warning in download.file("http://archive.ics.uci.edu/ml/machine-learning-
-    ## databases/00275/\n Bike-Sharing-Dataset.zip", : download had nonzero exit status
 
 Notice here that
 
@@ -103,8 +94,6 @@ Notice here that
 -   **External dependencies**: Web sites, data repositories, remote
     databases, software repositories
 -   **Version numbers**: Ideally, for everything (if available)
-
-## DO: Keep Track of Your Software Environment
 
 ``` r
 sessionInfo()
@@ -157,7 +146,7 @@ sessionInfo()
 
 -   Data analysis is a lengthy process; it is not just tables / figures
     / reports
--   Raw data → processed data → analysis → report
+-   Raw data -&gt; processed data -&gt; analysis -&gt; report
 -   How you got the end is just as important as the end itself
 -   The more of the data analysis pipeline you can make reproducible,
     the better for everyone
