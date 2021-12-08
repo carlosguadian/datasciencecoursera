@@ -1,6 +1,8 @@
 ---
 title: "Agrupar y encadenar con dplyr()"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

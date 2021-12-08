@@ -1,6 +1,8 @@
 Agrupar y encadenar con dplyr()
 ================
 
+-   [Agrupar](#agrupar)
+
 ## Agrupar
 
 Una de las cosas que nos puede interesar a la hora de manipular datos es
@@ -34,6 +36,8 @@ cran <- tbl_df(cran)
 
     ## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
     ## Please use `tibble::as_tibble()` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 
 -   agrupar por una variable group\_by(package)
 -   print tibble

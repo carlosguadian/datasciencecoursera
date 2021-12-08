@@ -1,6 +1,8 @@
 Archivos JSON
 ================
 
+-   [Leer JSON](#leer-json)
+
 ## Leer JSON
 
 Para leer archivos JSON utilizaremos el paquete jsonlite.
@@ -38,8 +40,9 @@ names(jsondata) # acceso a los diferentes elementos que conformarían el datafra
     ## [61] "has_downloads"     "has_wiki"          "has_pages"        
     ## [64] "forks_count"       "mirror_url"        "archived"         
     ## [67] "disabled"          "open_issues_count" "license"          
-    ## [70] "allow_forking"     "forks"             "open_issues"      
-    ## [73] "watchers"          "default_branch"
+    ## [70] "allow_forking"     "is_template"       "topics"           
+    ## [73] "visibility"        "forks"             "open_issues"      
+    ## [76] "watchers"          "default_branch"
 
 ``` r
 names(jsondata$owner) # se puede acceder a uno específico
@@ -59,7 +62,8 @@ jsondata$owner$login # incluso bajar un nivel más
     ##  [1] "carlosguadian" "carlosguadian" "carlosguadian" "carlosguadian"
     ##  [5] "carlosguadian" "carlosguadian" "carlosguadian" "carlosguadian"
     ##  [9] "carlosguadian" "carlosguadian" "carlosguadian" "carlosguadian"
-    ## [13] "carlosguadian" "carlosguadian" "carlosguadian"
+    ## [13] "carlosguadian" "carlosguadian" "carlosguadian" "carlosguadian"
+    ## [17] "carlosguadian" "carlosguadian" "carlosguadian"
 
 Con este paquete también se puede convertir un dataframe en json.
 Probemos con Iris data.

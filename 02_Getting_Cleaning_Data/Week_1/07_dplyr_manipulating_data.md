@@ -1,6 +1,13 @@
 Manipular datos con dplyr()
 ================
 
+-   [Los 5 verbos](#los-5-verbos)
+-   [select()](#select)
+-   [filter()](#filter)
+-   [arrange()](#arrange)
+-   [mutate()](#mutate)
+-   [summarize()](#summarize)
+
 ## Los 5 verbos
 
 dplyr() facilita la manipulación de datos con 5 funciones, 5 verbos:
@@ -43,6 +50,8 @@ cran <- tbl_df(cran)
 
     ## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
     ## Please use `tibble::as_tibble()` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 
 ``` r
 cran
@@ -312,18 +321,18 @@ arrange(cran, desc(ip_id))
 ```
 
     ## # A tibble: 225,468 × 12
-    ##       X.1      X date       time       size r_version r_arch r_os  package version
-    ##     <int>  <int> <chr>      <chr>     <int> <chr>     <chr>  <chr> <chr>   <chr>  
-    ##  1 225464 225464 2014-07-08 23:43:15 5.93e3 <NA>      <NA>   <NA>  CPE     1.4.2  
-    ##  2 225424 225424 2014-07-08 23:40:17 5.69e5 3.1.0     x86_64 ming… multco… 0.1-5  
-    ##  3 225371 225371 2014-07-08 23:25:46 2.28e5 3.1.0     x86_64 ming… tourr   0.5.3  
-    ##  4 225368 225368 2014-07-08 23:20:35 3.09e5 3.1.0     x86_64 darw… ctv     0.7-9  
-    ##  5 225359 225359 2014-07-08 23:13:38 9.51e5 3.0.3     i386   ming… knitr   1.6    
-    ##  6 225360 225360 2014-07-08 23:13:41 8.02e4 3.0.3     i386   ming… htmlto… 0.2.4  
-    ##  7 225361 225361 2014-07-08 23:13:44 1.43e6 3.0.3     i386   ming… shiny   0.10.0 
-    ##  8 225349 225349 2014-07-08 23:40:35 2.19e6 3.1.0     x86_64 ming… RMySQL  0.9-3  
-    ##  9 225290 225290 2014-07-08 23:50:44 4.82e6 3.1.0     i386   ming… igraph  0.7.1  
-    ## 10 225220 225220 2014-07-08 23:04:41 1.97e5 3.1.0     x86_64 ming… coda    0.16-1 
+    ##       X.1      X date       time     size r_version r_arch r_os  package version
+    ##     <int>  <int> <chr>      <chr>   <int> <chr>     <chr>  <chr> <chr>   <chr>  
+    ##  1 225464 225464 2014-07-08 23:43… 5.93e3 <NA>      <NA>   <NA>  CPE     1.4.2  
+    ##  2 225424 225424 2014-07-08 23:40… 5.69e5 3.1.0     x86_64 ming… multco… 0.1-5  
+    ##  3 225371 225371 2014-07-08 23:25… 2.28e5 3.1.0     x86_64 ming… tourr   0.5.3  
+    ##  4 225368 225368 2014-07-08 23:20… 3.09e5 3.1.0     x86_64 darw… ctv     0.7-9  
+    ##  5 225359 225359 2014-07-08 23:13… 9.51e5 3.0.3     i386   ming… knitr   1.6    
+    ##  6 225360 225360 2014-07-08 23:13… 8.02e4 3.0.3     i386   ming… htmlto… 0.2.4  
+    ##  7 225361 225361 2014-07-08 23:13… 1.43e6 3.0.3     i386   ming… shiny   0.10.0 
+    ##  8 225349 225349 2014-07-08 23:40… 2.19e6 3.1.0     x86_64 ming… RMySQL  0.9-3  
+    ##  9 225290 225290 2014-07-08 23:50… 4.82e6 3.1.0     i386   ming… igraph  0.7.1  
+    ## 10 225220 225220 2014-07-08 23:04… 1.97e5 3.1.0     x86_64 ming… coda    0.16-1 
     ## # … with 225,458 more rows, and 2 more variables: country <chr>, ip_id <int>
 
 También podemos ordenar por más de una variable. Por ejemplo, si

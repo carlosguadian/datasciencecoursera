@@ -1,6 +1,9 @@
 read.table() & read.csv()
 ================
 
+-   [read.table() y read.csv() - Leer archivos en
+    local](#readtable-y-readcsv---leer-archivos-en-local)
+
 ## read.table() y read.csv() - Leer archivos en local
 
 **La función más habitual es read.table()**
@@ -84,6 +87,14 @@ as_tibble(housing_2006_2)
     ## #   MLPC <int>, MLPD <int>, MLPE <int>, MLPF <int>, MLPG <int>, MLPH <int>,
     ## #   MLPI <int>, MLPJ <int>, MLPK <int>, NWAB <int>, NWAV <int>, NWLA <int>,
     ## #   NWLK <int>, NWRE <int>, OIP <int>, PAP <int>, REL <int>, RETP <int>, …
+
+Con read.csv() no solo podemos abrir un archivo en local, también
+podemos leerlo directamente de Internet.
+
+``` r
+path2csv <- "https://raw.githubusercontent.com/carlosguadian/datasciencecoursera/master/02_Getting_Cleaning_Data/Week_1/housing_2006.csv"
+cran <- read.csv(path2csv, stringsAsFactors = FALSE)
+```
 
 **Otros parámetros para tener en cuenta:**
 

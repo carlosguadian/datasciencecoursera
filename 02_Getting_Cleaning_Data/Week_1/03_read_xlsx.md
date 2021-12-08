@@ -1,6 +1,9 @@
 read.xlsx()
 ================
 
+-   [read.xlsx(), read.xlsx2() - Leer Archivos
+    Excel](#readxlsx-readxlsx2---leer-archivos-excel)
+
 ## read.xlsx(), read.xlsx2() - Leer Archivos Excel
 
 El proceso para descargar un archivo excel es exactamente igual que el

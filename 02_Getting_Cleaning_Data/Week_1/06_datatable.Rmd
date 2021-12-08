@@ -1,6 +1,8 @@
 ---
 title: "data.table()"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

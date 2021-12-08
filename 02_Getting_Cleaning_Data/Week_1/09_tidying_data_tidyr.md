@@ -1,6 +1,10 @@
 Tidying data con tidyr
 ================
 
+-   [Tidy data](#tidy-data)
+-   [gather()](#gather)
+-   [separate()](#separate)
+
 ## Tidy data
 
 Tidy data facilita la exploración de los datos. Para que así sea debe

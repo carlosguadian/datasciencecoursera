@@ -2,6 +2,10 @@ Working Directory & download.file()
 ================
 Carlos Guadián
 
+-   [Working Directory](#working-directory)
+-   [Comprobar y crear directorios](#comprobar-y-crear-directorios)
+-   [download.file()](#downloadfile)
+
 ## Working Directory
 
 Es importante definir el directorio de trabajo. En él es dónde vamos a
@@ -42,9 +46,11 @@ download.file(fileUrl, destfile = "./data/housing_2006.csv", method = "curl") # 
 list.files("./data")
 ```
 
-    ## [1] "data_gov.xlsx"                "getdata_data_restaurants.xml"
-    ## [3] "housing_2006.csv"             "idaho_2006.csv"              
-    ## [5] "restaurants.xml"
+    ##  [1] "cran.csv"                     "data_gov.xlsx"               
+    ##  [3] "getdata_data_restaurants.xml" "housing_2006.csv"            
+    ##  [5] "idaho_2006.csv"               "restaurants.xml"             
+    ##  [7] "students.csv"                 "students2.csv"               
+    ##  [9] "students3.csv"                "students4.csv"
 
 Con objeto de detallar al máximo los datos con los que trabajamos, es
 importante dejar constancia “cuando” se han obtenido. Para ello podemos
@@ -55,7 +61,7 @@ dateDownloaded <- date()
 dateDownloaded
 ```
 
-    ## [1] "Fri Oct  1 10:10:04 2021"
+    ## [1] "Wed Dec  8 13:07:53 2021"
 
 -   Si la URL empieza por http no hay problema
 -   Si empieza por https

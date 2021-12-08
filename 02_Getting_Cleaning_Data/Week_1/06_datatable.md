@@ -1,6 +1,8 @@
 data.table()
 ================
 
+-   [data.table package](#datatable-package)
+
 ## data.table package
 
 -   Acepta todas las funciones de data.frame
@@ -12,10 +14,10 @@ DF <- data.frame(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
 head(DF,3)
 ```
 
-    ##             x y          z
-    ## 1  0.07265521 a 1.17383775
-    ## 2 -1.52623245 a 0.03605568
-    ## 3 -0.49296184 a 0.07516594
+    ##            x y           z
+    ## 1 -0.2117071 a  0.02013243
+    ## 2  1.2697285 a  0.09600248
+    ## 3  0.1072064 a -0.31553149
 
 De la misma manera que hemos creado un dataframe con data.frame, lo
 podemos hacer con data.table
@@ -25,10 +27,10 @@ DT <- data.table(x = rnorm(9), y = rep(c("a","b","c"), each = 3), z = rnorm(9))
 head(DF,3)
 ```
 
-    ##             x y          z
-    ## 1  0.07265521 a 1.17383775
-    ## 2 -1.52623245 a 0.03605568
-    ## 3 -0.49296184 a 0.07516594
+    ##            x y           z
+    ## 1 -0.2117071 a  0.02013243
+    ## 2  1.2697285 a  0.09600248
+    ## 3  0.1072064 a -0.31553149
 
 Con tables() podemos listar los data.frame que tenemos y obtener
 información relativo a ellas
@@ -47,25 +49,25 @@ Evidentemente se puede hacer subsetting mediante índices
 DT[2,] # segunda fila
 ```
 
-    ##             x y        z
-    ## 1: -0.6518689 a 1.380345
+    ##             x y          z
+    ## 1: -0.7445292 a -0.2427491
 
 ``` r
 DT[DT$y == "a",] # filas en las que la variable "y" sea "a"
 ```
 
-    ##             x y         z
-    ## 1: -2.3270525 a 1.1605203
-    ## 2: -0.6518689 a 1.3803450
-    ## 3: -0.3496990 a 0.2218312
+    ##             x y          z
+    ## 1:  1.3460547 a  1.1278013
+    ## 2: -0.7445292 a -0.2427491
+    ## 3:  0.0298277 a -1.0551716
 
 ``` r
 DT[c(2,3),] #segunda y tercera fila
 ```
 
-    ##             x y         z
-    ## 1: -0.6518689 a 1.3803450
-    ## 2: -0.3496990 a 0.2218312
+    ##             x y          z
+    ## 1: -0.7445292 a -0.2427491
+    ## 2:  0.0298277 a -1.0551716
 
 Pero el subset para las columnas no funciona igual
 
@@ -75,30 +77,30 @@ DT[, 3] # podemos seleccionar una columna
 ```
 
     ##              z
-    ## 1:  1.16052030
-    ## 2:  1.38034496
-    ## 3:  0.22183122
-    ## 4: -1.06400036
-    ## 5: -0.05929057
-    ## 6: -1.03757227
-    ## 7: -1.28665461
-    ## 8: -1.29877189
-    ## 9:  1.32218698
+    ## 1:  1.12780130
+    ## 2: -0.24274906
+    ## 3: -1.05517155
+    ## 4: -0.02824116
+    ## 5: -0.15519671
+    ## 6:  0.28302584
+    ## 7:  2.03823968
+    ## 8: -0.01063209
+    ## 9:  0.53211065
 
 ``` r
 DT[, c(2,3)]
 ```
 
     ##    y           z
-    ## 1: a  1.16052030
-    ## 2: a  1.38034496
-    ## 3: a  0.22183122
-    ## 4: b -1.06400036
-    ## 5: b -0.05929057
-    ## 6: b -1.03757227
-    ## 7: c -1.28665461
-    ## 8: c -1.29877189
-    ## 9: c  1.32218698
+    ## 1: a  1.12780130
+    ## 2: a -0.24274906
+    ## 3: a -1.05517155
+    ## 4: b -0.02824116
+    ## 5: b -0.15519671
+    ## 6: b  0.28302584
+    ## 7: c  2.03823968
+    ## 8: c -0.01063209
+    ## 9: c  0.53211065
 
 El argumento que se pasa después de la coma se considera una expresión.
 Por lo tanto se pueden hacer cosas como pasar una lista de funciones o
@@ -109,8 +111,8 @@ cuando se pasen después de la coma.
 DT[, list(mean(x), sum(z))]
 ```
 
-    ##            V1         V2
-    ## 1: -0.3008148 -0.6614062
+    ##           V1       V2
+    ## 1: 0.3522872 2.489187
 
 ``` r
 DT[,table(y)]
@@ -126,12 +128,12 @@ head(DT)
 ```
 
     ##             x y           z           w
-    ## 1: -2.3270525 a  1.16052030 1.346807359
-    ## 2: -0.6518689 a  1.38034496 1.905352205
-    ## 3: -0.3496990 a  0.22183122 0.049209092
-    ## 4: -0.1763705 b -1.06400036 1.132096767
-    ## 5: -0.4315093 b -0.05929057 0.003515371
-    ## 6:  0.1051358 b -1.03757227 1.076556214
+    ## 1:  1.3460547 a  1.12780130 1.271935775
+    ## 2: -0.7445292 a -0.24274906 0.058927108
+    ## 3:  0.0298277 a -1.05517155 1.113387000
+    ## 4: -0.0159129 b -0.02824116 0.000797563
+    ## 5:  0.6302362 b -0.15519671 0.024086019
+    ## 6:  0.1054140 b  0.28302584 0.080103626
 
 El proceso es muy rápido pero lo carga todo en memoria, por lo que con
 conjuntos de datos muy grandes puede causar problemas. El caso es que si
@@ -173,13 +175,13 @@ setkey(DT, x)
 head(DT['a'])
 ```
 
-    ##    x           y
-    ## 1: a  0.49260394
-    ## 2: a  0.05265016
-    ## 3: a  0.52823592
-    ## 4: a -0.91626748
-    ## 5: a  0.07208600
-    ## 6: a  1.53897885
+    ##    x            y
+    ## 1: a -1.149878768
+    ## 2: a  0.009498384
+    ## 3: a  0.286802483
+    ## 4: a  0.801437598
+    ## 5: a -0.506619918
+    ## 6: a -0.852628827
 
 Estos índices o claves también se pueden utilizar para faciliar las
 uniones entre tablas.
@@ -210,7 +212,7 @@ system.time(fread(file))
 ```
 
     ##    user  system elapsed 
-    ##   0.091   0.017   0.107
+    ##   0.118   0.032   0.154
 
 Ahora miramos lo que tarda en leer el mismo archivo con read.table.
 Tarda casi 5 veces más. fread() actúa como si leyera data.table() por
@@ -221,4 +223,4 @@ system.time(read.table(file, header = TRUE, sep = "\t"))
 ```
 
     ##    user  system elapsed 
-    ##   5.525   0.141   5.729
+    ##   9.874   0.402  10.428

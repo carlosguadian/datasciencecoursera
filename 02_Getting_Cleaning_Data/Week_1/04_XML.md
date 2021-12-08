@@ -1,6 +1,8 @@
 Leer XML
 ================
 
+-   [Leer archivos XML](#leer-archivos-xml)
+
 ## Leer archivos XML
 
 Se han de tener en cuenta las etiquetas que definen los bloques del
