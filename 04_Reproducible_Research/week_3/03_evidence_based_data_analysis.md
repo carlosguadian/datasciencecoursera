@@ -1,9 +1,39 @@
 Evidence-Based Data Analysis
 ================
 
+-   [Replication and Reproducibility](#replication-and-reproducibility)
+-   [Background and Underlying
+    Trends](#background-and-underlying-trends)
+-   [The Result?](#the-result)
+-   [What is Reproducible Research?](#what-is-reproducible-research)
+-   [What Problem Does Reproducibility
+    Solve?](#what-problem-does-reproducibility-solve)
+-   [Problems with Reproducibility](#problems-with-reproducibility)
+-   [An Analogy from Asthma](#an-analogy-from-asthma)
+-   [Scientific Dissemination
+    Process](#scientific-dissemination-process)
+-   [At Biostatistics](#at-biostatistics)
+-   [Who Reproduces Research?](#who-reproduces-research)
+-   [The Story So Far](#the-story-so-far)
+-   [Evidence-based Data Analysis](#evidence-based-data-analysis)
+-   [Deterministic Statistical
+    Machine](#deterministic-statistical-machine)
+-   [Case Study: Estimating Acute Effects of Ambient Air Pollution
+    Exposure](#case-study-estimating-acute-effects-of-ambient-air-pollution-exposure)
+-   [Data from New York City](#data-from-new-york-city)
+-   [Case Study: Estimating Acute Effects of Ambient Air Pollution
+    Exposure](#case-study-estimating-acute-effects-of-ambient-air-pollution-exposure-1)
+-   [DSM Modules for Time Series Studies of Air Pollution and
+    Health](#dsm-modules-for-time-series-studies-of-air-pollution-and-health)
+-   [Where to Go From Here?](#where-to-go-from-here)
+-   [A Model: Cochrane Collaboration](#a-model-cochrane-collaboration)
+-   [A Curated Library of Data
+    Analysis](#a-curated-library-of-data-analysis)
+-   [Summary](#summary)
+
 ## Replication and Reproducibility
 
-Replication
+**Replication**
 
 -   Focuses on the validity of the scientific claim
 -   “Is this claim true?”
@@ -13,9 +43,7 @@ Replication
 -   Particularly important in studies that can impact broad policy or
     regulatory decisions
 
-## Replication and Reproducibility
-
-Reproducibility
+**Reproducibility**
 
 -   Focuses on the validity of the data analysis
 -   “Can we trust this analysis?”
@@ -59,22 +87,19 @@ Reproducibility
 
 ## What Problem Does Reproducibility Solve?
 
-What we get
+**What we get**
 
 -   Transparency
 -   Data Availability
 -   Software / Methods Availability
 -   Improved Transfer of Knowledge
 
-What we do NOT get
+**What we do NOT get**
 
 -   Validity / Correctness of the analysis
-
-An analysis can be reproducible and still be wrong
-
-We want to know “can we trust this analysis?”
-
-Does requiring reproducibility deter bad analysis?
+    -   An analysis can be reproducible and still be wrong
+    -   We want to know “can we trust this analysis?”
+    -   Does requiring reproducibility deter bad analysis?
 
 ## Problems with Reproducibility
 

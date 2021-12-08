@@ -1,6 +1,19 @@
 Reproducible Research Checklist
 ================
 
+-   [DO: Start With Good Science](#do-start-with-good-science)
+-   [DON’T: Do Things By Hand](#dont-do-things-by-hand)
+-   [DON’T: Point And Click](#dont-point-and-click)
+-   [DO: Teach a Computer](#do-teach-a-computer)
+-   [DO: Use Some Version Control](#do-use-some-version-control)
+-   [DO: Keep Track of Your Software
+    Environment](#do-keep-track-of-your-software-environment)
+-   [DON’T: Save Output](#dont-save-output)
+-   [DO: Set Your Seed](#do-set-your-seed)
+-   [DO: Think About the Entire
+    Pipeline](#do-think-about-the-entire-pipeline)
+-   [Summary: Checklist](#summary-checklist)
+
 ## DO: Start With Good Science
 
 -   Garbage in, garbage out

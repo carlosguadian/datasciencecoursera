@@ -1,6 +1,14 @@
 Communicating Results
 ================
 
+-   [tl;dr](#tldr)
+-   [Hierarchy of Information: Research
+    Paper](#hierarchy-of-information-research-paper)
+-   [Hierarchy of Information: Email
+    Presentation](#hierarchy-of-information-email-presentation)
+-   [Hierarchy of Information: Email
+    Presentation](#hierarchy-of-information-email-presentation-1)
+
 ## tl;dr
 
 -   People are busy, especially managers and leaders
@@ -29,11 +37,11 @@ Communicating Results
 -   Email body
 
     -   A brief description of the problem / context; recall what was
-        proposed and executed; summarize findings / results; 1–2
+        proposed and executed; summarize findings / results; 1 - 2
         paragraphs
     -   If action needs to be taken as a result of this presentation,
         suggest some options and make them as concrete as possible.
-    -   If questions need to be addressed, try ot make them yes / no
+    -   If questions need to be addressed, try to make them yes / no
 
 ## Hierarchy of Information: Email Presentation
 
