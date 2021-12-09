@@ -2,6 +2,11 @@ Debugging - Basic Tools
 ================
 Carlos Guadián
 
+-   [Basic Tools](#basic-tools)
+-   [traceback()](#traceback)
+-   [debug](#debug)
+-   [recover](#recover)
+
 ## Basic Tools
 
 Las herramientas básicas en R para identificar errores son:

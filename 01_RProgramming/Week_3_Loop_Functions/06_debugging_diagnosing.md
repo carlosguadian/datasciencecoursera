@@ -2,6 +2,9 @@ Debugging - Diagnosing
 ================
 Carlos Guadián
 
+-   [Algo va mal](#algo-va-mal)
+-   [Entender qué ha ido mal](#entender-qué-ha-ido-mal)
+
 ## Algo va mal
 
 En R hay cuatro elementos que nos van a avisar que algo no funciona

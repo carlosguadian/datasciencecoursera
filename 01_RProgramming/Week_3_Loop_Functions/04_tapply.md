@@ -2,6 +2,8 @@ tapply
 ================
 Carlos Guadián
 
+-   [tapply](#tapply)
+
 ## tapply
 
 Se utiliza para aplicar una función sobre subconjuntos de un vector.
@@ -35,8 +37,8 @@ Y ahora vamos a calcular la media de cada grupo de x.
 tapply(x, f, mean)
 ```
 
-    ##          1          2          3 
-    ## -0.6764189  0.4225435  1.0356835
+    ##           1           2           3 
+    ## -0.01591843  0.46781326  0.66678346
 
 Si obligamos a no simplificar el resultado tenemos una lista.
 
@@ -45,10 +47,10 @@ tapply(x, f, mean, simplify = FALSE)
 ```
 
     ## $`1`
-    ## [1] -0.6764189
+    ## [1] -0.01591843
     ## 
     ## $`2`
-    ## [1] 0.4225435
+    ## [1] 0.4678133
     ## 
     ## $`3`
-    ## [1] 1.035683
+    ## [1] 0.6667835

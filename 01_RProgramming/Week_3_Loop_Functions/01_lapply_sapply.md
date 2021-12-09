@@ -2,6 +2,11 @@ lapply & sapply
 ================
 Carlos Guadián
 
+-   [Sustitutos de for, while, loops en línea de
+    comandos](#sustitutos-de-for-while-loops-en-línea-de-comandos)
+-   [lapply](#lapply)
+-   [sapply](#sapply)
+
 ## Sustitutos de for, while, loops en línea de comandos
 
 -   lapply(): Loop over a list and evaluate a function on each element
@@ -33,7 +38,7 @@ lapply
     ##         X <- as.list(X)
     ##     .Internal(lapply(X, FUN))
     ## }
-    ## <bytecode: 0x7f897a0359a0>
+    ## <bytecode: 0x7f890f8d6ba0>
     ## <environment: namespace:base>
 
 Una aplicación sencilla sería la siguiente. Calcular la media de todos
@@ -48,7 +53,7 @@ lapply(x, mean)
     ## [1] 3
     ## 
     ## $b
-    ## [1] 0.102922
+    ## [1] -0.370768
 
 Otro ejemplo un poco más complicado también calculando la media de cada
 elemento.
@@ -62,13 +67,13 @@ lapply(x, mean)
     ## [1] 2.5
     ## 
     ## $b
-    ## [1] 0.6270748
+    ## [1] -0.4177497
     ## 
     ## $c
-    ## [1] 0.9552119
+    ## [1] 1.072085
     ## 
     ## $d
-    ## [1] 4.957464
+    ## [1] 4.950723
 
 Por lo tanto, se puede pasar a cada elemento de la lista una función. En
 el siguiente ejemplo cada elemento de “x” es un argumento para runif
@@ -80,16 +85,16 @@ lapply(x, runif)
 ```
 
     ## [[1]]
-    ## [1] 0.1157007
+    ## [1] 0.6011377
     ## 
     ## [[2]]
-    ## [1] 0.8372790 0.8562957
+    ## [1] 0.8876112 0.4994613
     ## 
     ## [[3]]
-    ## [1] 0.3667140 0.6691551 0.5840182
+    ## [1] 0.3671434 0.7734628 0.8543298
     ## 
     ## [[4]]
-    ## [1] 0.80953989 0.68955359 0.15616158 0.02227876
+    ## [1] 0.8388769 0.2007059 0.4519708 0.3946143
 
 También se puede definir una función fantasma, es decir, que no tiene
 nombre dentro de lapply.
@@ -145,13 +150,13 @@ lapply(x, mean)
     ## [1] 2.5
     ## 
     ## $b
-    ## [1] 0.1412604
+    ## [1] -0.2624158
     ## 
     ## $c
-    ## [1] 0.743454
+    ## [1] 1.153766
     ## 
     ## $d
-    ## [1] 5.04913
+    ## [1] 4.993977
 
 Pero si aplicamos sapply obtenemos un vector.
 
@@ -161,4 +166,4 @@ sapply(x, mean)
 ```
 
     ##         a         b         c         d 
-    ## 2.5000000 0.4157798 0.6939231 4.9970558
+    ## 2.5000000 0.4594356 0.6315918 5.0589756
