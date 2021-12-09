@@ -2,6 +2,18 @@ Gestionar dataframes con dplyr()
 ================
 Carlos Guadián
 
+-   [Características de un dataframe](#características-de-un-dataframe)
+-   [dplyr() package](#dplyr-package)
+-   [Propiedades dplyr()](#propiedades-dplyr)
+-   [select()](#select)
+-   [filter()](#filter)
+-   [arrange()](#arrange)
+-   [rename()](#rename)
+-   [mutate()](#mutate)
+-   [group\_by()](#group_by)
+-   [%&gt;%](#section)
+-   [dplyr](#dplyr)
+
 ## Características de un dataframe
 
 -   Hay una observación por fila

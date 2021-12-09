@@ -2,6 +2,10 @@ Segmentar y ordenar
 ================
 Carlos Guadián
 
+-   [Segmentar](#segmentar)
+-   [Ordenar](#ordenar)
+-   [Añadir filas y columnas](#añadir-filas-y-columnas)
+
 ## Segmentar
 
 Para empezar vamos a generar un dataframe con tres variables y algunos

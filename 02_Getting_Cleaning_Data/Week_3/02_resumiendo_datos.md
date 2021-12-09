@@ -2,6 +2,17 @@ Resumiendo datos
 ================
 Carlos Guadián
 
+-   [Cargar los datos](#cargar-los-datos)
+-   [Un primer vistazo](#un-primer-vistazo)
+-   [Quartiles de variables
+    cuantitativas](#quartiles-de-variables-cuantitativas)
+-   [Tablas como resumen](#tablas-como-resumen)
+-   [Comprobar valors perdidos](#comprobar-valors-perdidos)
+-   [Encontrar valores con carateríticas
+    especiales](#encontrar-valores-con-carateríticas-especiales)
+-   [Tabulaciones cruzadas](#tabulaciones-cruzadas)
+-   [Tamaño del dataset](#tamaño-del-dataset)
+
 ## Cargar los datos
 
 Una vez cargados los datos en R necesitamos dar un primer vistazo para
@@ -39,11 +50,11 @@ head(restData, n = 3)
 ```
 
     ## # A tibble: 3 × 32
-    ##           X        Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
-    ##       <dbl>    <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
-    ## 1 -8522867. 4769142.     1 27_1   NA            0 2008/06/…    27 NA      ST      
-    ## 2 -8525894. 4762539.     2 27_2   NA            0 2008/06/…    27 NA      ST      
-    ## 3 -8524408. 4762175.     3 27_3   NA            0 2008/06/…    27 NA      ST      
+    ##           X      Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
+    ##       <dbl>  <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
+    ## 1 -8522867. 4.77e6     1 27_1   NA            0 2008/06/…    27 NA      ST      
+    ## 2 -8525894. 4.76e6     2 27_2   NA            0 2008/06/…    27 NA      ST      
+    ## 3 -8524408. 4.76e6     3 27_3   NA            0 2008/06/…    27 NA      ST      
     ## # … with 22 more variables: loc_meth <chr>, street_tag <dbl>, prcl_pin <chr>,
     ## #   address <chr>, city <chr>, state <chr>, zipcode <chr>, x_coord <dbl>,
     ## #   y_coord <dbl>, name <chr>, alias1 <lgl>, nghbrhd <chr>, cncldst <int>,
@@ -56,11 +67,11 @@ tail(restData, n = 3)
 ```
 
     ## # A tibble: 3 × 32
-    ##           X        Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
-    ##       <dbl>    <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
-    ## 1 -8523955. 4767493.  1325 27_13… NA            0 2008/06/…    27 NA      ST      
-    ## 2 -8530782. 4769207.  1326 27_13… NA            0 2008/06/…    27 NA      ST      
-    ## 3 -8522228. 4762871.  1327 27_13… NA            0 2008/06/…    27 NA      ST      
+    ##           X      Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
+    ##       <dbl>  <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
+    ## 1 -8523955. 4.77e6  1325 27_13… NA            0 2008/06/…    27 NA      ST      
+    ## 2 -8530782. 4.77e6  1326 27_13… NA            0 2008/06/…    27 NA      ST      
+    ## 3 -8522228. 4.76e6  1327 27_13… NA            0 2008/06/…    27 NA      ST      
     ## # … with 22 more variables: loc_meth <chr>, street_tag <dbl>, prcl_pin <chr>,
     ## #   address <chr>, city <chr>, state <chr>, zipcode <chr>, x_coord <dbl>,
     ## #   y_coord <dbl>, name <chr>, alias1 <lgl>, nghbrhd <chr>, cncldst <int>,
@@ -362,18 +373,18 @@ restData[restData$zipcode %in% c("21212", "21213"), ]
 ```
 
     ## # A tibble: 59 × 32
-    ##            X        Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
-    ##        <dbl>    <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
-    ##  1 -8528369. 4763143.    29 27_96  NA            0 2008/06/…    27 NA      ST      
-    ##  2 -8526224. 4766498.    39 27_106 NA            0 2008/06/…    27 NA      ST      
-    ##  3 -8528133. 4773970.    92 27_63  NA            0 2008/06/…    27 NA      ST      
-    ##  4 -8525206. 4766647.   111 27_82  NA            0 2008/06/…    27 NA      ST      
-    ##  5 -8528303. 4773962.   187 27_187 NA            0 2008/06/…    27 NA      ST      
-    ##  6 -8528133. 4773970.   220 27_220 NA            0 2008/06/…    27 NA      ST      
-    ##  7 -8526026. 4766913.   266 27_266 NA            0 2008/06/…    27 NA      ST      
-    ##  8 -8523358. 4766501.   276 27_276 NA            0 2008/06/…    27 NA      ST      
-    ##  9 -8523358. 4766501.   289 27_289 NA            0 2008/06/…    27 NA      ST      
-    ## 10 -8525812. 4766523.   291 27_291 NA            0 2008/06/…    27 NA      ST      
+    ##           X      Y   fid gis_id srcid_t srcid_i edit_date ftype subtype loc_type
+    ##       <dbl>  <dbl> <int> <chr>  <lgl>     <int> <chr>     <int> <lgl>   <chr>   
+    ##  1  -8.53e6 4.76e6    29 27_96  NA            0 2008/06/…    27 NA      ST      
+    ##  2  -8.53e6 4.77e6    39 27_106 NA            0 2008/06/…    27 NA      ST      
+    ##  3  -8.53e6 4.77e6    92 27_63  NA            0 2008/06/…    27 NA      ST      
+    ##  4  -8.53e6 4.77e6   111 27_82  NA            0 2008/06/…    27 NA      ST      
+    ##  5  -8.53e6 4.77e6   187 27_187 NA            0 2008/06/…    27 NA      ST      
+    ##  6  -8.53e6 4.77e6   220 27_220 NA            0 2008/06/…    27 NA      ST      
+    ##  7  -8.53e6 4.77e6   266 27_266 NA            0 2008/06/…    27 NA      ST      
+    ##  8  -8.52e6 4.77e6   276 27_276 NA            0 2008/06/…    27 NA      ST      
+    ##  9  -8.52e6 4.77e6   289 27_289 NA            0 2008/06/…    27 NA      ST      
+    ## 10  -8.53e6 4.77e6   291 27_291 NA            0 2008/06/…    27 NA      ST      
     ## # … with 49 more rows, and 22 more variables: loc_meth <chr>, street_tag <dbl>,
     ## #   prcl_pin <chr>, address <chr>, city <chr>, state <chr>, zipcode <fct>,
     ## #   x_coord <dbl>, y_coord <dbl>, name <fct>, alias1 <lgl>, nghbrhd <fct>,

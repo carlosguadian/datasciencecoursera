@@ -2,6 +2,14 @@ Creando nuevas variables
 ================
 Carlos Guadián
 
+-   [Porqué crear nuevas variables?](#porqué-crear-nuevas-variables)
+-   [Creando secuencias](#creando-secuencias)
+-   [Segmentando variables](#segmentando-variables)
+-   [Creando variables binarias](#creando-variables-binarias)
+-   [Creando variables categóricas](#creando-variables-categóricas)
+-   [Creando factores](#creando-factores)
+-   [Transformaciones más comunes](#transformaciones-más-comunes)
+
 ## Porqué crear nuevas variables?
 
 -   En la mayoría de ocasiones los datos originales no tienen el
@@ -195,14 +203,14 @@ yesnofac <- factor(yesno, levels = c("yes", "no"))
 relevel(yesnofac, ref = "yes")
 ```
 
-    ##  [1] no  yes no  yes no  yes no  yes yes no 
+    ##  [1] no  no  yes no  yes yes yes no  no  no 
     ## Levels: yes no
 
 ``` r
 as.numeric(yesnofac)
 ```
 
-    ##  [1] 2 1 2 1 2 1 2 1 1 2
+    ##  [1] 2 2 1 2 1 1 1 2 2 2
 
 De la misma manera que antes hemos “cortado” una variable para hacer
 categorías.

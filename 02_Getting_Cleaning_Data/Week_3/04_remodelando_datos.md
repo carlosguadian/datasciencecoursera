@@ -2,6 +2,11 @@ Remodelando datos
 ================
 Carlos Guadián
 
+-   [Tidy Data](#tidy-data)
+-   [Melting (fusión) dataframes](#melting-fusión-dataframes)
+-   [Casting dataframes](#casting-dataframes)
+-   [Valores promedios](#valores-promedios)
+
 ## Tidy Data
 
 -   Cada variable en una columna

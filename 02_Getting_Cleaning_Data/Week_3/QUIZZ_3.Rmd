@@ -1,6 +1,8 @@
 ---
 title: "Getting and Cleaning Data Quiz 3 (JHU) Coursera"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

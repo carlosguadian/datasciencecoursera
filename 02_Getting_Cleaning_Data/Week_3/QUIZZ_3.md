@@ -1,6 +1,12 @@
 Getting and Cleaning Data Quiz 3 (JHU) Coursera
 ================
 
+-   [\#\# Question 1](#-question-1)
+-   [\#\# Question 2](#-question-2)
+-   [\#\# Question 3](#-question-3)
+-   [\#\# Question 4](#-question-4)
+-   [\#\# Question 5](#-question-5)
+
 ## \#\# Question 1
 
 The American Community Survey distributes downloadable data about United
@@ -23,15 +29,14 @@ the logical vector is TRUE. which(agricultureLogical)
 What are the first 3 values that result?
 
 ``` r
-download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv'
-              , 'ACS.csv'
-              , method='curl' )
+file_url <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv'
+download.file(file_url , 'ACS.csv' , method='curl' )
 
 # Read data into data.frame
 ACS <- read.csv('ACS.csv')
 
-agricultureLogical <- ACS$ACR == 3 & ACS$AGS == 6
-head(which(agricultureLogical), 3)
+agricultureLogical <- which(ACS$ACR == 3 & ACS$AGS == 6)
+head(agricultureLogical, 3)
 ```
 
     ## [1] 125 238 262
@@ -47,20 +52,16 @@ Use the parameter native=TRUE. What are the 30th and 80th quantiles of
 the resulting data?
 
 ``` r
-# install.packages('jpeg')
 library(jpeg)
 
 # Download the file
-download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg'
-              , 'jeff.jpg'
-              , mode='wb' )
+download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg' ,'Fjeff.jpg')
 
 # Read the image
-picture <- jpeg::readJPEG('jeff.jpg'
-                          , native=TRUE)
+Fjeff <- readJPEG('Fjeff.jpg' , native=TRUE)
 
 # Get Sample Quantiles corressponding to given prob
-quantile(picture, probs = c(0.3, 0.8) )
+quantile(Fjeff, probs = c(0.3, 0.8) )
 ```
 
     ##       30%       80% 
@@ -86,8 +87,7 @@ Original data sources:
 <http://data.worldbank.org/data-catalog/ed-stats>
 
 ``` r
-# install.packages("data.table)
-library("data.table")
+library(data.table)
 library(dplyr)
 ```
 
@@ -108,15 +108,10 @@ library(dplyr)
 
 ``` r
 # Download data and read FGDP data into data.table
-FGDP <- data.table::fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv'
-                          , skip=5
-                          , nrows = 190
-                          , select = c(1, 2, 4, 5)
-                          , col.names=c("CountryCode", "Rank", "Economy", "Total")
-                          )
+FGDP <- fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv', skip=5, nrows = 190, select = c(1, 2, 4, 5), col.names=c("CountryCode", "Rank", "Economy", "Total"))
 
 # Download data and read FGDP data into data.table
-FEDSTATS_Country <- data.table::fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv')
+FEDSTATS_Country <- fread('https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv')
      
 mergedDT <- merge(FGDP, FEDSTATS_Country, by = 'CountryCode')
 
@@ -143,10 +138,7 @@ income: nonOECD” group?
 
 ``` r
 # "High income: OECD" 
-mergedDT[`Income Group` == "High income: OECD"
-         , lapply(.SD, mean)
-         , .SDcols = c("Rank")
-         , by = "Income Group"]
+mergedDT[`Income Group` == "High income: OECD", lapply(.SD, mean), .SDcols = c("Rank"), by = "Income Group"]
 ```
 
     ##         Income Group     Rank
@@ -154,10 +146,7 @@ mergedDT[`Income Group` == "High income: OECD"
 
 ``` r
 # "High income: nonOECD"
-mergedDT[`Income Group` == "High income: nonOECD"
-         , lapply(.SD, mean)
-         , .SDcols = c("Rank")
-         , by = "Income Group"]
+mergedDT[`Income Group` == "High income: nonOECD", lapply(.SD, mean), .SDcols = c("Rank"), by = "Income Group"]
 ```
 
     ##            Income Group     Rank
