@@ -1,6 +1,12 @@
 Simulación de números aleatorios
 ================
 
+-   [funciones para generar números
+    aleatorios](#funciones-para-generar-números-aleatorios)
+-   [Generando números aleatorios](#generando-números-aleatorios)
+-   [Reproducir números aleatorios](#reproducir-números-aleatorios)
+-   [Poisson Data](#poisson-data)
+
 ## funciones para generar números aleatorios
 
 A veces se quiere implementar un procedimiento estadístico que requiere
@@ -52,15 +58,15 @@ x <- rnorm(10)
 x
 ```
 
-    ##  [1] -0.03064019  0.23510448  1.57024144  0.31851538 -0.19508756 -0.26883964
-    ##  [7] -0.09362737  0.90515309 -2.07005970  1.13596261
+    ##  [1]  0.94959650  1.33800027 -0.65425710 -1.23410421 -0.74827370 -0.78448879
+    ##  [7]  0.07466120 -1.98253427 -0.05977362  1.07521308
 
 ``` r
 summary(x)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## -2.0701 -0.1697  0.1022  0.1507  0.7585  1.5702
+    ## -1.9825 -0.7754 -0.3570 -0.2026  0.7309  1.3380
 
 Vamos a modificar los parámetros y simular números con una media de 20 y
 una desviación estándar de 2.
@@ -70,15 +76,15 @@ x <- rnorm(10, 20, 2)
 x
 ```
 
-    ##  [1] 13.57497 18.54758 19.70324 19.82933 20.02071 22.65565 18.00139 19.11442
-    ##  [9] 18.29375 18.56418
+    ##  [1] 21.84883 21.35640 18.68532 20.77231 18.50101 16.81297 20.88618 18.72794
+    ##  [9] 19.13812 23.44222
 
 ``` r
 summary(x)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   13.57   18.36   18.84   18.83   19.80   22.66
+    ##   16.81   18.70   19.96   20.02   21.24   23.44
 
 ## Reproducir números aleatorios
 

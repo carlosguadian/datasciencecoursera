@@ -1,6 +1,8 @@
 str()
 ================
 
+-   [La función str()](#la-función-str)
+
 ## La función str()
 
 La función str() nos muestra la estructura de un objeto en R, puede ser
@@ -34,7 +36,7 @@ x <- rnorm(100, 2, 4)
 str(x)
 ```
 
-    ##  num [1:100] 0.321 5.65 2.744 3.405 -0.33 ...
+    ##  num [1:100] -1.67 5.71 -1.01 6.85 2.26 ...
 
 Por supuesto que también la podemos aplicar a una variable.
 
@@ -67,7 +69,7 @@ m <- matrix(rnorm(100), 10, 10)
 str(m)
 ```
 
-    ##  num [1:10, 1:10] 0.147 0.313 1.079 -1.645 -0.711 ...
+    ##  num [1:10, 1:10] 1.2046 -0.7919 0.0324 -1.6603 0.3978 ...
 
 Por último, no dejemos de lado las listas. Nos dará un pequeño sumario
 de cada elemento de la lista.

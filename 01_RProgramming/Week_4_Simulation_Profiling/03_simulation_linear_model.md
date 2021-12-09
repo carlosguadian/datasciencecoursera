@@ -2,6 +2,10 @@ Simulación de modelos lineares
 ================
 Carlos Guadián
 
+-   [Modelo Linear](#modelo-linear)
+-   [Modelo Binario](#modelo-binario)
+-   [Modelo Poisson](#modelo-poisson)
+
 ## Modelo Linear
 
 Simular números aleatorios es útil, pero a veces queremos simular

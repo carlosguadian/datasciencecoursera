@@ -1,6 +1,8 @@
 ---
 title: "Simulación de números aleatorios"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

@@ -2,6 +2,11 @@ Profiling R Code
 ================
 Carlos Guadián
 
+-   [Porqué mi código va tan lento](#porqué-mi-código-va-tan-lento)
+-   [system.time()](#systemtime)
+-   [Timing longer expressions](#timing-longer-expressions)
+-   [Rprof()](#rprof)
+
 ## Porqué mi código va tan lento
 
 R viene con un perfilador para ayudarte a optimizar tu código y mejorar
@@ -67,7 +72,7 @@ system.time(readLines("http://www.jhsph.edu"))
 ```
 
     ##    user  system elapsed 
-    ##   0.030   0.006   4.017
+    ##   0.035   0.007   2.105
 
 Este caso sería lo contrario, en teoría, con el siguiente ejemplo.
 Teóricamente el ordenador debería tomar el cálculo y dividirlo entre
@@ -85,7 +90,7 @@ system.time(svd(x))
 ```
 
     ##    user  system elapsed 
-    ##   0.003   0.000   0.004
+    ##   0.004   0.001   0.012
 
 ## Timing longer expressions
 
@@ -105,7 +110,7 @@ system.time({
 ```
 
     ##    user  system elapsed 
-    ##   0.106   0.004   0.111
+    ##   0.098   0.002   0.100
 
 ## Rprof()
 

@@ -1,7 +1,9 @@
 ---
 title: "Profiling R Code"
 author: "Carlos Guadián"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

@@ -2,6 +2,10 @@ Random Sampling
 ================
 Carlos Guadián
 
+-   [Sample Function](#sample-function)
+-   [Muestras aleatorias de dataframes o
+    listas](#muestras-aleatorias-de-dataframes-o-listas)
+
 ## Sample Function
 
 La función sample() extrae aleatoriamente de un conjunto especificado de
