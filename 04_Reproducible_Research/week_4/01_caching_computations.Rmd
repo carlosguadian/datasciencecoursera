@@ -9,3 +9,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+> Referencias
+  - https://rstudio-pubs-static.s3.amazonaws.com/157089_504d61c69ada43e8b9f67a0979d43c48.html
+  - https://sux13.github.io/DataScienceSpCourseNotes/5_REPDATA/Reproducible_Research_Course_Notes.pdf

@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Research. Concepts and ideas"
+title: "Investigación reproducible. Conceptos e ideas"
 output: 
   github_document:
     toc: true
@@ -9,125 +9,125 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Replication
-The ultimate standard for strengthening scientific evidence is replication of findings and conducting studies with independent
+## Replicación
+La norma definitiva para reforzar la evidencia científica es la replicación de los hallazgos y la realización de estudios con
 
-- Investigators	
-- Data
-- Analytical methods
-- Laboratories
-- Instruments
+- investigadores independientes.	
+- Datos
+- Métodos analíticos
+- Laboratorios
+- Instrumentos
 
-Replication is particularly important in studies that can impact broad policy or regulatory decisions
+La replicación es especialmente importante en los estudios que pueden influir en las decisiones políticas o normativas generales
 
-## What’s Wrong with Replication?
-Some studies cannot be replicated
+## ¿Qué hay de malo en la replicación?
+Algunos estudios no se pueden replicar
 
-- No time, opportunistic
-- No money
-- Unique
+- No hay tiempo, es oportunista
+- No hay dinero
+- Único
 
-Reproducible Research: Make analytic data and code available so that others may reproduce findings
+Investigación reproducible: Poner a disposición los datos analíticos y el código para que otros puedan reproducir los resultados
 
-## How Can We Bridge the Gap?
-Between **replication** and **nothing** we have **reproduciblity**
+## ¿Cómo podemos salvar la brecha?
+Entre la **replicación** y la **nada** tenemos la **reproducibilidad**
 
-## Why Do We Need Reproducible Research?
-New technologies increasing data collection throughput; data are more complex and extremely high dimensional
+## ¿Por qué necesitamos una investigación reproducible?
+Las nuevas tecnologías aumentan el rendimiento de la recopilación de datos; los datos son más complejos y extremadamente dimensionales
 
-Existing databases can be merged into new “megadatabases”
-Computing power is greatly increased, allowing more sophisticated analyses
+Las bases de datos existentes pueden fusionarse en nuevas "megabases de datos"
+La potencia de cálculo es mucho mayor, lo que permite realizar análisis más sofisticados
 
-For every field “X” there is a field “Computational X”
+Para cada campo "X" hay un campo "X computacional"
 
-## Example: Reproducible Air Pollution and Health Research
-Estimating small (but important) health effects in the presence of much stronger signals
+## Ejemplo: Investigación reproducible sobre contaminación atmosférica y salud
+Estimación de pequeños (pero importantes) efectos sobre la salud en presencia de señales mucho más fuertes
 
-Results inform substantial policy decisions, affect many stakeholders
+Los resultados informan de decisiones políticas importantes, afectan a muchas partes interesadas
 
-> EPA regulations can cost billions of dollars
+> La normativa de la EPA puede costar miles de millones de dólares
 
-Complex statistical methods are needed and subjected to intense scrutiny
+Se necesitan métodos estadísticos complejos y se someten a un intenso escrutinio
 
 ## Research Pipeline
-![Research Pipeline](https://github.com/carlosguadian/datasciencecoursera/blob/master/04_Reproducible_Research/week_1/research_pipeline.png?raw=true)
+![Research Pipeline](https://raw.githubusercontent.com/carlosguadian/datasciencecoursera/master/04_Reproducible_Research/week_1/research_pipeline.png)
 
-## The IOM Report
-In the Discovery/Test Validation stage of omics-based tests:
+## El informe del IOM
+En la etapa de descubrimiento/validación de pruebas basadas en la ómica:
 
-- Data/metadata used to develop test should be made publicly available
-- The computer code and fully specified computational procedures used for development of the candidate omics-based test should be made sustainably available
-- “Ideally, the computer code that is released will encompass all of the steps of computational analysis, including all data preprocessing steps, that have been described in this chapter. All aspects of the analysis need to be transparently reported.”
+- Los datos/metadatos utilizados para desarrollar la prueba deben ponerse a disposición del público
+- El código informático y los procedimientos computacionales plenamente especificados utilizados para el desarrollo de la prueba candidata basada en la ómica deben estar disponibles de forma sostenible
+- "Lo ideal es que el código informático que se publique abarque todos los pasos del análisis computacional, incluidos todos los pasos de preprocesamiento de datos, que se han descrito en este capítulo. Todos los aspectos del análisis deben ser comunicados de forma transparente".
 
-## What do We Need?
+## ¿Qué necesitamos?
 
-- Analytic data are available
-- Analytic code are available
-- Documentation of code and data
-- Standard means of distribution
+- Los datos analíticos están disponibles
+- El código analítico está disponible
+- Documentación del código y los datos
+- Medios de distribución estándar
 
-## Who are the Players?
-Authors
+## ¿Quiénes son los actores?
+Autores
 
-- Want to make their research reproducible
-- Want tools for RR to make their lives easier (or at least not much harder)
+- Quieren que su investigación sea reproducible
+- Quieren que las herramientas de RR les faciliten la vida (o al menos no se la compliquen mucho)
 
-Readers
+Lectores
 
-- Want to reproduce (and perhaps expand upon) interesting findings
-- Want tools for RR to make their lives easier
+- Quieren reproducir (y quizás ampliar) los resultados interesantes
+- Quieren que las herramientas de RR les faciliten la vida
 
-## Challenges
+## Desafíos
 
-- Authors must undertake considerable effort to put data/results on the web (may not have resources like a web server)
-- Readers must download data/results individually and piece together which data go with which code sections, etc.
-- Readers may not have the same resources as authors
-Few tools to help authors/readers (although toolbox is growing!)
+- Los autores deben realizar un esfuerzo considerable para poner los datos/resultados en la web (pueden no tener recursos como un servidor web)
+- Los lectores deben descargar los datos/resultados de forma individual y reunir qué datos van con qué secciones de código, etc.
+- Los lectores pueden no tener los mismos recursos que los autores.
+Pocas herramientas para ayudar a los autores/lectores (¡aunque la caja de herramientas está creciendo!)
 
-## In Reality…
-Authors
+## En realidad...
+Autores
 
-- Just put stuff on the web
-- (Infamous) Journal supplementary materials
-- There are some central databases for various fields (e.g. biology, ICPSR)
+- Sólo ponen cosas en la web
+- Materiales complementarios de las revistas (infames)
+- Hay algunas bases de datos centrales para varios campos (por ejemplo, biología, ICPSR)
 
-Readers
+Lectores
 
-- Just download the data and (try to) figure it out
-- Piece together the software and run it
+- Sólo hay que descargar los datos y (tratar de) entenderlos
+- Armar el software y ejecutarlo
 
-## Literate (Statistical) Programming
-- An article is a stream of text and code
-- Analysis code is divided into text and code “chunks”
-- Each code chunk loads data and computes results
-- Presentation code formats results (tables, figures, etc.)
-- Article text explains what is going on
-- Literate programs can be weaved to produce human-readable documents and tangled to produce machine-readable documents
-- Literate programming is a general concept that requires
-  - A documentation language (human readable)
-  - A programming language (machine readable)
-- Sweave uses LATEX and R as the documentation and programming languages
-- Sweave was developed by Friedrich Leisch (member of the R Core) and is maintained by R core
-- Main web site: http://www.statistik.lmu.de/~leisch/Sweave
+## Programación (estadística) alfabetizada
+- Un artículo es un flujo de texto y código
+- El código de análisis se divide en "trozos" de texto y código
+- Cada trozo de código carga los datos y calcula los resultados
+- El código de presentación da formato a los resultados (tablas, figuras, etc.)
+- El texto del artículo explica lo que ocurre
+- Los programas literarios pueden tejerse para producir documentos legibles para el ser humano y enredarse para producir documentos legibles para la máquina
+- La programación literaria es un concepto general que requiere
+  - Un lenguaje de documentación (legible para el ser humano)
+  - Un lenguaje de programación (legible por la máquina)
+- Sweave utiliza LATEX y R como lenguajes de documentación y programación
+- Sweave fue desarrollado por Friedrich Leisch (miembro del núcleo de R) y es mantenido por el núcleo de R
+- Sitio web principal: http://www.statistik.lmu.de/~leisch/Sweave
 
-## Sweave Limitations
+## Limitaciones de Sweave
 
-- Sweave has many limitations
-- Focused primarily on LaTeX, a difficult to learn markup language used only by weirdos
-- Lacks features like caching, multiple plots per chunk, mixing programming languages and many other technical items
-- Not frequently updated or very actively developed
+- Sweave tiene muchas limitaciones
+- Se centra principalmente en LaTeX, un lenguaje de marcado difícil de aprender que sólo utilizan los bichos raros
+- Carece de características como el almacenamiento en caché, múltiples gráficos por trozo, mezcla de lenguajes de programación y muchos otros elementos técnicos
+- No se actualiza con frecuencia ni se desarrolla muy activamente
 
-## Literate (Statistical) Programming
+## Programación (estadística) alfabetizada
 
-- knitr is an alternative (more recent) package
-- Brings together many features added on to Sweave to address limitations
-- knitr uses R as the programming language (although others are allowed) and variety of documentation languages
+- knitr es un paquete alternativo (más reciente)
+- Reúne muchas características añadidas a Sweave para solucionar las limitaciones
+- knitr utiliza R como lenguaje de programación (aunque se permiten otros) y una variedad de lenguajes de documentación
   - LaTeX, Markdown, HTML
-- knitr was developed by Yihui Xie (while a graduate student in statistics at Iowa State)
-- See http://yihui.name/knitr/
+- knitr fue desarrollado por Yihui Xie (mientras era estudiante de posgrado en estadística en Iowa State)
+- Ver http://yihui.name/knitr/
 
-## Summary
+## Resumen
 
- - Reproducible research is important as a minimum standard, particularly for studies that are difficult to replicate
-- Infrastructure is needed for creating and distributing reproducible documents, beyond what is currently available
-- There is a growing number of tools for creating reproducible documents
+ - La investigación reproducible es importante como norma mínima, sobre todo para los estudios que son difíciles de replicar
+- Se necesita una infraestructura para crear y distribuir documentos reproducibles, más allá de lo que está disponible actualmente
+- Hay un número creciente de herramientas para crear documentos reproducibles
