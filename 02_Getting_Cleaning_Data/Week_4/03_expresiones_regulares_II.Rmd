@@ -1,6 +1,8 @@
 ---
 title: "Expresiones regulares II"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -153,7 +155,7 @@ it went down on several occasions for like, 3 or 4 *days*
 Mmmm its time 4 me 2 go 2 bed
 ```
 
-## { }
+## `{ }`
 
 { } se denominan cuantificadores de intervalo; nos permiten especificar el número mínimo y máximo de coincidencias de una expresión.
 

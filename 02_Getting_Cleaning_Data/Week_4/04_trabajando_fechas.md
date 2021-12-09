@@ -1,6 +1,17 @@
 Trabajando con fechas
 ================
 
+-   [Inicio sencillo](#inicio-sencillo)
+-   [Clase de datos “fecha”](#clase-de-datos-fecha)
+-   [Formateando fechas](#formateando-fechas)
+-   [Creando fechas](#creando-fechas)
+-   [Converting to Julian](#converting-to-julian)
+-   [lubridate()](#lubridate)
+-   [Peleando con las horas](#peleando-con-las-horas)
+-   [Algunas funciones tienen una sintaxis ligeramente
+    diferente](#algunas-funciones-tienen-una-sintaxis-ligeramente-diferente)
+-   [Notas y otros recursos](#notas-y-otros-recursos)
+
 **El sistema trabaja con el sistema de fechas que tengáis en local. Es
 decir, si tenéis los meses y los días en español, no os funcionará con
 fechas en inglés**
@@ -23,7 +34,7 @@ d1 = date()
 d1
 ```
 
-    ## [1] "Fri Oct 29 13:05:15 2021"
+    ## [1] "Thu Dec  9 08:33:55 2021"
 
 ``` r
 class(d1)
@@ -41,7 +52,7 @@ d2 = Sys.Date()
 d2
 ```
 
-    ## [1] "2021-10-29"
+    ## [1] "2021-12-09"
 
 ``` r
 class(d2)
@@ -67,13 +78,13 @@ fecha como más nos convenga.
 format(d2,"%a %b %d")
 ```
 
-    ## [1] "vie oct 29"
+    ## [1] "jue dic 09"
 
 ``` r
 format(d2,"%d %b %Y") #una fecha menos anglosajona...
 ```
 
-    ## [1] "29 oct 2021"
+    ## [1] "09 dic 2021"
 
 ## Creando fechas
 
@@ -113,19 +124,19 @@ semana es, qué mes, e incluso el número de días que han pasado desde el
 weekdays(d2)
 ```
 
-    ## [1] "viernes"
+    ## [1] "jueves"
 
 ``` r
 months(d2)
 ```
 
-    ## [1] "octubre"
+    ## [1] "diciembre"
 
 ``` r
 julian(d2)
 ```
 
-    ## [1] 18929
+    ## [1] 18970
     ## attr(,"origin")
     ## [1] "1970-01-01"
 

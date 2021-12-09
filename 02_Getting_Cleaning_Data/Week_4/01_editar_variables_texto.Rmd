@@ -1,6 +1,8 @@
 ---
 title: "Editando Variables de Texto"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

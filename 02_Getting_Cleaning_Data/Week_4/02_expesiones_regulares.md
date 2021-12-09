@@ -1,6 +1,12 @@
 Expresiones regulares
 ================
 
+-   [Expresiones regulares](#expresiones-regulares)
+-   [Literales](#literales)
+-   [Expresiones regulares](#expresiones-regulares-1)
+-   [Metacaracteres](#metacaracteres)
+-   [Clases de caracteres con \[\]](#clases-de-caracteres-con-)
+
 ## Expresiones regulares
 
 -   Las expresiones regulares pueden considerarse una combinación de

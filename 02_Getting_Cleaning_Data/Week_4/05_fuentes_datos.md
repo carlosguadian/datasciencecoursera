@@ -1,6 +1,17 @@
 Fuentes de datos
 ================
 
+-   [Open Government Sites](#open-government-sites)
+-   [Gapminder](#gapminder)
+-   [Survey data from the United
+    States](#survey-data-from-the-united-states)
+-   [Infochimps Marketplace](#infochimps-marketplace)
+-   [Kaggle](#kaggle)
+-   [Colecciones de científicos de
+    datos](#colecciones-de-científicos-de-datos)
+-   [Colecciones más especializadas](#colecciones-más-especializadas)
+-   [Algunas API con interfaces de R](#algunas-api-con-interfaces-de-r)
+
 > La lista original es de Roger D. Peng, pero es una lista de 2014 por
 > lo que algunos de los sitios originales han dejado de funcionar y se
 > han suprimido. Además se han incorporado otros que me son más cercanos

@@ -1,6 +1,21 @@
 Editando Variables de Texto
 ================
 
+-   [Example - Baltimore camera data](#example---baltimore-camera-data)
+-   [tolower(), toupper()](#tolower-toupper)
+-   [strsplit()](#strsplit)
+-   [Quick aside - lists](#quick-aside---lists)
+-   [sapply()](#sapply)
+-   [Peer review experiment data](#peer-review-experiment-data)
+-   [Peer review data](#peer-review-data)
+-   [sub()](#sub)
+-   [gsub()](#gsub)
+-   [Encontrar valores - grep(),grepl()](#encontrar-valores---grepgrepl)
+-   [Más sobre grep()](#más-sobre-grep)
+-   [Más funciones de cadena útiles](#más-funciones-de-cadena-útiles)
+-   [Puntos importantes sobre el texto en los conjuntos de
+    datos](#puntos-importantes-sobre-el-texto-en-los-conjuntos-de-datos)
+
 ## Example - Baltimore camera data
 
 Los archivos originales utilizados en el vídeo de Coursera ya no están
