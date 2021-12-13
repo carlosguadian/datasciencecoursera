@@ -14,6 +14,11 @@ Caching Computations
 -   [Cloning an Analysis](#cloning-an-analysis)
 -   [Examining Code](#examining-code)
 -   [Analysis Code Graphs](#analysis-code-graphs)
+-   [Tracing Code Backwards](#tracing-code-backwards)
+-   [Running Code](#running-code)
+-   [Checking Code and Objects](#checking-code-and-objects)
+-   [Inspecting Data Objects](#inspecting-data-objects)
+-   [Cacher Summary](#cacher-summary)
 
 ## Referencias
 
@@ -139,3 +144,38 @@ sourcefile: top20.R
 ## Analysis Code Graphs
 
 ![Analysis Code Graphs](analysis-code-graph.png)
+
+## Tracing Code Backwards
+
+![Tracing Code Backwards](tracing-code.png)
+
+## Running Code
+
+-   The `runcode()` function executes code in the source file
+-   by default, expressions that results in an object being creatd are
+    not run and the resulting objects is lazy-loaded into the workspace.
+-   Expressions not resulting in objects are evaluated
+
+## Checking Code and Objects
+
+-   The `checkcode()` function evaluates all expressions from scratch
+    (no lazy-loading)
+-   Results of evaluation are checked against stored results to see if
+    the results are the same as what the author calculated
+    -   Setting `RNG` seeds is critical for this to work
+-   The integrity of data objects can be verified with the
+    `checkobjects()` function to check for possible corruption of data
+    (i.e. in transit)
+
+## Inspecting Data Objects
+
+![Inspecting Data Objects](inspecting-data-objects.png)
+
+## Cacher Summary
+
+-   The `cacher` package can be used by authors to create cache packages
+    from data analysis for distribution
+-   Readers can user the `cacher` package to inspect other’s data
+    analysis by examining cached computations.
+-   `cacher` is mindful of reader’s resources and efficiently loads only
+    those data objects that are needed.
