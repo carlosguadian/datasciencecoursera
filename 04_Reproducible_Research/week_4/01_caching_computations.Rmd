@@ -44,6 +44,10 @@ Sweave was developed by Friedrich Leisch (member of the R Core) and is maintaine
 - "Cacher Packages" can be built for distribution
 - Other can "clone" an analysis and evaluate subsets of code or inspect data objects
 
+> `cacher ()` package is outdated and was removed drom the CRAN repository. [More info](https://cran.r-project.org/web/packages/cacher/index.html)
+
+> Other options: [R.cache](https://cran.r-project.org/web/packages/R.cache/index.html)
+
 ## Conceptual Model
 ![Conceptual Model](conceptual-model.png)
 
@@ -64,3 +68,45 @@ Sweave was developed by Friedrich Leisch (member of the R Core) and is maintaine
 
 ## Example: Simple Analysis
 ![Simple Analysis](simple-analysis.png)
+
+## Using cacher as a Reader
+A journal article says...
+
+> "... the code and data for this analysis can be found in the cacher package 092dcc7dda4b93e42f23e03a60e1d44dbec7b3f."
+
+``` r
+> library(cacher)
+> clonechache(id = "092dcc7dda4b93e42f23e03a60e1d44dbec7b3f")
+> clonecache (id = "092d") ## same as above
+created cache directory '.cache'
+
+> showfiles()
+[1] "top20.R"
+> sourcefile("top20.R")
+```
+## Cloning an Analysis
+
+ - Local directories created
+ - Source code files and metadata are downloaded
+ - Data objects are not downloaded by default
+ - References to data objects are loaded and corresponding data can be lazy-loaded on demand.
+
+## Examining Code
+```r
+> code()
+sourcefile: top20.R
+1 cities <- readLines("citylist.txt")
+2 classes <- readLines("colClasses.txt")
+3 vars <- c("date", "dow", "death",)
+4 data <- lapply(cities, )
+5 names(data) <- citites
+6 estimates <- sapply(data, function(city))
+7 effect <- weighted.mean(estimates1, )
+8 stderr <- sqrt(1/estimates[2, ])
+
+> graphcode()
+```
+
+## Analysis Code Graphs
+![Analysis Code Graphs](analysis-code-graph.png)
+
