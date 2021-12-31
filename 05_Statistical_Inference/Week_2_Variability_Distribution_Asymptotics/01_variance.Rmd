@@ -131,8 +131,7 @@ sd(apply(matrix(rnorm(nosim * n), nosim), 1, mean))
 ```
 
 ## Simulation example
-Standard uniforms have variance $1/12$; means of 
-random samples of $n$ uniforms have sd $1/\sqrt{12 \times n}$
+Standard uniforms have variance $1/12$; means of random samples of $n$ uniforms have sd $1/\sqrt{12 \times n}$
 
 ```{r}
 nosim <- 1000
