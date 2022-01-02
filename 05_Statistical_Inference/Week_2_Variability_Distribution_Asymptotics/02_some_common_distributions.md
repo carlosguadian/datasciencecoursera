@@ -66,7 +66,7 @@ $$\\left(
 -   If each gender has an independent 50% probability for each birth,
     what’s the probability of getting 7 or more girls out of 8 births?
 
-$$ 
+$$
 \\left(
 \\begin{array}{c}
   8 \\\\ 7

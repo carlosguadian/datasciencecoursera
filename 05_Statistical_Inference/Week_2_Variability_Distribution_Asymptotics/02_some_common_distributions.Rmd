@@ -60,7 +60,7 @@ $$\left(
 - Suppose a friend has $8$ children (oh my!), $7$ of which are girls and none are twins
 - If each gender has an independent $50$% probability for each birth, what's the probability of getting $7$ or more girls out of $8$ births?
 
-$$ 
+$$
 \left(
 \begin{array}{c}
   8 \\ 7
