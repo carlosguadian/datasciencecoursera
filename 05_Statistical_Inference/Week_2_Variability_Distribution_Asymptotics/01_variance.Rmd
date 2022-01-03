@@ -104,7 +104,7 @@ g + facet_grid(. ~ size)
 
 ## Recall the mean
 
-- Recall that the average of random sample from a populationis itself a random variable
+- Recall that the average of random sample from a population is itself a random variable
 - We know that this distribution is centered around the population mean, $E[\bar X] = \mu$
 - We also know what its variance is $Var(\bar X) = \sigma^2 / n$
 - This is very useful, since we don't have repeat sample means to get its variance; now we know how it relates to the population variance
