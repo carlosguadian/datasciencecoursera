@@ -1,5 +1,4 @@
-Hypothesis testing
-================
+$10/\\sqrt{100}=1$
 
 ## Hypothesis testing
 
@@ -29,12 +28,37 @@ Hypothesis testing
 -   Note that there are four possible outcomes of our statistical
     decision process
 
-| Truth             | Decide            | Result                |
-|-------------------|-------------------|-----------------------|
-| *H*<sub>0</sub>   | *H*<sub>0</sub>   | Correctly accept null |
-| *H*<sub>0</sub>   | *H*<sub>*a*</sub> | Type I error          |
-| *H*<sub>*a*</sub> | *H*<sub>*a*</sub> | Correctly reject null |
-| *H*<sub>*a*</sub> | *H*<sub>0</sub>   | Type II error         |
+<table>
+<thead>
+<tr class="header">
+<th>Truth</th>
+<th>Decide</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline"><em>H</em><sub>0</sub></span></td>
+<td><span class="math inline"><em>H</em><sub>0</sub></span></td>
+<td>Correctly accept null</td>
+</tr>
+<tr class="even">
+<td><span class="math inline"><em>H</em><sub>0</sub></span></td>
+<td><span class="math inline"><em>H</em><sub><em>a</em></sub></span></td>
+<td>Type I error</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline"><em>H</em><sub><em>a</em></sub></span></td>
+<td><span class="math inline"><em>H</em><sub><em>a</em></sub></span></td>
+<td>Correctly reject null</td>
+</tr>
+<tr class="even">
+<td><span class="math inline"><em>H</em><sub><em>a</em></sub></span></td>
+<td><span class="math inline"><em>H</em><sub>0</sub></span></td>
+<td>Type II error</td>
+</tr>
+</tbody>
+</table>
 
 ## Discussion
 
@@ -63,7 +87,7 @@ Hypothesis testing
 
 ## Example continued
 
--   Standard error of the mean $10 / \\sqrt{100} = 1$
+-   Standard error of the mean $10/\\sqrt{100}=1$
 -   Under *H*<sub>0</sub> *X̄* ∼ *N*(30, 1)
 -   We want to chose *C* so that the *P*(*X̄* &gt; *C*; *H*<sub>0</sub>)
     is 5%
@@ -81,9 +105,7 @@ Hypothesis testing
 -   In general we don’t convert *C* back to the original scale
 -   We would just reject because the Z-score; which is how many standard
     errors the sample mean is above the hypothesized mean
-    $$
-    \\frac{32 - 30}{10 / \\sqrt{100}} = 2
-    $$
+    $$\\frac{32 - 30}{10 / \\sqrt{100}} = 2$$
     is greater than 1.645
 -   Or, whenever $\\sqrt{n} (\\bar X - \\mu\_0) / s &gt; Z\_{1-\\alpha}$
 
@@ -96,7 +118,7 @@ Hypothesis testing
 -   Test statistic $ TS = $
 -   Reject the null hypothesis when
     -   *T**S* ≤ *Z*<sub>*α*</sub> =  − *Z*<sub>1 − *α*</sub>
-    -   \|*T**S*\| ≥ *Z*<sub>1 − *α*/2</sub>
+    -   |*T**S*| ≥ *Z*<sub>1 − *α*/2</sub>
     -   *T**S* ≥ *Z*<sub>1 − *α*</sub>
 
 ## Notes
@@ -126,18 +148,14 @@ Hypothesis testing
 
 -   Consider our example again. Suppose that *n* = 16 (rather than 100)
 -   The statistic
-    $$
-    \\frac{\\bar X - 30}{s / \\sqrt{16}}
-    $$
+    $$\\frac{\\bar X - 30}{s / \\sqrt{16}}$$
     follows a *T* distribution with 15 df under *H*<sub>0</sub>
 -   Under *H*<sub>0</sub>, the probability that it is larger that the
     95th percentile of the *T* distribution is 5%
 -   The 95th percentile of the T distribution with 15 df is 1.7530504
     (obtained via `qt(.95, 15)`)
 -   So that our test statistic is now
-    $$
-    \\sqrt{16}(32 - 30) / 10 = 0.8 
-    $$
+    $$\\sqrt{16}(32 - 30) / 10 = 0.8$$
 -   We now fail to reject.
 
 ## Two sided tests
@@ -160,9 +178,7 @@ Hypothesis testing
 
 ## T test in R
 
-``` r
-library(UsingR); data(father.son)
-```
+    library(UsingR); data(father.son)
 
     > Loading required package: MASS
 
@@ -192,9 +208,7 @@ library(UsingR); data(father.son)
     > 
     >     cancer
 
-``` r
-t.test(father.son$sheight - father.son$fheight)
-```
+    t.test(father.son$sheight - father.son$fheight)
 
     > 
     >   One Sample t-test
@@ -230,13 +244,11 @@ t.test(father.son$sheight - father.son$fheight)
 
 Recall that we reformatted this data
 
-``` r
-library(datasets); data(ChickWeight); library(reshape2)
-##define weight gain or loss
-wideCW <- dcast(ChickWeight, Diet + Chick ~ Time, value.var = "weight")
-names(wideCW)[-(1 : 2)] <- paste("time", names(wideCW)[-(1 : 2)], sep = "")
-library(dplyr)
-```
+    library(datasets); data(ChickWeight); library(reshape2)
+    ##define weight gain or loss
+    wideCW <- dcast(ChickWeight, Diet + Chick ~ Time, value.var = "weight")
+    names(wideCW)[-(1 : 2)] <- paste("time", names(wideCW)[-(1 : 2)], sep = "")
+    library(dplyr)
 
     ## 
     ## Attaching package: 'dplyr'
@@ -257,19 +269,15 @@ library(dplyr)
     ## 
     ##     intersect, setdiff, setequal, union
 
-``` r
-wideCW <- mutate(wideCW,
-  gain = time21 - time0
-)
-```
+    wideCW <- mutate(wideCW,
+      gain = time21 - time0
+    )
 
 ### Unequal variance T test comparing diets 1 and 4
 
-``` r
-wideCW14 <- subset(wideCW, Diet %in% c(1, 4))
-t.test(gain ~ Diet, paired = FALSE, 
-       var.equal = TRUE, data = wideCW14)
-```
+    wideCW14 <- subset(wideCW, Diet %in% c(1, 4))
+    t.test(gain ~ Diet, paired = FALSE, 
+           var.equal = TRUE, data = wideCW14)
 
     >  
     >   Two Sample t-test
@@ -292,17 +300,52 @@ t.test(gain ~ Diet, paired = FALSE,
     -   What is the relevant rejection region so that the probability of
         rejecting is (less than) 5%?
 
-| Rejection region | Type I error rate |
-|------------------|-------------------|
-| \[0 : 8\]        | 1                 |
-| \[1 : 8\]        | 0.9960938         |
-| \[2 : 8\]        | 0.9648438         |
-| \[3 : 8\]        | 0.8554688         |
-| \[4 : 8\]        | 0.6367187         |
-| \[5 : 8\]        | 0.3632813         |
-| \[6 : 8\]        | 0.1445313         |
-| \[7 : 8\]        | 0.0351563         |
-| \[8 : 8\]        | 0.0039063         |
+<table>
+<thead>
+<tr class="header">
+<th>Rejection region</th>
+<th>Type I error rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[0 : 8]</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>[1 : 8]</td>
+<td>0.9960938</td>
+</tr>
+<tr class="odd">
+<td>[2 : 8]</td>
+<td>0.9648438</td>
+</tr>
+<tr class="even">
+<td>[3 : 8]</td>
+<td>0.8554688</td>
+</tr>
+<tr class="odd">
+<td>[4 : 8]</td>
+<td>0.6367187</td>
+</tr>
+<tr class="even">
+<td>[5 : 8]</td>
+<td>0.3632813</td>
+</tr>
+<tr class="odd">
+<td>[6 : 8]</td>
+<td>0.1445313</td>
+</tr>
+<tr class="even">
+<td>[7 : 8]</td>
+<td>0.0351563</td>
+</tr>
+<tr class="odd">
+<td>[8 : 8]</td>
+<td>0.0039063</td>
+</tr>
+</tbody>
+</table>
 
 ## Notes
 

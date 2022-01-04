@@ -1,11 +1,16 @@
 ---
 title: "Hypothesis testing"
-output: github_document
+output:
+  html_document: default
+  md_document: default
+
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+$10/\sqrt{100}=1$
 
 ## Hypothesis testing
 * Hypothesis testing is concerned with making decisions using data
@@ -44,7 +49,7 @@ $H_a$ | $H_0$ | Type II error |
 * $\alpha$ = Type I error rate = Probability of rejecting the null hypothesis when, in fact, the null hypothesis is correct
 
 ## Example continued
-- Standard error of the mean $10 / \sqrt{100} = 1$
+- Standard error of the mean $10/\sqrt{100}=1$
 - Under $H_0$ $\bar X \sim N(30, 1)$ 
 - We want to chose $C$ so that the $P(\bar X > C; H_0)$ is 5%
 - The 95th percentile of a normal distribution is 1.645 standard deviations from the mean
@@ -54,11 +59,7 @@ $H_a$ | $H_0$ | Type II error |
 
 ## Discussion
 * In general we don't convert $C$ back to the original scale
-* We would just reject because the Z-score; which is how many standard errors the sample mean is above the hypothesized mean
-  $$
-  \frac{32 - 30}{10 / \sqrt{100}} = 2
-  $$
-  is greater than $1.645$
+* We would just reject because the Z-score; which is how many standard errors the sample mean is above the hypothesized mean $$\frac{32 - 30}{10 / \sqrt{100}} = 2$$ is greater than $1.645$
 * Or, whenever $\sqrt{n} (\bar X - \mu_0) / s > Z_{1-\alpha}$
 
 ## General rules
@@ -86,16 +87,10 @@ $H_a$ | $H_0$ | Type II error |
 
 ## Example reconsidered
 - Consider our example again. Suppose that $n= 16$ (rather than $100$)
-- The statistic
-$$
-\frac{\bar X - 30}{s / \sqrt{16}}
-$$
-follows a $T$ distribution with 15 df under $H_0$
+- The statistic $$\frac{\bar X - 30}{s / \sqrt{16}}$$ follows a $T$ distribution with 15 df under $H_0$
 - Under $H_0$, the probability that it is larger that the 95th percentile of the $T$ distribution is 5%
 - The 95th percentile of the T distribution with 15 df is `r qt(.95, 15)` (obtained via `qt(.95, 15)`)
-- So that our test statistic is now $$
-\sqrt{16}(32 - 30) / 10 = 0.8 
-$$
+- So that our test statistic is now $$\sqrt{16}(32 - 30) / 10 = 0.8$$
 - We now fail to reject.
 
 ## Two sided tests
