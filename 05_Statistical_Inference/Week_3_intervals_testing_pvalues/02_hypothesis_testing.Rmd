@@ -1,8 +1,6 @@
 ---
 title: "Hypothesis testing"
-output:
-  html_document: default
-  md_document: default
+output: github_document
 
 ---
 
