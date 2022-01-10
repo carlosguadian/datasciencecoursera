@@ -1,8 +1,6 @@
 Hypothesis testing
 ================
 
-$10/\\sqrt{100}=1$
-
 ## Hypothesis testing
 
 -   Hypothesis testing is concerned with making decisions using data
